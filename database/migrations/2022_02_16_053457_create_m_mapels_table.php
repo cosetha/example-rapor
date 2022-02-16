@@ -13,8 +13,9 @@ class CreateMMapelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_mapels', function (Blueprint $table) {
+        Schema::create('m_mapel', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->timestamps();
         });
     }

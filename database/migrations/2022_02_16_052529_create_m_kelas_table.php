@@ -15,6 +15,7 @@ class CreateMKelasTable extends Migration
     {
         Schema::create('m_kelas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->timestamps();
         });
     }
