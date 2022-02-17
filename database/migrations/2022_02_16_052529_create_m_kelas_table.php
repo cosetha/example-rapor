@@ -15,7 +15,11 @@ class CreateMKelasTable extends Migration
     {
         Schema::create('m_kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama_kelas');
+            $table->string('bidang_studi');
+            $table->string('kompetensi_keahlian');
+            $table->integer('tahun')->length(5)->unsigned();
+            $table->integer('tingkat')->length(5)->unsigned();
             $table->timestamps();
         });
     }

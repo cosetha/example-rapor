@@ -11,6 +11,16 @@ class MKelasSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('m_kelas')->insert([
+            [
+                'nama' => Str::random(10),
+            ],
+            [
+                'nama' => Str::random(10),
+            ],
+            [
+                'nama' => Str::random(10),
+            ]
+        ]);
     }
 }

@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+@extends('layouts.appdashboard')
+@section('title', 'Dashboard || Cordova')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

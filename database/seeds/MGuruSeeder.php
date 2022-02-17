@@ -11,6 +11,16 @@ class MGuruSeeder extends Seeder
      */
     public function run()
     {
-        //
+            DB::table('m_guru')->insert([
+            [
+                'nama' => 'AGUS',
+            ],
+            [
+                'nama' => 'UDIN',
+            ],
+            [
+                'nama' => 'AMY',
+            ]
+        ]);
     }
 }

@@ -16,14 +16,24 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         .bg-gradient-primary {
             background-color: #002F59;
-            background-image: linear-gradient(120deg, #002F59 10%, #6900c7 100%);
+            background-image: linear-gradient(0deg, rgba(34,193,195,0.8407738095238095) 0%, rgba(45,220,253,1) 100%);
             background-size: cover;
+            font-family: 'Lato', Calibri, Arial, sans-serif;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+        }
+        .bg-login-image {
+            background: url("/img/logo-gk.png");
+            background-position: center;
+            background-size: 80%;
+            background-repeat: no-repeat;
         }
     </style>
 </head>

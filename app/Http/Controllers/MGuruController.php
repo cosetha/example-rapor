@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\m_guru;
+use App\Relation;
 use Illuminate\Http\Request;
 
 class MGuruController extends Controller
@@ -14,7 +15,28 @@ class MGuruController extends Controller
      */
     public function index()
     {
-        //
+        // print_r(m_guru::find(1)->relation()->first()->tojson());
+        // foreach (m_guru::find(1)->relation()->get() as $relation) {
+        //     // $plan = $relation->kelas;
+        //     // $student = $relation->mapel;
+
+        //     // echo($relation."<br />");
+        //     echo($relation);
+        // }
+       
+        // // print_r(m_guru::find(1)->relation()->first()->mapel()->first()->nama);
+        // foreach (m_guru::find(1)->relation()->first()->mapel()->get() as $relation) {
+        //     echo($relation);
+        // }
+
+         foreach (m_guru::find(1)->relation()->get() as $relation) {
+            // $plan = $relation->kelas;
+            // $student = $relation->mapel;
+
+            // echo($relation."<br />");
+            echo($relation->kelas()->first()."<br>");
+        }
+
     }
 
     /**
@@ -24,7 +46,14 @@ class MGuruController extends Controller
      */
     public function create()
     {
-        //
+        $guru = m_guru::find(2);
+        $guru->relation()->create([
+            'm_kelas_id' => 1,
+            'm_mapel_id' => 1,
+         ]);
+         return response()->json([
+            'error' => "MBULLLED"
+        ]);
     }
 
     /**
@@ -35,7 +64,16 @@ class MGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $guru = m_guru::find(2);
+        $data = new Relation([
+            'm_kelas_id' => 1,
+            'm_mapel_id' => 1,
+         ]);
+
+         $guru->relation()->save($data);
+         return response()->json([
+            'error' => "MBULLL"
+        ]);
     }
 
     /**
@@ -80,6 +118,13 @@ class MGuruController extends Controller
      */
     public function destroy(m_guru $m_guru)
     {
-        //
+        $guru = m_guru::find(2);
+        $guru->relation()->whereColumn([
+            ['m_mapel_id', '=', 1],
+            ['m_kelas_id', '=', 1],
+        ])->delete();
+         return response()->json([
+            'error' => "MBULLLEDIN"
+        ]);
     }
 }

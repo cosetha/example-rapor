@@ -15,7 +15,11 @@ class CreateMGurusTable extends Migration
     {
         Schema::create('m_guru', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nama');
+            $table->string('nip');
+            $table->enum('is-bk', ['Y', 'N']);
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

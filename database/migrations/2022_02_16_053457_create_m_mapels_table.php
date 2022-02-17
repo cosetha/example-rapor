@@ -16,6 +16,8 @@ class CreateMMapelsTable extends Migration
         Schema::create('m_mapel', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->enum('kelompok', ['A', 'B','C']);
+            $table->enum('sub', ['MUNAS','MUKEL','C1', 'C2','C3']);
             $table->timestamps();
         });
     }

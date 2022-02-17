@@ -13,10 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/coba', 'MGuruController@index')->name('coba');
+Route::get('/store', 'MGuruController@create')->name('store');
+Route::get('/destroy', 'MGuruController@destroy')->name('destroy');
+
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
+
+Route::prefix('dashboard')
+    ->middleware(['auth'])
+    ->group(function () {
+        
+    });
+

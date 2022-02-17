@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class tahun extends Model
 {
-    protected $table = "m_mapel";
+    protected $table = "tahun";
     protected $guarded = ['id'];
 }

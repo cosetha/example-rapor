@@ -18,7 +18,7 @@ class CreateTGuruMapel extends Migration
             $table->unsignedBigInteger('m_guru_id');
             $table->unsignedBigInteger('m_kelas_id');
             $table->unsignedBigInteger('m_mapel_id');  
-                    
+            $table->integer('tahun')->length(5)->unsigned();        
            
             $table->foreign('m_guru_id')->references('id')->on('m_guru')->onDelete('cascade');
             $table->foreign('m_kelas_id')->references('id')->on('m_kelas')->onDelete('cascade');

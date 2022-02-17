@@ -11,6 +11,16 @@ class MMapelSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('m_mapel')->insert([
+            [
+                'nama' => "Matematika",
+            ],
+            [
+                'nama' => "Olah Raga",
+            ],
+            [
+                'nama' => "Teknik Mesin",
+            ]
+        ]);  
     }
 }
