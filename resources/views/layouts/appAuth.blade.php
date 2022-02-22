@@ -22,6 +22,9 @@
 		<link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
     </head>
+    <style>
+        
+    </style>
 
     <body class="loading authentication-bg authentication-bg-pattern">
 

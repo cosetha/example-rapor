@@ -19,17 +19,17 @@
         <form class="user" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
+                <label for="username" class="form-label">Email address or Username</label>
                 <div class="form-group">
                     <input
-                        id="email"
-                        type="email"
-                        class="form-control @error('email') is-invalid @enderror"
-                        id="email"
-                        name="email"
-                        value="{{ old('email') }}"
+                        id="username"
+                        type="text"
+                        class="form-control @error('username') is-invalid @enderror"
+                        id="username"
+                        name="username"
+                        value="{{ old('username') }}"
                         required
-                        autocomplete="email"
+                        autocomplete="username"
                         autofocus
                     />
                     @error('email')

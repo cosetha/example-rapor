@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMMapelsTable extends Migration
+class CreateMMapelAhlisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateMMapelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_mapel', function (Blueprint $table) {
+        Schema::create('m_mapel_ahli', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->enum('kelompok', ['A', 'B']);
-            $table->enum('sub', ['MUNAS','MUKEL']);
+            $table->unsignedBigInteger('id_bidang');
+            $table->foreign('id_bidang')->references('id')->on('m_bidang_studi')->onDelete('cascade');
+            $table->enum('kelompok', ['C']);
+            $table->enum('sub', ['C1', 'C2','C3']);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateMMapelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_mapels');
+        Schema::dropIfExists('m_mapel_ahlis');
     }
 }

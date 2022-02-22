@@ -16,8 +16,8 @@ class CreateMKelasTable extends Migration
         Schema::create('m_kelas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kelas');
-            $table->string('bidang_studi');
-            $table->string('kompetensi_keahlian');
+            $table->unsignedBigInteger('id_keahlian');
+            $table->foreign('id_keahlian')->references('id')->on('t_keahlian')->onDelete('cascade');
             $table->integer('tahun')->length(5)->unsigned();
             $table->integer('tingkat')->length(5)->unsigned();
             $table->timestamps();

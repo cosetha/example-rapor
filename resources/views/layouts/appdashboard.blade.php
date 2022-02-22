@@ -8,19 +8,20 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
          <!-- App favicon -->
-         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
         <!-- App css -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
         <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">  
         <!-- App-dark css -->
         <link href="{{ asset('assets/css/bootstrap-dark.min.css') }}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled="disabled"/>
         <link href="{{ asset('assets/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" disabled="disabled"/>
-
+        <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- icons -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-
+        @yield('css')
     </head>
 
     <!-- body start -->
@@ -34,9 +35,9 @@
                     <ul class="list-unstyled topnav-menu float-end mb-0"> 
                         <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
+                                <img src="{{asset('assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
                                 <span class="pro-user-name ms-1">
-                                    Nowak <i class="mdi mdi-chevron-down"></i> 
+                                {{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i> 
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -71,20 +72,20 @@
     
                     <!-- LOGO -->
                     <div class="logo-box">
-                        <a href="index.html" class="logo logo-light text-center">
+                        <a href="/dashboard" class="logo logo-light text-center">
                             <span class="logo-sm">
-                                <img src="assets/images/logo-sm.png" alt="" height="22">
+                                <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="assets/images/logo-light.png" alt="" height="16">
+                                <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="16">
                             </span>
                         </a>
-                        <a href="index.html" class="logo logo-dark text-center">
+                        <a href="/dashboard" class="logo logo-dark text-center">
                             <span class="logo-sm">
-                                <img src="assets/images/logo-sm.png" alt="" height="22">
+                                <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="assets/images/logo-dark.png" alt="" height="16">
+                                <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="16">
                             </span>
                         </a>
                     </div>
@@ -115,9 +116,9 @@
                      <!-- User box -->
                     <div class="user-box text-center">
 
-                        <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
+                        <img src="{{asset('assets/images/users/user-1.jpg')}}" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
                             <div class="dropdown">
-                                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false">Nowak Helme</a>
+                                <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false"> {{ Auth::user()->name }}</a>
                                 <div class="dropdown-menu user-pro-dropdown">
 
                                     <!-- item-->
@@ -132,31 +133,19 @@
                                     </a>
         
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="{{ route('logout') }}" class="dropdown-item notify-item">
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="fe-log-out me-1"></i>
                                         <span>Logout</span>
                                     </a>
-        
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </div>
 
-                        <p class="text-muted left-user-info">Admin Head</p>
-
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#" class="text-muted left-user-info">
-                                    <i class="mdi mdi-cog"></i>
-                                </a>
-                            </li>
-
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="mdi mdi-power"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        <p class="text-muted left-user-info"> {{ Auth::user()->level }}</p>
                     </div>
 
                     <!--- Sidemenu -->
@@ -167,9 +156,8 @@
                             <li class="menu-title">Navigation</li>
                 
                             <li>
-                                <a href="index.html">
-                                    <i class="mdi mdi-view-dashboard-outline"></i>
-                                    <span class="badge bg-success rounded-pill float-end">9+</span>
+                                <a href="/dashboard">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>                            
                                     <span> Dashboard </span>
                                 </a>
                             </li>
@@ -249,7 +237,66 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>                            
+                            </li>
+                            @if(Auth::user()->level =='Admin')
+                            <li class="menu-title mt-2">Management</li>
+                            <li>
+                                <a href="#sidebarAuth" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                    <span> Admin Pages </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarAuth">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="/dashboard/tahun">Set Tahun Aktif</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/guru">Data Guru</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/siswa">Data Siswa</a>
+                                        </li>
+                                        <li>
+                                            <a href="#sidebarMultilevel2" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                                Data Kejuruan <span class="menu-arrow"></span>
+                                            </a>
+                                            <div class="collapse show" id="sidebarMultilevel2" style="">
+                                                <ul class="nav-second-level">
+                                                    <li>
+                                                        <a href="/dashboard/bidang">Bidang Studi</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/dashboard/kompetensi">Kompetensi Keahlian</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/kelas">Data Kelas</a>
+                                        </li>
+                                        <li>
+                                            <a href="#sidebarMultilevel22" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                                Data Mata Pelajaran <span class="menu-arrow"></span>
+                                            </a>
+                                            <div class="collapse show" id="sidebarMultilevel22" style="">
+                                                <ul class="nav-second-level">
+                                                    <li>
+                                                        <a href="/dashboard/mapel">Data Mapel Umum</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/dashboard/mapel-kejuruan">Data Mapel Kejuruanl</a>
+                                                    </li>
+                                                </ul>
+                                            </div>                                            
+                                        </li>
+                                        <li>
+                                            <a href="auth-logout.html">Data Ekstra</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            @endif
                         </ul>
 
                     </div>
@@ -274,8 +321,8 @@
                     <div class="container-fluid">
 
                         <div class="row">
-                            <div class="col-sm-12">
-                                @yield('content')
+                            <div class="col-12">
+                            @yield('content')
                             </div>
                         </div>
                         <!-- end row -->        
@@ -328,9 +375,14 @@
         <script src="{{ asset('assets/libs/waypoints/lib/jquery.waypoints.min.js') }}"></script>
         <script src="{{ asset('assets/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
         <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
+   
+       
+
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+        <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.all.min.js')}}"></script>
         <!-- App js -->
         <script src="{{ asset('assets/js/app.min.js') }}"></script>
-        
+        @yield('js')
     </body>
 </html>

@@ -15,5 +15,10 @@ class m_kelas extends Model
         return $this->hasMany('App\Relation', 'm_kelas_id', 'id');
 
     }
+
+    public function keahlian()
+    {
+        return $this->hasMany('App\t_keahlian', 'id', 'id_keahlian');
+    }
     
 }

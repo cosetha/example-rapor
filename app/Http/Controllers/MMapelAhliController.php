@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\tahun;
+use App\m_mapel_ahli;
 use Illuminate\Http\Request;
 
-class TahunController extends Controller
+class MMapelAhliController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TahunController extends Controller
      */
     public function index()
     {
-        return view('tahun');
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class TahunController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\tahun  $tahun
+     * @param  \App\m_mapel_ahli  $m_mapel_ahli
      * @return \Illuminate\Http\Response
      */
-    public function show(tahun $tahun)
+    public function show(m_mapel_ahli $m_mapel_ahli)
     {
         //
     }
@@ -52,10 +52,10 @@ class TahunController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\tahun  $tahun
+     * @param  \App\m_mapel_ahli  $m_mapel_ahli
      * @return \Illuminate\Http\Response
      */
-    public function edit(tahun $tahun)
+    public function edit(m_mapel_ahli $m_mapel_ahli)
     {
         //
     }
@@ -64,10 +64,10 @@ class TahunController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\tahun  $tahun
+     * @param  \App\m_mapel_ahli  $m_mapel_ahli
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tahun $tahun)
+    public function update(Request $request, m_mapel_ahli $m_mapel_ahli)
     {
         //
     }
@@ -75,10 +75,10 @@ class TahunController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\tahun  $tahun
+     * @param  \App\m_mapel_ahli  $m_mapel_ahli
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tahun $tahun)
+    public function destroy(m_mapel_ahli $m_mapel_ahli)
     {
         //
     }
