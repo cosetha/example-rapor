@@ -21,6 +21,7 @@
         <!-- icons -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('assets/libs/yearpicker/yearpicker.css')}}">     
         @yield('css')
     </head>
 
@@ -285,14 +286,14 @@
                                                         <a href="/dashboard/mapel">Data Mapel Umum</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/dashboard/mapel-kejuruan">Data Mapel Kejuruanl</a>
+                                                        <a href="/dashboard/mapel-kejuruan">Data Mapel Kejuruan</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/dashboard/ekstra">Data Ekstrakulikuler</a>
                                                     </li>
                                                 </ul>
                                             </div>                                            
-                                        </li>
-                                        <li>
-                                            <a href="auth-logout.html">Data Ekstra</a>
-                                        </li>
+                                        </li>                                        
                                     </ul>
                                 </div>
                             </li>
@@ -381,6 +382,14 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
         <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.all.min.js')}}"></script>
+
+        <script src="{{ asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/yearpicker/yearpicker.js')}}"></script>
+
+
+       
+
+        
         <!-- App js -->
         <script src="{{ asset('assets/js/app.min.js') }}"></script>
         @yield('js')

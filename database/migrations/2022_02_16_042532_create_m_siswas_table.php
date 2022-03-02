@@ -18,15 +18,15 @@ class CreateMSiswasTable extends Migration
             $table->integer('nipdn')->length(11)->unsigned();
             $table->string('nama');
             $table->string('alamat');
-            $table->integer('nisn')->length(11)->unsigned();
-            $table->integer('no_ijazah')->length(11)->unsigned();
-            $table->integer('tahun_ijazah')->length(11)->unsigned();
+            $table->integer('nisn')->length(11)->nullable()->unsigned();
+            $table->integer('no_ijazah')->length(11)->nullable()->unsigned();
+            $table->integer('tahun_ijazah')->length(11)->nullable()->unsigned();
             $table->string('email');
             $table->string('agama');
             $table->string('no_telp');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->string('asala_sekolah');
+            $table->string('asal_sekolah');
         });
     }
 

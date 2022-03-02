@@ -24,6 +24,8 @@ class CreateMWaliMuridsTable extends Migration
             $table->string('pekerjaan');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_siswa');
+            $table->foreign('id_siswa')->references('id')->on('m_siswa')->onDelete('cascade');
             $table->timestamps();
         });
     }

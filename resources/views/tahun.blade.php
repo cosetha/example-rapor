@@ -1,4 +1,13 @@
 @extends('layouts.appdashboard') @section('title', 'Tahun || Cordova')
+
+@section('css')
+<style>
+    .datepicker{
+        z-index: 1600;
+        cursor: pointer;
+    }
+</style>
+@endsection
 @section('content')
 
 <div class="card">
@@ -32,8 +41,12 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Bidang</th>
-                                <th>Nama Keahlian</th>
+                                <th>Tahun</th>
+                                <th>Semester</th>
+                                <th>Status</th>
+                                <th>Nama Kepala Sekolah</th>
+                                <th>NIP Kepala Sekolah</th>
+                                <th>Tanggal Rapor</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -72,31 +85,40 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <form action="" method="post" action="{{ url('') }}/dashboard/tahun/store" id="form-tambah">
-                            @csrf
-                            <div class="form-group ">
-                                <label for="nama">Tahun:</label>
-                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan tahun" name="tahun-tambah" required value = "{{ old('nama') }}">                                        
+                            @csrf                            
+                            <div class="row mt-1">
+                                <div class="col">
+                                    <div class="form-group ">
+                                        <label for="nama-tambah">Nama Kepala Sekolah :</label>
+                                        <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Kepala Sekolah" name="nama-tambah" required value = "">                                        
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group ">
+                                        <label for="nip-tambah">NIP :</label>
+                                        <input type="number" class="form-control" id="nip-tambah" placeholder="Masukan Nama Kepala Sekolah" name="nip-tambah" required value = "">                                        
+                                    </div>  
+                                </div>                              
+                            </div>
+                            <div class="form-group mt-1 ">
+                                <label for="tahun-tambah">Tahun:</label>
+                                <input type="text" class="form-control yearpicker"  readonly="readonly"  id="tahun-tambah" placeholder="Masukan tahun" name="tahun-tambah"  autocomplete="off" required value = "">                                        
                             </div>
                             <div class="row mt-1">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="semester">Semester :</label>
-                                        <select class="form-select" id="semester" name="semester">                                   
+                                        <label for="semester-tambah">Semester :</label>
+                                        <select class="form-select" id="semester-tambah" name="semester">                                   
                                             <option value="1">Ganjil</option>  
                                             <option value="2">Genap</option>                         
                                         </select>
                                     </div>                                   
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="status-tam">Status :</label>
-                                        <select class="form-select" id="status-tam" name="status-tam">                                   
-                                            <option value="Y">Aktif</option>  
-                                            <option value="N">Non-Aktif</option>                         
-                                        </select>
-                                    </div>                                    
-                                </div>
-                            </div> 
+                                </div>                                
+                            </div>  
+                            <div class="form-group mt-1 ">
+                                <label for="tanggal-tambah">Tanggal rapor:</label>
+                                <input type="text" class="form-control datepicker" id="tanggal-tambah" name="tanggal-tambah" required value = "" autocomplete="off">                                        
+                            </div>                               
                     </div>
                 </div>
             </div>
@@ -142,31 +164,40 @@
                     <div class="col-sm-12">
                     <form action="" method="post" action="" id="form-edit">
                         <input type="hidden" name="edit-id" value="">
-                            @csrf
-                            <div class="form-group ">
-                                <label for="nama-edit">Tahun:</label>
-                                <input type="text" class="form-control" id="tahun-edit" placeholder="Masukan tahun" name="tahun-edit" required value = "{{ old('nama') }}">                                        
+                            @csrf                            
+                            <div class="row mt-1">
+                                <div class="col">
+                                    <div class="form-group ">
+                                        <label for="nama-edit">Nama Kepala Sekolah :</label>
+                                        <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Kepala Sekolah" name="nama-edit" required value = "">                                        
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group ">
+                                        <label for="nip-edit">NIP :</label>
+                                        <input type="number" class="form-control" id="nip-edit" placeholder="Masukan Nama Kepala Sekolah" name="nip-edit" required value = "">                                        
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="form-group mt-1 ">
+                                <label for="tahun-edit">Tahun:</label>
+                                <input type="text" class="form-control yearpicker" id="tahun-edit"  readonly="readonly"  name="tahun-edit" required value = "" autocomplete="off">                                        
                             </div>                           
-                            <div class="form-row">
+                            <div class="row mt-1">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="semester">Semester :</label>
+                                        <label for="semester-edit">Semester :</label>
                                         <select class="form-select" id="semester-edit" name="semester-edit">                                   
                                             <option value="1">Ganjil</option>  
                                             <option value="2">Genap</option>                         
                                         </select>
                                     </div>                                   
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="status-edit">Status :</label>
-                                        <select class="form-select" id="status-edit" name="status-edit">                                   
-                                            <option value="Y">Aktif</option>  
-                                            <option value="N">Non-Aktif</option>                         
-                                        </select>
-                                    </div>                                    
-                                </div>
-                            </div>                                                                                   
+                                </div>                                
+                            </div>
+                            <div class="form-group mt-1 ">
+                                <label for="tanggal-edit">Tanggal rapor:</label>
+                                <input type="text" class="form-control datepicker" id="tanggal-edit" name="tanggal-edit" required value = "" autocomplete="off">                                        
+                            </div>                                                                                                                               
                     </div>
                 </div>
             </div>
@@ -181,8 +212,20 @@
 </div>
 <!-- /.modal -->
 @endsection @section('js')
+
 <script>
 $(document).ready(function () {
+
+    $('.datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+    })
+    
+
+    $('.yearpicker').yearpicker();
+
+   
+   
     var table = $('#table_id').DataTable({
                     processing: true,
                     serverSide: true,
@@ -198,23 +241,59 @@ $(document).ready(function () {
                             className: 'align-middle text-center'
                         },
                         {
-                            data: "bidang_studi",
+                            data: "tahun",
                             className: 'align-middle text-center',
                             render: function (data, type, row) {
                                 //return data.length;
-                                var txt = "";
-                                data.forEach(function (item) {
-                                    if (txt.length > 0) {
-                                        txt += ", ";
-                                    }
-                                    txt += item.nama_bidang;
-                                });
+                                var txt = String(data).substring(0,4);                               
                                 return txt;
                             },
                         },
                         {
-                            data: 'nama_bidang',
-                            name: 'nama_bidang',
+                            data: "tahun",
+                            className: 'align-middle text-center',
+                            render: function (data, type, row) {
+                                //return data.length;
+                                var txt = String(data).substring(4,5);                              
+                                if(txt == 1){
+                                    return "Ganjil"
+                                }else if(txt == 2){
+                                    return "Genap"
+                                }else{
+                                    return "NA"
+                                }                                                             
+                            },
+                        },
+                        {
+                            data: 'status',
+                            render: function (data, type, row) {
+                                //return data.length;                                                          
+                                if(data == 'Y'){
+                                    return "AKTIF"
+                                }else if(data == 'N'){
+                                    return "NON-AKTIF"
+                                }else{
+                                    return "NA"
+                                }                                                             
+                            },
+                            className: 'align-middle text-center'
+                        },
+                        {
+                            data: 'nama_kepsek',
+                            name: 'nama_kepsek',
+                            className: 'align-middle text-center'
+                        },
+                        {
+                            data: 'nip_kepsek',
+                            name: 'nip_kepsek',
+                            className: 'align-middle text-center'
+                        },
+                        {
+                            data: 'tanggal_rapor',
+                            render: function (data, type, row) {
+                                let tanggal = new Date(data)
+                                return tanggal.getDate() +'/'+ (parseInt(tanggal.getMonth()) + 1) + '/' + tanggal.getFullYear()
+                            },
                             className: 'align-middle text-center'
                         },
                         {
@@ -235,8 +314,10 @@ $(document).ready(function () {
     $('body').on('submit', '#form-tambah', function(e) {
             e.preventDefault();
             var formData = new FormData();
-            formData.append('nama', $('input[name=nama-tambah]').val());
-            formData.append('bidang', $('#bidang').val());
+            formData.append('tahun', $('#tahun-tambah').val() + $('#semester-tambah').val());
+            formData.append('nama_kepsek', $('#nama-tambah').val());
+            formData.append('nip_kepsek', $('#nip-tambah').val());
+            formData.append('tanggal', $('#tanggal-tambah').val());
             $.ajax({
 				type: 'post',
 				url: '/dashboard/tahun/store',
@@ -280,18 +361,46 @@ $(document).ready(function () {
             success: function(res) {
                 $('#modal-tahun-edit').modal('show');
                 $('input[name=edit-id]').val(id);
-                $('#nama-edit').val(res.values.nama_bidang);
-                $("#bidang-edit").val(res.values.id_bidang);
+                $('#nama-edit').val(res.values.nama_kepsek);
+                $("#nip-edit").val(res.values.nip_kepsek);
+                let tanggal = new Date(res.values.tanggal_rapor)                
+                $("#tanggal-edit").val(String(tanggal.getDate() +'-'+ (parseInt(tanggal.getMonth()) + 1) + '-' + tanggal.getFullYear()));
+                $("#tahun-edit").val(String(res.values.tahun).substring(0,4));
+                $("#semester-edit").val(String(res.values.tahun).substring(4,5));
                 }
             });
 		
     })
+
+    $('body').on('click', '.btn-aktif', function(e) {
+            var id = $(this).attr('data-id');
+            e.preventDefault()
+            $.ajax({
+            url: '/dashboard/tahun/aktif/'+id,
+            type: 'GET',
+            success: function(res) {
+                Swal.fire({
+					icon: 'success',
+					title: 'Sukses',
+					text: 'Berhasil Mengaktifkan Tahun Ajaran',
+					timer: 1200,
+					showConfirmButton: false
+				});
+                table.ajax.reload();
+            }
+               
+            });
+		
+    })
+
     $('body').on('submit', '#form-edit', function(e) {
             e.preventDefault();
             var id = $('input[name=edit-id]').val();
             var formData = new FormData();
-            formData.append('nama', $('#nama-edit').val());
-            formData.append('bidang', $('#bidang-edit').val());
+            formData.append('tahun', $('#tahun-edit').val() + $('#semester-edit').val());
+            formData.append('nama_kepsek', $('#nama-edit').val());
+            formData.append('nip_kepsek', $('#nip-edit').val());
+            formData.append('tanggal', $('#tanggal-edit').val());
             $.ajax({
 				type: 'post',
 				url: '/dashboard/tahun/update/'+id,
@@ -330,7 +439,7 @@ $(document).ready(function () {
             var id = $(this).attr('data-id');
             var nama = $(this).attr('data-nama');
             Swal.fire({
-                title: 'Hapus ' + nama + ' ?',
+                title: nama.substring(4,5) == 1?'Hapus ' +  nama.substring(0,4)+" Ganjil" :'Hapus ' +  nama.substring(0,4)+ " Genap" + ' ?',
                 text: 'Anda tidak dapat mengurungkan aksi ini!',
                 icon: 'warning',
                 showCancelButton: true,
@@ -343,7 +452,7 @@ $(document).ready(function () {
                         type: 'get',
                         url: '/dashboard/tahun/destroy/' + id,
                         success: function(response) {
-                            Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
+                            Swal.fire('Deleted! ',  nama.substring(4,5) == 1? nama.substring(0,4)+" Ganjil" + ' telah dihapus.' : nama.substring(0,4)+ " Genap" + ' telah dihapus.', 'success');
                             table.ajax.reload();
                         },
                         error: function(err) {

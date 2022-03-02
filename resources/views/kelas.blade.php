@@ -11,7 +11,7 @@
                     type="button"
                     class="btn btn-success waves-effect waves-light"
                     data-bs-toggle="modal"
-                    data-bs-target="#modal-kompetensi"
+                    data-bs-target="#modal-kelas"
                 >
                     <span class="btn-label"
                         ><i class="mdi mdi-book-plus-outline"></i></span
@@ -31,10 +31,10 @@
                     >
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Nama Kelas</th>
+                                <th>No</th>                                
                                 <th>Nama Keahlian</th>
-                                <th>Tahun</th>
+                                <th>Nama Kelas</th>
+                                <th>Tahun</th>                                
                                 <th>Tingkat</th>
                                 <th>Aksi</th>
                             </tr>
@@ -49,7 +49,7 @@
     </div>
 </div>
 <div
-    id="modal-kompetensi"
+    id="modal-kelas"
     class="modal fade"
     tabindex="-1"
     role="dialog"
@@ -73,23 +73,42 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <form action="" method="post" action="{{ url('') }}/dashboard/kompetensi/store" id="form-tambah">
+                        <form action="" method="post" action="{{ url('') }}/dashboard/kelas/store" id="form-tambah">
                             @csrf
                             <div class="form-group ">
-                                <label for="nama">Nama Kompetensi Keahlian:</label>
-                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama kompetensi" name="nama-tambah" required value = "{{ old('nama') }}">                                        
+                                <label for="nama">Nama Kelas:</label>
+                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Kelas" name="nama-tambah" required value = "{{ old('nama') }}">                                        
                             </div>
                             <div class="form-group">
-                                <label for="bidang">Nama Bidang Studi</label>
-                                @if($bidang->isEmpty())
-                                    <a id="bidang" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
+                                <label for="jurusan">Nama Jurusan</label>
+                                @if($jurusan->isEmpty())
+                                    <a id="jurusan" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select class="form-control" id="bidang" name="bidang">                                   
-                                    @foreach($bidang as $b)
+                                <select class="form-control jurusan" id="jurusan" name="jurusan">   
+                                    <option value="">== Pilih Jurusan ==</option>                                
+                                    @foreach($jurusan as $b)
                                     <option value="{{$b->id}}">{{$b->nama_bidang}}</option>
                                     @endforeach                                  
                                 </select>
                                 @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="bidang">Nama Keahlian</label>                              
+                                <select class="form-control" id="bidang" name="bidang">                                   
+                                    <option disabled selected value="">-- Pilih  Jurusan --</option>                                                
+                                </select>                            
+                            </div>
+                            <div class="form-group">
+                                <label for="tahun">Tahun :</label>
+                                <input type="text" class="form-control yearpicker" id="tahun"  readonly="readonly"  name="tahun-edit" required value = "" autocomplete="off">                           
+                            </div>
+                            <div class="form-group">
+                                <label for="tigkat">Tingkat :</label>
+                                <select class="form-control" id="tingkat" name="tingkat">    
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                     </div>
                 </div>
@@ -114,7 +133,7 @@
 <!-- /.modal -->
 
 <div
-    id="modal-kompetensi-edit"
+    id="modal-kelas-edit"
     class="modal fade"
     tabindex="-1"
     role="dialog"
@@ -142,21 +161,41 @@
                         <input type="hidden" name="edit-id" value="">
                             @csrf
                             <div class="form-group ">
-                                <label for="nama-edit">Nama Kompetensi Keahlian:</label>
-                                <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Kompetensi" name="nama-edit" required value = "{{ old('nama') }}">                                        
+                                <label for="nama-edit">Nama Kelas:</label>
+                                <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Kelas" name="nama-edit" required value = "{{ old('nama') }}">                                        
                             </div>
                             <div class="form-group">
-                                <label for="bidang">Nama Bidang Studi</label>
-                                @if($bidang->isEmpty())
-                                    <a id="bidang-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
+                                <label for="jurusan-edit">Nama Jurusan</label>
+                                @if($jurusan->isEmpty())
+                                    <a id="jurusan-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select class="form-control" id="bidang-edit" name="bidang-edit">                                   
-                                    @foreach($bidang as $b)
+                                <select class="form-control jurusan" id="jurusan-edit" name="jurusan-edit">   
+                                    <option value="">== Pilih Jurusan ==</option>                                
+                                    @foreach($jurusan as $b)
                                     <option value="{{$b->id}}">{{$b->nama_bidang}}</option>
                                     @endforeach                                  
                                 </select>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label for="bidang-edit">Nama Keahlian</label>                              
+                                <select class="form-control" id="bidang-edit" name="bidang-edit">                                   
+                                    <option disabled selected value="">-- Pilih  Jurusan --</option>                                                
+                                </select>                            
+                            </div>
+                            <div class="form-group">
+                                <label for="tahun-edit">Tahun :</label>
+                                <input type="text" class="form-control " id="tahun-edit"  readonly="readonly"  name="tahun-edit" required value = "" autocomplete="off">                           
+                            </div>
+                            <div class="form-group">
+                                <label for="tigkat-edit">Tingkat :</label>
+                                <select class="form-control" id="tingkat-edit" name="tingkat-edit">    
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+
                     </div>
                 </div>
             </div>
@@ -173,11 +212,70 @@
 @endsection @section('js')
 <script>
 $(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('.yearpicker').yearpicker({
+        year:{{$tahun}},
+    });
+
+    $('#jurusan').on('change', function () {
+        var formData = new FormData()
+        formData.append('id', $('#jurusan').val()); 
+            $.ajax({
+				type: 'post',
+				url: '/dashboard/keahlian/create',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(response) {
+					$('#bidang').empty();
+
+                    for (const element of response) {
+                        $('#bidang').append(new Option(element.nama_bidang, element.id))
+                    }
+                      
+                   
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});       
+    });
+
+
+    $('#jurusan-edit').on('change', function () {
+        var formData = new FormData()
+        formData.append('id', $('#jurusan-edit').val()); 
+            $.ajax({
+				type: 'post',
+				url: '/dashboard/keahlian/create',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(response) {
+					$('#bidang-edit').empty();
+
+                    for (const element of response) {
+                        $('#bidang-edit').append(new Option(element.nama_bidang, element.id))
+                    }
+                      
+                   
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});       
+    });
+
     var table = $('#table_id').DataTable({
                     processing: true,
                     serverSide: true,
                     ajax: {
-                        url: '/dashboard/kompetensi/show',
+                        url: '/dashboard/kelas/show',
                         type: 'get'
                     },
                     columns: [
@@ -188,7 +286,7 @@ $(document).ready(function () {
                             className: 'align-middle text-center'
                         },
                         {
-                            data: "bidang_studi",
+                            data: "keahlian",
                             className: 'align-middle text-center',
                             render: function (data, type, row) {
                                 //return data.length;
@@ -203,33 +301,45 @@ $(document).ready(function () {
                             },
                         },
                         {
-                            data: 'nama_bidang',
-                            name: 'nama_bidang',
+                            data: 'nama_kelas',
+                            name: 'nama_kelas',
                             className: 'align-middle text-center'
+                        },                        
+                        {
+                            data: "tahun",
+                            className: 'align-middle text-center',
+                            render: function (data, type, row) {
+                                //return data.length;
+                                var txt = String(data).substring(0,4);                               
+                                return txt;
+                            },
                         },
+                        {
+                            data: 'tingkat',
+                            name: 'tingkat',
+                            className: 'align-middle text-center'
+                        },                        
                         {
                             data: 'aksi',
                             name: 'aksi',
                             searchable: false,
                             orderable: false,
                             className: 'align-middle text-center'
-                        }
+                        },
                     ]
 	});
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+   
     $('body').on('submit', '#form-tambah', function(e) {
             e.preventDefault();
             var formData = new FormData();
             formData.append('nama', $('input[name=nama-tambah]').val());
+            formData.append('tahun', $('#tahun').val());
+            formData.append('tingkat', $('#tingkat').val());
             formData.append('bidang', $('#bidang').val());
             $.ajax({
 				type: 'post',
-				url: '/dashboard/kompetensi/store',
+				url: '/dashboard/kelas/store',
 				data: formData,
 				processData: false,
 				contentType: false,
@@ -243,13 +353,13 @@ $(document).ready(function () {
 							showConfirmButton: false
 						});
 					} else {
-						$('#modal-kompetensi').modal('hide');
+						$('#modal-kelas').modal('hide');
                         $('#form-tambah').trigger('reset');
                        
 						Swal.fire({
 							icon: 'success',
 							title: 'Sukses',
-							text: 'Berhasil Menambahkan Kompetensi Keahlian',
+							text: 'Berhasil Menambahkan Kelas',
 							timer: 1200,
 							showConfirmButton: false
 						});
@@ -265,13 +375,41 @@ $(document).ready(function () {
             var id = $(this).attr('data-id');
             e.preventDefault()
             $.ajax({
-            url: '/dashboard/kompetensi/edit/'+id,
+            url: '/dashboard/kelas/edit/'+id,
             type: 'GET',
             success: function(res) {
-                $('#modal-kompetensi-edit').modal('show');
+                $('#modal-kelas-edit').modal('show');
+                console.log(res.values)
                 $('input[name=edit-id]').val(id);
-                $('#nama-edit').val(res.values.nama_bidang);
-                $("#bidang-edit").val(res.values.id_bidang);
+                $('#nama-edit').val(res.values.nama_kelas);
+                $('#tahun-edit').val(res.values.tahun);
+                $('#tingkat-edit').val(res.values.tingkat)
+                $('#tahun-edit').yearpicker({
+                    year:res.values.tahun,
+                });
+                var formData = new FormData();
+                $("#jurusan-edit").val(res.values.keahlian[0].id_bidang);
+                formData.append('id', res.values.keahlian[0].id_bidang);
+                    $.ajax({
+                        type: 'post',
+                        url: '/dashboard/keahlian/create',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            $('#bidang-edit').empty();
+
+                            for (const element of response) {
+                                $('#bidang-edit').append(new Option(element.nama_bidang, element.id))
+                            }
+                            $('#bidang-edit').val(res.values.id_keahlian)
+                            
+                        
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    }); 
                 }
             });
 		
@@ -281,10 +419,12 @@ $(document).ready(function () {
             var id = $('input[name=edit-id]').val();
             var formData = new FormData();
             formData.append('nama', $('#nama-edit').val());
+            formData.append('tahun', $('#tahun-edit').val());
+            formData.append('tingkat', $('#tingkat-edit').val());
             formData.append('bidang', $('#bidang-edit').val());
             $.ajax({
 				type: 'post',
-				url: '/dashboard/kompetensi/update/'+id,
+				url: '/dashboard/kelas/update/'+id,
 				data: formData,
 				processData: false,
 				contentType: false,
@@ -298,12 +438,12 @@ $(document).ready(function () {
 							showConfirmButton: false
 						});
 					} else {
-						$('#modal-kompetensi-edit').modal('hide');
+						$('#modal-kelas-edit').modal('hide');
                         $('#form-edit').trigger('reset');
 						Swal.fire({
 							icon: 'success',
 							title: 'Sukses',
-							text: 'Berhasil Mengedit Kompetensi Keahlian',
+							text: 'Berhasil Mengedit Kelas',
 							timer: 1200,
 							showConfirmButton: false
 						});
@@ -331,7 +471,7 @@ $(document).ready(function () {
                 if (result.value) {
                     $.ajax({
                         type: 'get',
-                        url: '/dashboard/kompetensi/destroy/' + id,
+                        url: '/dashboard/kelas/destroy/' + id,
                         success: function(response) {
                             Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
                             table.ajax.reload();

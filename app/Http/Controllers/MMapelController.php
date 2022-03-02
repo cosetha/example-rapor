@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\m_mapel;
 use Illuminate\Http\Request;
-
+use Yajra\Datatables\Datatables;
 class MMapelController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class MMapelController extends Controller
      */
     public function index()
     {
-        //
+        return view('mapelUmum');
     }
 
     /**
@@ -24,7 +24,7 @@ class MMapelController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +35,14 @@ class MMapelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mapel = new m_mapel;
+        $mapel->nama = $request->nama;
+        $mapel->kelompok = $request->kelompok;
+        $mapel->sub = $request->sub;
+        $mapel->save();
+        return response()->json([
+            'message' => 'Success'
+        ]);
     }
 
     /**
@@ -46,7 +53,20 @@ class MMapelController extends Controller
      */
     public function show(m_mapel $m_mapel)
     {
-        //
+        $mapel = m_mapel::orderBy('id','desc')->get();
+
+        return Datatables::of($mapel)->addIndexColumn()
+        ->addColumn('aksi', function($row){
+            $btn = '<button href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn btn-info waves-effect waves-light btn-edit mx-2">
+            Edit <span class="mdi mdi-file-document-edit-outline"></span>
+            </button> &nbsp';
+            $btn = $btn. '<button href="javascript:void(0)" data-id="'.$row->id.'" data-nama="'.$row->nama.'" class="btn btn-danger waves-effect waves-light btn-delete"">
+            Delete <span class="mdi mdi-close-circle-outline"></span></i>
+            </button>';
+            return $btn;
+        })
+        ->rawColumns(['aksi'])
+            ->make(true);    
     }
 
     /**
@@ -55,9 +75,18 @@ class MMapelController extends Controller
      * @param  \App\m_mapel  $m_mapel
      * @return \Illuminate\Http\Response
      */
-    public function edit(m_mapel $m_mapel)
+    public function edit($id)
     {
-        //
+        $data = m_mapel::find($id)->first();
+        if($data !=null){
+            $res['message'] = "Success!";
+            $res['values'] = $data;
+            return response($res);
+        }
+        else{
+            $res['message'] = "Empty!";
+            return response($res);
+        }           
     }
 
     /**
@@ -67,9 +96,16 @@ class MMapelController extends Controller
      * @param  \App\m_mapel  $m_mapel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, m_mapel $m_mapel)
+    public function update(Request $request, $id)
     {
-        //
+        $mapel = m_mapel::find($id);
+        $mapel->nama = $request->nama;
+        $mapel->kelompok = $request->kelompok;
+        $mapel->sub = $request->sub;
+        $mapel->save();
+        return response()->json([
+            'message' => 'Success'
+        ]);
     }
 
     /**
@@ -78,8 +114,12 @@ class MMapelController extends Controller
      * @param  \App\m_mapel  $m_mapel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(m_mapel $m_mapel)
+    public function destroy($id)
     {
-        //
+        $mapel = m_mapel::find($id);
+        $mapel->delete();
+        return response()->json([
+            "message" => "Success"
+        ]);
     }
 }
