@@ -158,6 +158,12 @@ input[type=number] {
                                         <input type="number" class="form-control"  name="telpon" id="telpon"required>
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="tanggal">Tanggal Masuk</label>
+                                    </div>
+                                    <input type="text" class="form-control datepicker" id="tanggal-masuk" name="tanggal-masuk" readonly required value = "" autocomplete="off">  
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -312,6 +318,12 @@ input[type=number] {
                                         <label for="telpon-edit">No telepon</label>
                                         <input type="number" class="form-control" id="telpon-edit"required>
                                     </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="tanggal">Tanggal Masuk</label>
+                                    </div>
+                                    <input type="text" class="form-control datepicker" id="tanggal-masuk-edit" name="tanggal-masuk-edit" readonly required value = "" autocomplete="off">  
                                 </div>
                             </div>
                             <div class="row">
