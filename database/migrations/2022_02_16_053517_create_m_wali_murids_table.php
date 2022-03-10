@@ -13,7 +13,7 @@ class CreateMWaliMuridsTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_wali_murids', function (Blueprint $table) {
+        Schema::create('m_wali_murid', function (Blueprint $table) {
             $table->id();
             $table->string('nama_ayah');
             $table->string('nama_ibu');

@@ -39,8 +39,21 @@ Route::prefix('dashboard')
         Route::get('tahun/aktif/{id}', 'TahunController@AktifkanSemester');
         Route::post('tahun/store', 'TahunController@store');
 
-        Route::get('guru', 'MGuruController@store')->name('guru');
-        Route::get('siswa', 'MGuruController@edit')->name('siswa');
+        Route::get('user', 'MWaliMuridController@index')->name('guru');
+
+        Route::get('guru', 'MGuruController@index');
+        Route::get('guru/show', 'MGuruController@show');
+        Route::get('guru/edit/{id}', 'MGuruController@edit');
+        Route::post('guru/update/{id}', 'MGuruController@update');
+        Route::get('guru/destroy/{id}', 'MGuruController@destroy');        
+        Route::post('guru/store', 'MGuruController@store');
+
+        Route::get('siswa', 'MSiswaController@index');
+        Route::get('siswa/show', 'MSiswaController@show');
+        Route::get('siswa/edit/{id}', 'MSiswaController@edit');
+        Route::post('siswa/update/{id}', 'MSiswaController@update');
+        Route::get('siswa/destroy/{id}', 'MSiswaController@destroy');        
+        Route::post('siswa/store', 'MSiswaController@store');
 
         Route::get('mapel', 'MMapelController@index')->name('mapel');
         Route::get('mapel/show', 'MMapelController@show');
@@ -58,20 +71,20 @@ Route::prefix('dashboard')
 
         Route::post('keahlian/create', 'MKelasController@create');
 
-        Route::get('mapel-kejuruan', 'MMapelAhliCOntroller@index');
-        Route::get('mapel-kejuruan/show', 'MMapelAhliCOntroller@show');
-        Route::get('mapel-kejuruan/edit/{id}', 'MMapelAhliCOntroller@edit');
-        Route::post('mapel-kejuruan/update/{id}', 'MMapelAhliCOntroller@update');
-        Route::post('mapel-kejuruan/destroy/{id}', 'MMapelAhliCOntroller@destroy');        
-        Route::post('mapel-kejuruan/store', 'MMapelAhliCOntrollerkejuruan@store');
+        Route::get('mapel-kejuruan', 'MMapelAhliController@index');
+        Route::get('mapel-kejuruan/show', 'MMapelAhliController@show');
+        Route::get('mapel-kejuruan/edit/{id}', 'MMapelAhliController@edit');
+        Route::post('mapel-kejuruan/update/{id}', 'MMapelAhliController@update');
+        Route::get('mapel-kejuruan/destroy/{id}', 'MMapelAhliController@destroy');        
+        Route::post('mapel-kejuruan/store', 'MMapelAhliController@store');
 
 
-        Route::get('bidang', 'mJurusanController@index');
-        Route::get('bidang/show', 'mJurusanController@show');
-        Route::get('bidang/edit/{id}', 'mJurusanController@edit');
-        Route::post('bidang/update/{id}', 'mJurusanController@update');
-        Route::get('bidang/destroy/{id}', 'mJurusanController@destroy');        
-        Route::post('bidang/store', 'mJurusanController@store');
+        Route::get('bidang', 'MJurusanController@index');
+        Route::get('bidang/show', 'MJurusanController@show');
+        Route::get('bidang/edit/{id}', 'MJurusanController@edit');
+        Route::post('bidang/update/{id}', 'MJurusanController@update');
+        Route::get('bidang/destroy/{id}', 'MJurusanController@destroy');        
+        Route::post('bidang/store', 'MJurusanController@store');
 
         Route::get('ekstra', 'MExtraController@index');
         Route::get('ekstra/show', 'MExtraController@show');

@@ -43,6 +43,7 @@ class MMapelAhliController extends Controller
         $mapel->kelompok = 'C';
         $mapel->id_bidang = $request->bidang;
         $mapel->sub = $request->sub;
+        $mapel->tingkat = $request->tingkat;
         $mapel->save();
         return response()->json([
             'message' => 'Success'
@@ -107,6 +108,7 @@ class MMapelAhliController extends Controller
         $mapel->kelompok = 'C';
         $mapel->id_bidang = $request->bidang;
         $mapel->sub = $request->sub;
+        $mapel->tingkat = $request->tingkat;
         $mapel->save();
         return response()->json([
             'message' => 'Success'

@@ -20,9 +20,15 @@ class MKelasController extends Controller
     public function index()
     {
         $jurusan = m_jurusan::all();        
-        $akademik = tahun::select('tahun')->where('status','Y')->first();        
-        $tahun = Str::substr($akademik->tahun, 0, 4);
-        $semester =  Str::substr($akademik->tahun, 4, 1);
+        $akademik = tahun::select('tahun')->where('status','Y')->first();
+        if(empty($akademik)){
+            $tahun = '2018';
+            $semester =  '2';
+        }else{
+            $tahun = Str::substr($akademik->tahun, 0, 4);
+            $semester =  Str::substr($akademik->tahun, 4, 1);
+        }     
+      
         return view('kelas',compact('jurusan','tahun','semester'));
     }
 

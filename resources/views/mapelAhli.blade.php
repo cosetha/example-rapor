@@ -32,9 +32,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kelompok</th>
+                                <th>Bidang Keahlian</th>
                                 <th>Sub</th>
                                 <th>Nama Mapel</th>
+                                <th>Tingkatp</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -77,14 +78,25 @@
                             <div class="form-group my-1 ">
                                 <label for="nama">Nama Mata Pelajaran Keahlian:</label>
                                 <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Mapel" name="nama-tambah" required value = "{{ old('nama') }}">                                        
-                            </div>                          
+                            </div>   
+                            
+                            <div class="form-group">
+                                <label for="tigkat">Tingkat :</label>
+                                <select class="form-control" id="tingkat" name="tingkat">    
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+
                             <div class="form-group my-1">
                                 <label for="sub">Sub Mapel Kelompok C keahlian</label>
-                                <select name="sub" id="sub" class="form-select sub">
+                                <select name="sub" id="sub" class="form-select sub" required>
+                                    <option value="" disabled selected>-- Pilih Kelompok Mapel --</option>
                                     <option value="C1"> Dasar Bidang Keahlian </option>
                                     <option value="C2"> Dasar Program Keahlian </option>
                                     <option value="C3"> Kompetensi Keahlian </option>
-                                    <option value="" disabled selected>-- Pilih Kelompok Mapel --</option>
+                                   
                                 </select>
                             </div>
                             <div class="form-group my-1">
@@ -92,8 +104,8 @@
                                 @if($bidang->isEmpty())
                                     <a id="bidang" class="text-decoration-none" href="{{ url('/')}}/dashboard/kompetensi"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select name="bidang" id="bidang" class="form-select" > 
-                                    <option value="" disabled selected>-- Pilih Kelompok Mapel --</option>                         
+                                <select name="bidang" id="bidang" class="form-select" required> 
+                                    <option value="" disabled selected>-- Pilih Kompetensi Keahlian --</option>                         
                                     @foreach($bidang as $b)
                                     <option value="{{$b->id}}">{{$b->nama_bidang}}</option>
                                     @endforeach                                  
@@ -154,13 +166,23 @@
                                 <label for="nama">Nama Mata Pelajaran Keahlian:</label>
                                 <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Mapel" name="nama-edit" required value = "{{ old('nama') }}">                                        
                             </div>
+
+                            <div class="form-group">
+                                <label for="tigkat">Tingkat :</label>
+                                <select class="form-control" id="tingkat-edit" name="tingkat">    
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+
                             <div class="form-group my-1">
                                 <label for="sub-edit">Sub Mapel Kelompok C keahlian</label>
-                                <select name="sub-edit" id="sub-edit" class="form-select sub" disabled>
+                                <select name="sub-edit" id="sub-edit" class="form-select sub" required>
                                     <option value="C1"> Dasar Bidang Keahlian </option>
                                     <option value="C2"> Dasar Program Keahlian </option>
                                     <option value="C3"> Kompetensi Keahlian </option>
-                                    <option value="NA" selected> Not Available</option>
+                                    <option value="" selected disabled> Not Available</option>
                                 </select>
                             </div>
                             <div class="form-group my-1">
@@ -168,8 +190,8 @@
                                 @if($bidang->isEmpty())
                                     <a id="bidang-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/kompetensi"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select name="bidang-edit" id="bidang-edit" class="form-select" > 
-                                    <option value="" disabled selected>-- Pilih Kelompok Mapel --</option>                         
+                                <select name="bidang-edit" id="bidang-edit" class="form-select" required> 
+                                    <option value="" disabled selected>-- Pilih Kompetensi Keahlian --</option>                         
                                     @foreach($bidang as $b)
                                     <option value="{{$b->id}}">{{$b->nama_bidang}}</option>
                                     @endforeach                                  
@@ -208,18 +230,30 @@ $(document).ready(function () {
                             className: 'align-middle text-center'
                         },
                         {
-                            data: 'kelompok',
-                            name: 'kelompok',
-                            className: 'align-middle text-center'
+                            data: "kom_keahlian",
+                            className: 'align-middle text-center',
+                            render: function (data, type, row) {
+                                //return data.length;
+                                var txt = "";
+                                data.forEach(function (item) {
+                                    if (txt.length > 0) {
+                                        txt += ", ";
+                                    }
+                                    txt += item.nama_bidang;
+                                });
+                                return txt;
+                            },
                         },
                         {
                             data:'sub',
                             className: 'align-middle text-center',
                             render: function (data, type, row) {
-                                if(data == "MUNAS"){
-                                    return 'Muatan Nasional'
-                                }else if( data == 'MUKEL'){
-                                    return 'Muatan Kewilayahan'
+                                if(data == "C1"){
+                                    return 'Dasar Bidang Keahlian'
+                                }else if( data == 'C2'){
+                                    return 'Dasar Program Keahlian'
+                                }else if(data == 'C3'){
+                                    return 'Kompetensi Keahlian'
                                 }else{
                                     return 'Not Available'
                                 }
@@ -229,6 +263,11 @@ $(document).ready(function () {
                         {
                             data: 'nama',
                             name: 'nama',
+                            className: 'align-middle text-center'
+                        },
+                        {
+                            data: 'tingkat',
+                            name: 'tingkat',
                             className: 'align-middle text-center'
                         },
                         {
@@ -250,9 +289,11 @@ $(document).ready(function () {
             e.preventDefault();
             var formData = new FormData();
             formData.append('nama', $('input[name=nama-tambah]').val());
-            formData.append('kelompok', $('#kelompok').val());
+            formData.append('bidang', $('#bidang').val());
+            formData.append('bidang', $('#tingkat').val());
             formData.append('sub', $('#sub').val());
-            if(!$('#kelompok').val()){
+            formData.append('tingkat', $('#tingkat').val());
+            if(!$('#bidang').val()){
                 Swal.fire({
 			    	icon: 'error',
 			    	title: 'Ooopss...',
@@ -306,9 +347,11 @@ $(document).ready(function () {
             success: function(res) {
                 $('#modal-mapel-kejuruan-edit').modal('show');
                 $('input[name=edit-id]').val(id);
-                $('#kelompok-edit').val(res.values.kelompok)
+                $('#bidang-edit').val(res.values.id_bidang)
                 $('#sub-edit').val(res.values.sub)
                 $('#nama-edit').val(res.values.nama);
+                $('#tingkat-edit').val(res.values.tingkat);
+                
                 console.log(res.values)
                 }
             });
@@ -319,8 +362,9 @@ $(document).ready(function () {
             var id = $('input[name=edit-id]').val();
             var formData = new FormData();
             formData.append('nama',  $('#nama-edit').val());    
-            formData.append('kelompok', $('#kelompok-edit').val());
+            formData.append('bidang', $('#bidang-edit').val());
             formData.append('sub', $('#sub-edit').val());      
+            formData.append('tingkat', $('#tingkat-edit').val());      
             $.ajax({
 				type: 'post',
 				url: '/dashboard/mapel-kejuruan/update/'+id,

@@ -292,8 +292,30 @@
                                                         <a href="/dashboard/ekstra">Data Ekstrakulikuler</a>
                                                     </li>
                                                 </ul>
-                                            </div>                                            
+                                            </div>                                            612345612345612345612345612345612345612345612345612345612345612345612345612345612345612345612345
                                         </li>                                        
+                                    </ul>
+                                </div>
+                            </li>
+                            @elseif(Auth::user()->level =='Guru')
+                            <li class="menu-title mt-2">Management</li>
+                            <li>
+                                <a href="#sidebarAuth" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-account-multiple-plus-outline"></i>
+                                    <span> Guru Pages </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarAuth">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="/dashboard/tahun">Set Tahun Aktif</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/guru">Data Guru</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/siswa">Data Siswa</a>
+                                        </li>                             
                                     </ul>
                                 </div>
                             </li>

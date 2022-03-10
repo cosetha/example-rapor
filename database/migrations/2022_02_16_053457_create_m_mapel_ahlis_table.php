@@ -17,7 +17,8 @@ class CreateMMapelAhlisTable extends Migration
             $table->id();
             $table->string('nama');
             $table->unsignedBigInteger('id_bidang');
-            $table->foreign('id_bidang')->references('id')->on('m_bidang_studi')->onDelete('cascade');
+            $table->foreign('id_bidang')->references('id')->on('t_keahlian')->onDelete('cascade');
+            $table->integer('tingkat')->length(5)->unsigned();
             $table->enum('kelompok', ['C']);
             $table->enum('sub', ['C1', 'C2','C3']);
             $table->timestamps();

@@ -80,12 +80,12 @@
                                 <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Kelas" name="nama-tambah" required value = "{{ old('nama') }}">                                        
                             </div>
                             <div class="form-group">
-                                <label for="jurusan">Nama Jurusan</label>
+                                <label for="jurusan">Nama Bidang Studi</label>
                                 @if($jurusan->isEmpty())
                                     <a id="jurusan" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select class="form-control jurusan" id="jurusan" name="jurusan">   
-                                    <option value="">== Pilih Jurusan ==</option>                                
+                                <select class="form-control jurusan" id="jurusan" name="jurusan" required>   
+                                    <option value="">== Pilih Bidang Studi ==</option>                                
                                     @foreach($jurusan as $b)
                                     <option value="{{$b->id}}">{{$b->nama_bidang}}</option>
                                     @endforeach                                  
@@ -94,8 +94,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="bidang">Nama Keahlian</label>                              
-                                <select class="form-control" id="bidang" name="bidang">                                   
-                                    <option disabled selected value="">-- Pilih  Jurusan --</option>                                                
+                                <select class="form-control" id="bidang" name="bidang" required>                                   
+                                    <option disabled selected value="">-- Pilih  Bidang Studi --</option>                                                
                                 </select>                            
                             </div>
                             <div class="form-group">
@@ -165,12 +165,12 @@
                                 <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Kelas" name="nama-edit" required value = "{{ old('nama') }}">                                        
                             </div>
                             <div class="form-group">
-                                <label for="jurusan-edit">Nama Jurusan</label>
+                                <label for="jurusan-edit">Nama Bidang Studi</label>
                                 @if($jurusan->isEmpty())
                                     <a id="jurusan-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select class="form-control jurusan" id="jurusan-edit" name="jurusan-edit">   
-                                    <option value="">== Pilih Jurusan ==</option>                                
+                                <select class="form-control jurusan" id="jurusan-edit" name="jurusan-edit" required>   
+                                    <option value="">== Pilih Bidang Studi ==</option>                                
                                     @foreach($jurusan as $b)
                                     <option value="{{$b->id}}">{{$b->nama_bidang}}</option>
                                     @endforeach                                  
@@ -179,8 +179,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="bidang-edit">Nama Keahlian</label>                              
-                                <select class="form-control" id="bidang-edit" name="bidang-edit">                                   
-                                    <option disabled selected value="">-- Pilih  Jurusan --</option>                                                
+                                <select class="form-control" id="bidang-edit" name="bidang-edit" required>                                   
+                                    <option disabled selected value="">-- Pilih  Bidang Studi --</option>                                                
                                 </select>                            
                             </div>
                             <div class="form-group">
@@ -232,11 +232,17 @@ $(document).ready(function () {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('#bidang').empty();
-
-                    for (const element of response) {
-                        $('#bidang').append(new Option(element.nama_bidang, element.id))
+                    if(response.length != 0){
+                        $('#bidang').empty();
+                        for (const element of response) {
+                            $('#bidang').append(new Option(element.nama_bidang, element.id))
+                        }
+                    }else{
+                        $('#bidang').empty();
+                        $('#bidang').append(new Option('Bidang Keahlian belum ditambahkan',''))
+                        $("#bidang option:selected").attr('disabled','disabled')
                     }
+					
                       
                    
 				},
@@ -257,10 +263,15 @@ $(document).ready(function () {
 				processData: false,
 				contentType: false,
 				success: function(response) {
-					$('#bidang-edit').empty();
-
-                    for (const element of response) {
-                        $('#bidang-edit').append(new Option(element.nama_bidang, element.id))
+                    if(response.length != 0){
+                        $('#bidang-edit').empty();
+                        for (const element of response) {
+                            $('#bidang').append(new Option(element.nama_bidang, element.id))
+                        }
+                    }else{
+                        $('#bidang-edit').empty();
+                        $('#bidang-edit').append(new Option('Bidang Keahlian belum ditambahkan',''))
+                        $("#bidang-edit option:selected").attr('disabled','disabled')
                     }
                       
                    

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\m_wali_murid;
+use App\m_guru;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MWaliMuridController extends Controller
 {
@@ -14,7 +17,10 @@ class MWaliMuridController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::with('guru')->find(2);
+        echo($user."<br>");
+        $wali =  User::with('wali')->find(5);
+        echo($wali);
     }
 
     /**

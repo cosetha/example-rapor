@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\m_guru;
+use App\tahun;
 use App\Relation;
+use DB;
 use Illuminate\Http\Request;
 
 class MGuruController extends Controller
@@ -29,13 +31,20 @@ class MGuruController extends Controller
         //     echo($relation);
         // }
 
-         foreach (m_guru::find(1)->relation()->get() as $relation) {
-            // $plan = $relation->kelas;
-            // $student = $relation->mapel;
+        //  foreach (m_guru::find(1)->relation()->get() as $relation) {
+        //     // $plan = $relation->kelas;
+        //     // $student = $relation->mapel;
 
-            // echo($relation."<br />");
-            echo($relation->kelas()->first()."<br>");
+        //     // echo($relation."<br />");
+        //     echo($relation->kelas()->first()."<br>");
+        // }
+
+        $tahun =  tahun::select('*',DB::raw("'10%' as tax"))->get();
+        foreach ($tahun as $key => $value) {
+            $value['tax'] = '10%';
+            echo $value;
         }
+      
 
     }
 

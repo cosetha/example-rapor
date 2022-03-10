@@ -82,7 +82,7 @@
                                 @if($bidang->isEmpty())
                                     <a id="bidang" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select class="form-control" id="bidang" name="bidang">                                   
+                                <select class="form-control" id="bidang" name="bidang"required>                                   
                                     @foreach($bidang as $b)
                                     <option value="{{$b->id}}">{{$b->nama_bidang}}</option>
                                     @endforeach                                  
