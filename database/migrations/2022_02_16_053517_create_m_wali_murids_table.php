@@ -22,6 +22,7 @@ class CreateMWaliMuridsTable extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('pekerjaan');
+            //Pekerjaan Ayah Ibu
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_siswa');
