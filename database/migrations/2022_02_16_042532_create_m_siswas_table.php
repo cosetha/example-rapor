@@ -21,7 +21,7 @@ class CreateMSiswasTable extends Migration
             $table->integer('nisn')->length(11)->nullable()->unsigned();
             $table->integer('no_ijazah')->length(11)->nullable()->unsigned();
             $table->integer('tahun_ijazah')->length(11)->nullable()->unsigned();
-            $table->date('tanggal_masuk');
+            // $table->date('tanggal_masuk');
             $table->string('email');
             $table->string('agama');
             $table->string('no_telp');
