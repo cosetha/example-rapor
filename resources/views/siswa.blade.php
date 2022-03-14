@@ -160,7 +160,7 @@ input[type=number] {
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="tanggal">Tanggal Masuk</label>
+                                        <label for="tanggal-masuk">Tanggal Masuk</label>
                                     </div>
                                     <input type="text" class="form-control datepicker" id="tanggal-masuk" name="tanggal-masuk" readonly required value = "" autocomplete="off">  
                                 </div>
@@ -225,7 +225,7 @@ input[type=number] {
 <!-- /.modal -->
 
 <div id="modal-siswa-edit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="judul-edit">
@@ -321,7 +321,7 @@ input[type=number] {
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="tanggal">Tanggal Masuk</label>
+                                        <label for="tanggal-masuk-edit">Tanggal Masuk</label>
                                     </div>
                                     <input type="text" class="form-control datepicker" id="tanggal-masuk-edit" name="tanggal-masuk-edit" readonly required value = "" autocomplete="off">  
                                 </div>
@@ -530,6 +530,8 @@ $(document).ready(function () {
             formData.append('tempat', $('#tempat').val());
             formData.append('tanggal', $('#tanggal').val()); 
             formData.append('alamat', $('#alamat').val()); 
+            formData.append('tanggal_masuk', $('#tanggal-masuk').val()); 
+            console.log($('#tanggal_masuk').val());
             $.ajax({
 				type: 'post',
 				url: '/dashboard/siswa/store',
@@ -584,7 +586,9 @@ $(document).ready(function () {
                 $('#ijazah-edit').val(res.values.no_ijazah)
                 $('#tempat-edit').val(res.values.tempat_lahir)
                 let tanggal = new Date(res.values.tanggal_lahir)                
-                $("#tanggal-edit").val(String(tanggal.getDate() +'-'+ (parseInt(tanggal.getMonth()) + 1) + '-' + tanggal.getFullYear()));               
+                $("#tanggal-edit").val(String(tanggal.getDate() +'-'+ (parseInt(tanggal.getMonth()) + 1) + '-' + tanggal.getFullYear())); 
+                let tanggalms = new Date(res.values.tanggal_masuk)                
+                $("#tanggal-masuk-edit").val(String(tanggalms.getDate() +'-'+ (parseInt(tanggal.getMonth()) + 1) + '-' + tanggal.getFullYear()));                   
                 $('#alamat-edit').val(res.values.alamat)
                 $('#tahun-ijazah-edit').yearpicker({
                     year:res.values.tahun_ijazah,
@@ -632,6 +636,7 @@ $(document).ready(function () {
             formData.append('tahun',   $('#tahun-ijazah-edit').val());
             formData.append('tempat',  $('#tempat-edit').val());
             formData.append('tanggal', $('#tanggal-edit').val()); 
+            formData.append('tanggal_masuk', $('#tanggal-masuk-edit').val()); 
             formData.append('alamat',  $('#alamat-edit').val()); 
             $.ajax({
 				type: 'post',

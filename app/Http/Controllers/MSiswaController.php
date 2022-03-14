@@ -41,7 +41,7 @@ class MSiswaController extends Controller
     public function store(Request $request)
     {
          $date = Carbon::createFromFormat('d-m-Y', $request->tanggal)->format('Y-m-d');
-     
+         $tgl = Carbon::createFromFormat('d-m-Y', $request->tanggal_masuk)->format('Y-m-d');
 
          $siswa = new m_siswa;
          $siswa->nama = $request->nama ;
@@ -57,6 +57,7 @@ class MSiswaController extends Controller
          $siswa->tahun_ijazah = $request->tahun;
          $siswa->tempat_lahir = $request->tempat;
          $siswa->tanggal_lahir = $date;
+         $siswa->tanggal_masuk = $tgl;
          $siswa->save();
     }
     /**
@@ -115,6 +116,7 @@ class MSiswaController extends Controller
          $siswa = m_siswa::find($id);
 
          $date = Carbon::createFromFormat('d-m-Y', $request->tanggal)->format('Y-m-d');
+         $tgl = Carbon::createFromFormat('d-m-Y', $request->tanggal_masuk)->format('Y-m-d');
      
          $siswa->nama = $request->nama ;
          $siswa->email = $request->email;
@@ -129,6 +131,7 @@ class MSiswaController extends Controller
          $siswa->tahun_ijazah = $request->tahun;
          $siswa->tempat_lahir = $request->tempat;
          $siswa->tanggal_lahir = $date;
+         $siswa->tanggal_masuk = $tgl;
          $siswa->save();
     }
 

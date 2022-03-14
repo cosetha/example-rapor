@@ -161,84 +161,7 @@
                                     <i class="mdi mdi-view-dashboard-outline"></i>                            
                                     <span> Dashboard </span>
                                 </a>
-                            </li>
-
-                            <li class="menu-title mt-2">Apps</li>
-
-                            <li>
-                                <a href="apps-calendar.html">
-                                    <i class="mdi mdi-calendar-blank-outline"></i>
-                                    <span> Calendar </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="apps-chat.html">
-                                    <i class="mdi mdi-forum-outline"></i>
-                                    <span> Chat </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#email" data-bs-toggle="collapse">
-                                    <i class="mdi mdi-email-outline"></i>
-                                    <span> Email </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <div class="collapse" id="email">
-                                    <ul class="nav-second-level">
-                                        <li>
-                                            <a href="email-inbox.html">Inbox</a>
-                                        </li>
-                                        <li>
-                                            <a href="email-templates.html">Email Templates</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li>
-                                <a href="#sidebarTasks" data-bs-toggle="collapse">
-                                    <i class="mdi mdi-clipboard-outline"></i>
-                                    <span> Tasks </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <div class="collapse" id="sidebarTasks">
-                                    <ul class="nav-second-level">
-                                        <li>
-                                            <a href="task-kanban-board.html">Kanban Board</a>
-                                        </li>
-                                        <li>
-                                            <a href="task-details.html">Details</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li>
-                                <a href="apps-projects.html">
-                                    <i class="mdi mdi-briefcase-variant-outline"></i>
-                                     <span> Projects </span>
-                                </a>    
-                            </li>
-
-                            <li>
-                                <a href="#contacts" data-bs-toggle="collapse">
-                                    <i class="mdi mdi-book-open-page-variant-outline"></i>
-                                    <span> Contacts </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <div class="collapse" id="contacts">
-                                    <ul class="nav-second-level">
-                                        <li>
-                                            <a href="contacts-list.html">Members List</a>
-                                        </li>
-                                        <li>
-                                            <a href="contacts-profile.html">Profile</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                            </li>                                                
                             @if(Auth::user()->level =='Admin')
                             <li class="menu-title mt-2">Management</li>
                             <li>
@@ -259,10 +182,13 @@
                                             <a href="/dashboard/siswa">Data Siswa</a>
                                         </li>
                                         <li>
-                                            <a href="#sidebarMultilevel2" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                            <a href="/dashboard/wali">Data Walimurid</a>
+                                        </li>
+                                        <li>
+                                            <a href="#sidebarMultilevel44" data-bs-toggle="collapse" class="" aria-expanded="true">
                                                 Data Kejuruan <span class="menu-arrow"></span>
                                             </a>
-                                            <div class="collapse show" id="sidebarMultilevel2" style="">
+                                            <div class="collapse" id="sidebarMultilevel44" style="">
                                                 <ul class="nav-second-level">
                                                     <li>
                                                         <a href="/dashboard/bidang">Bidang Studi</a>
@@ -280,7 +206,7 @@
                                             <a href="#sidebarMultilevel22" data-bs-toggle="collapse" class="" aria-expanded="true">
                                                 Data Mata Pelajaran <span class="menu-arrow"></span>
                                             </a>
-                                            <div class="collapse show" id="sidebarMultilevel22" style="">
+                                            <div class="collapse" id="sidebarMultilevel22" style="">
                                                 <ul class="nav-second-level">
                                                     <li>
                                                         <a href="/dashboard/mapel">Data Mapel Umum</a>
@@ -292,8 +218,28 @@
                                                         <a href="/dashboard/ekstra">Data Ekstrakulikuler</a>
                                                     </li>
                                                 </ul>
-                                            </div>                                            612345612345612345612345612345612345612345612345612345612345612345612345612345612345612345612345
+                                            </div>                                            
                                         </li>                                        
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="menu-title mt-2">Apps</li>
+                    
+                            <li>
+                                <a href="#email" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-email-outline"></i>
+                                    <span> Email </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="email">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="email-inbox.html">Inbox</a>
+                                        </li>
+                                        <li>
+                                            <a href="email-templates.html">Email Templates</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>

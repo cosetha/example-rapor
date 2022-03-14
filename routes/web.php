@@ -39,7 +39,7 @@ Route::prefix('dashboard')
         Route::get('tahun/aktif/{id}', 'TahunController@AktifkanSemester');
         Route::post('tahun/store', 'TahunController@store');
 
-        Route::get('user', 'MWaliMuridController@index')->name('guru');
+        Route::get('user', 'MWaliMuridController@index');
 
         Route::get('guru', 'MGuruController@index');
         Route::get('guru/show', 'MGuruController@show');
@@ -47,6 +47,13 @@ Route::prefix('dashboard')
         Route::post('guru/update/{id}', 'MGuruController@update');
         Route::get('guru/destroy/{id}', 'MGuruController@destroy');        
         Route::post('guru/store', 'MGuruController@store');
+
+        Route::get('wali', 'MWaliMuridController@index');
+        Route::get('wali/show', 'MWaliMuridController@show');
+        Route::get('wali/edit/{id}', 'MWaliMuridController@edit');
+        Route::post('wali/update/{id}', 'MWaliMuridController@update');
+        Route::get('wali/destroy/{id}', 'MWaliMuridController@destroy');        
+        Route::post('wali/store', 'MWaliMuridController@store');
 
         Route::get('siswa', 'MSiswaController@index');
         Route::get('siswa/show', 'MSiswaController@show');

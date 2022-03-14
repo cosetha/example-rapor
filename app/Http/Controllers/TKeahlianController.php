@@ -78,9 +78,9 @@ class TKeahlianController extends Controller
      * @param  \App\t_keahlian  $t_keahlian
      * @return \Illuminate\Http\Response
      */
-    public function edit(t_keahlian $id)
+    public function edit($id)
     {
-        $data = t_keahlian::find($id)->first();
+        $data = t_keahlian::find($id);
         if($data !=null){
             $res['message'] = "Success!";
             $res['values'] = $data;

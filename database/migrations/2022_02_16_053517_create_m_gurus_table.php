@@ -17,7 +17,7 @@ class CreateMGurusTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('nip');
-            $table->enum('is-bk', ['Y', 'N']);
+            $table->enum('is_bk', ['Y', 'N']);
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
