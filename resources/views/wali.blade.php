@@ -447,7 +447,8 @@ $(document).ready(function () {
                 let pekerjaan = res.values.pekerjaan.split(",")
                 $('#pekerjaan_ayah-edit').val(pekerjaan[0]);
                 $('#pekerjaan_ibu-edit').val(pekerjaan[1]);
-                $('#tanggal_lahir-edit').val(res.values.tanggal_lahir);
+                let tanggal = new Date(res.values.tanggal_lahir)                               
+                $('#tanggal_lahir-edit').val(String(tanggal.getDate() +'-'+ (parseInt(tanggal.getMonth()) + 1) + '-' + tanggal.getFullYear()));
                 $('#tempat_lahir-edit').val(res.values.tempat_lahir);
                 $('#telepon-edit').val(res.values.no_telp);
                 $('#alamat-edit').val(res.values.alamat);
@@ -461,9 +462,17 @@ $(document).ready(function () {
             e.preventDefault();
             var id = $('input[name=edit-id]').val();
             var formData = new FormData();
-            formData.append('nama',  $('#nama-edit').val());          
-            formData.append('is_bk', $('#bk-edit').val());
-            formData.append('nip', $('#nip-edit').val());          
+            let pekerjaan_a = $('#pekerjaan_ayah-edit').val();
+            let pekerjaan_b = $('#pekerjaan_ibu-edit').val();
+            let pekerjaan = pekerjaan_a.concat(",", pekerjaan_b);
+            formData.append('nama_ayah', $('input[name=nama_ayah-edit]').val());
+            formData.append('nama_ibu', $('#nama_ibu-edit').val());
+            formData.append('tempat_lahir', $('#tempat_lahir-edit').val());
+            formData.append('alamat', $('#tempat_lahir-edit').val());           
+            formData.append('tanggal_lahir', $('#tanggal_lahir-edit').val());
+            formData.append('no_telp', $('#telepon-edit').val());
+            formData.append('pekerjaan', pekerjaan);
+            formData.append('id_siswa', $('#siswa-edit').val());          
             $.ajax({
 				type: 'post',
 				url: '/dashboard/wali/update/'+id,

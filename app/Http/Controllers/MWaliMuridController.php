@@ -158,8 +158,7 @@ class MWaliMuridController extends Controller
         $w->tempat_lahir = $request->tempat_lahir;
         $w->pekerjaan = $request->pekerjaan;
         $w->no_telp = $request->no_telp;
-        $w->id_siswa = $request->id_siswa;
-        $w->id_user = $u->id;
+        $w->id_siswa = $request->id_siswa;       
         $w->save();
     }
 
