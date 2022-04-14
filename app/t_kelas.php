@@ -14,7 +14,7 @@ class t_kelas extends Model
         return $this->belongsToMany('App\m_kelas', 't_kelas_siswa', 'id', 'id_kelas');
 
     }
-    public function guru()
+    public function siswa()
     {
         return $this->belongsToMany('App\m_siswa', 't_kelas_siswa', 'id', 'id_siswa');
 

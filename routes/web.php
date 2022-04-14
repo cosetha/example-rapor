@@ -40,6 +40,23 @@ Route::prefix('dashboard')
         Route::post('tahun/store', 'TahunController@store');
 
         Route::get('user', 'MWaliMuridController@index');
+        
+        Route::get('set_kelas', 'TKelasController@index');
+        Route::post('set_kelas/get_siswa', 'TKelasController@getSiswa');
+        Route::post('set_kelas/get_siswa_perm', 'TKelasController@getSiswaPerm');
+        Route::post('set_kelas/add_siswa', 'TKelasController@addSiswa');
+        Route::post('set_kelas/update/{id}', 'TKelasController@update');
+        Route::get('set_kelas/destroy/{id}', 'TKelasController@destroy'); 
+        Route::get('set_kelas/remove/{id}', 'TKelasController@removeSiswa');         
+        Route::post('set_kelas/store', 'TKelasController@store');
+
+        Route::get('set_walikelas', 'TWaliKelasController@index');
+        Route::get('set_walikelas/show', 'TWaliKelasController@show');
+        Route::post('set_walikelas/store', 'TWaliKelasController@store');
+        Route::get('set_walikelas/destroy/{id}', 'TWaliKelasController@destroy');   
+        Route::get('set_walikelas/edit/{id}', 'TWaliKelasController@edit');
+        Route::post('set_walikelas/update/{id}', 'TWaliKelasController@update');
+
 
         Route::get('guru', 'MGuruController@index');
         Route::get('guru/show', 'MGuruController@show');

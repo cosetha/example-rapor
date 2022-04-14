@@ -20,5 +20,19 @@ class m_kelas extends Model
     {
         return $this->hasMany('App\t_keahlian', 'id', 'id_keahlian');
     }
+
+    /**
+     * The roles that belong to the m_kelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function siswa()
+    {
+        return $this->belongsToMany('App\m_siswa', 't_kelas_siswa', 'id_kelas', 'id_siswa');
+    }
     
+    public function walikelas()
+    {
+        return $this->belongsToMany('App\m_guru', 't_walikelas', 'id_kelas', 'id_guru');
+    }
 }

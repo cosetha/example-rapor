@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\t_kelas;
+use App\m_kelas;
+use App\m_siswa;
 use Illuminate\Http\Request;
 
 class TKelasController extends Controller
@@ -14,7 +16,9 @@ class TKelasController extends Controller
      */
     public function index()
     {
-        //
+        $data = m_kelas::with(['keahlian','siswa'])->orderBy('tahun','desc')->get();
+        $kelas = m_kelas::with(['keahlian'])->orderBy('tahun','desc')->get();
+        return view('setKelas',['bidang' => $kelas,'kelas'=>$data]);
     }
 
     /**
@@ -81,5 +85,50 @@ class TKelasController extends Controller
     public function destroy(t_kelas $t_kelas)
     {
         //
+    }
+
+    public function getKelas()
+    {
+        
+    }
+
+    public function getSiswa(Request $request)
+    {
+        $siswa = m_siswa::with('komKeahlian')->where('id_bidang',$request->id)->doesntHave('kelas')->get();
+        return response()->json($siswa);
+    }
+
+    public function getSiswaPerm(Request $request)
+    {
+        $kelas = $request->kelas;
+        $siswa = m_siswa::whereHas('kelas',function($q) use($kelas){
+            $q->where('t_kelas_siswa.id_kelas', '=', $kelas);
+        })->get();
+        return response()->json($siswa);
+    }
+
+    public function addSiswa(Request $request)
+    {
+        $data = [];
+        $siswa[] = $request->siswa;
+        for ($i = 0; $i < count($request->siswa); $i++) {
+            $data[] = [               
+                'id_siswa' => $request->siswa[$i],
+                'id_kelas' => $request->kelas
+            ];
+        }
+        t_kelas::where('id_kelas',$request->kelas)->delete();
+        t_kelas::insert($data);       
+        return response()->json([
+            'message' => 'Success'
+        ]);
+    }
+
+    public function removeSiswa($id)
+    {
+        t_kelas::where('id_siswa',$id)->delete();
+        return response()->json([
+            'message' => 'Success'
+        ]);
     }
 }

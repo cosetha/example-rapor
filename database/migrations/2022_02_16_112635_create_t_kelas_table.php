@@ -19,8 +19,7 @@ class CreateTKelasTable extends Migration
             $table->unsignedBigInteger('id_kelas');  
             $table->unsignedBigInteger('id_siswa'); 
             $table->foreign('id_kelas')->references('id')->on('m_kelas')->onDelete('cascade');
-            $table->foreign('id_siswa')->references('id')->on('m_siswa')->onDelete('cascade');
-            $table->integer('tahun')->length(5)->unsigned();
+            $table->foreign('id_siswa')->references('id')->on('m_siswa')->onDelete('cascade');           
             $table->timestamps();
         });
     }

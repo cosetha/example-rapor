@@ -222,23 +222,27 @@
                                         </li>                                        
                                     </ul>
                                 </div>
-                            </li>
-
-                            <li class="menu-title mt-2">Apps</li>
+                            </li>                            
                     
                             <li>
-                                <a href="#email" data-bs-toggle="collapse">
-                                    <i class="mdi mdi-email-outline"></i>
-                                    <span> Email </span>
+                                <a href="#setdata" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-notebook-multiple"></i>
+                                    <span> Set Data </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="email">
+                                <div class="collapse" id="setdata">
                                     <ul class="nav-second-level">
                                         <li>
-                                            <a href="email-inbox.html">Inbox</a>
+                                            <a href="/dashboard/set_kelas">Set Kelas</a>
                                         </li>
                                         <li>
-                                            <a href="email-templates.html">Email Templates</a>
+                                            <a href="/dashboard/set_mapel">Set Guru Mapel Umum</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/set_mapel">Set Guru Mapel Keahlian</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/set_walikelas">Set Wali Kelas</a>
                                         </li>
                                     </ul>
                                 </div>

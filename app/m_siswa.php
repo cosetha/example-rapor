@@ -13,4 +13,9 @@ class m_siswa extends Model
     {
         return $this->hasMany('App\t_keahlian', 'id', 'id_bidang');
     }
+
+    public function kelas()
+    {
+        return $this->belongsToMany('App\m_kelas', 't_kelas_siswa', 'id_siswa', 'id_kelas');
+    }
 }

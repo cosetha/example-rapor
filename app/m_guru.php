@@ -20,4 +20,8 @@ class m_guru extends Model
       return $this->hasOne('App\User', 'id', 'id_user');
     }
     
+    public function walikelas()
+    {
+        return $this->belongsToMany('App\m_kelas', 't_walikelas', 'id_guru', 'id_kelas');
+    }
 }
