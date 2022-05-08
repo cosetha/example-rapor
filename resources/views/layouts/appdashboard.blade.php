@@ -239,33 +239,60 @@
                                             <a href="/dashboard/set_mapel">Set Guru Mapel Umum</a>
                                         </li>
                                         <li>
-                                            <a href="/dashboard/set_mapel">Set Guru Mapel Keahlian</a>
+                                            <a href="/dashboard/set_mapel_ahli">Set Guru Mapel Keahlian</a>
                                         </li>
                                         <li>
                                             <a href="/dashboard/set_walikelas">Set Wali Kelas</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/nilai_ekstra">Nilai Ekstra</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/nilai_absen">Nilai Absen</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/nilai_sikap">Nilai Sikap</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/PKL">PKL</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             @elseif(Auth::user()->level =='Guru')
+
                             <li class="menu-title mt-2">Management</li>
                             <li>
                                 <a href="#sidebarAuth" data-bs-toggle="collapse">
                                     <i class="mdi mdi-account-multiple-plus-outline"></i>
-                                    <span> Guru Pages </span>
+                                    <span> Halaman Guru </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarAuth">
-                                    <ul class="nav-second-level">
+                                    <ul class="nav-second-level">  
                                         <li>
-                                            <a href="/dashboard/tahun">Set Tahun Aktif</a>
+                                            <a href="/dashboard/nilai_umum">Nilai Umum</a>
+                                        </li>                                     
+                                        <li>
+                                            <a href="/dashboard/nilai_ekstra">Nilai Ekstra</a>
                                         </li>
                                         <li>
-                                            <a href="/dashboard/guru">Data Guru</a>
+                                            <a href="/dashboard/nilai_absen">Nilai Absen</a>
                                         </li>
                                         <li>
-                                            <a href="/dashboard/siswa">Data Siswa</a>
-                                        </li>                             
+                                            <a href="/dashboard/nilai_sikap">Nilai Sikap</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/PKL">PKL</a>
+                                        </li>
+                                        @if(\App\m_guru::where('id_user',Auth::id())->whereHas('walikelas')->count() > 0)                                       
+                                        <li>
+                                            <a href="/dashboard/absen">Data Absen</a>
+                                        </li>
+                                        <li>
+                                            <a href="/dashboard/nilai_ekstra">Data Nilai Ekstra</a>
+                                        </li>
+                                        @endif                             
                                     </ul>
                                 </div>
                             </li>

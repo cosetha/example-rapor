@@ -92,11 +92,35 @@
 @endsection @section('js')
 <script>
 $(document).ready(function () {
-    $('#add').click(function() {  
-        return !$('#siswa_temp option:selected').remove().appendTo('#siswa_perm');  
+    
+    $('#add').click(function() {
+        var exists = false;
+        $('#siswa_perm option').each(function(){
+            if (this.value == $('#siswa_temp option:selected').val()) {
+                exists = true;
+                return false;
+            }
+        });
+        if(!exists){
+            return !$('#siswa_temp option:selected').remove().appendTo('#siswa_perm'); 
+        }else{
+            alert('Data yang dimasukan sudah ada, Cek Ulang ')
+        }               
     });  
     $('#remove').click(function() {  
-        return !$('#siswa_perm option:selected').remove().appendTo('#siswa_temp');  
+        var exists = false;
+        $('#siswa_temp option').each(function(){
+            if (this.value == $('#siswa_perm option:selected').val()) {
+                exists = true;
+                return false;
+            }
+        });
+        if(!exists){
+            return !$('#siswa_perm option:selected').remove().appendTo('#siswa_temp');  
+        }else{
+            return !$('#siswa_perm option:selected').remove();
+        }
+       
     });  
     $.ajaxSetup({
         headers: {

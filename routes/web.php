@@ -28,7 +28,7 @@ Auth::routes([
 ]);
 
 Route::prefix('dashboard')
-    ->middleware(['auth'])
+    ->middleware(['auth','role:Admin'])
     ->group(function () {
 
         Route::get('tahun', 'TahunController@index');
@@ -40,7 +40,7 @@ Route::prefix('dashboard')
         Route::post('tahun/store', 'TahunController@store');
 
         Route::get('user', 'MWaliMuridController@index');
-        
+
         Route::get('set_kelas', 'TKelasController@index');
         Route::post('set_kelas/get_siswa', 'TKelasController@getSiswa');
         Route::post('set_kelas/get_siswa_perm', 'TKelasController@getSiswaPerm');
@@ -56,6 +56,23 @@ Route::prefix('dashboard')
         Route::get('set_walikelas/destroy/{id}', 'TWaliKelasController@destroy');   
         Route::get('set_walikelas/edit/{id}', 'TWaliKelasController@edit');
         Route::post('set_walikelas/update/{id}', 'TWaliKelasController@update');
+
+        Route::get('set_mapel', 'TGuruMapelUmumController@index');
+        Route::get('set_mapel/show', 'TGuruMapelUmumController@show');
+        Route::post('set_mapel/store', 'TGuruMapelUmumController@store');
+        Route::get('set_mapel/destroy/{id}', 'TGuruMapelUmumController@destroy');   
+        Route::get('set_mapel/edit/{id}', 'TGuruMapelUmumController@edit');
+        Route::post('set_mapel/update/{id}', 'TGuruMapelUmumController@update');
+
+        Route::get('set_mapel_ahli', 'TGuruMapelAhliController@index');
+        Route::get('set_mapel_ahli/coba', 'TGuruMapelAhliController@coba');
+        Route::get('set_mapel_ahli/show', 'TGuruMapelAhliController@show');
+        Route::post('set_mapel_ahli/store', 'TGuruMapelAhliController@store');
+        Route::get('set_mapel_ahli/destroy/{id}', 'TGuruMapelAhliController@destroy');   
+        Route::get('set_mapel_ahli/edit/{id}', 'TGuruMapelAhliController@edit');
+        Route::post('set_mapel_ahli/update/{id}', 'TGuruMapelAhliController@update');
+
+        Route::post('set_mapel_ahli/get_mapel', 'TGuruMapelAhliController@create');
 
 
         Route::get('guru', 'MGuruController@index');
@@ -123,5 +140,23 @@ Route::prefix('dashboard')
         Route::get('kompetensi/destroy/{id}', 'TKeahlianController@destroy');  
         Route::post('kompetensi/update/{id}', 'TKeahlianController@update');      
         Route::post('kompetensi/store', 'TKeahlianController@store');
-    });
 
+
+});
+
+Route::prefix('dashboard')
+    ->middleware(['auth','role:Walikelas'])
+    ->group(function () {
+        Route::get('absen', 'TKeahlianController@index');
+        Route::get('nilai_umum', 'TNilaiController@index');
+        Route::post('set_kelas/get_siswa', 'TKelasController@getSiswa');
+});
+
+Route::prefix('dashboard')
+    ->middleware(['auth','role:Guru'])
+    ->group(function () {
+        Route::get('absen', 'TKeahlianController@index');
+        Route::get('nilai_umum', 'TNilaiController@index');
+        Route::get('nilai_umum/add/{id}', 'TNilaiController@create');
+        Route::POST('nilai_umum/store/{id}', 'TNilaiController@store');
+});

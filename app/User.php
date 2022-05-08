@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\m_wali_murid', 'id_user', 'id');
     }
+    
+    public function hasRole(){
+        return $this->level;
+    }
 }

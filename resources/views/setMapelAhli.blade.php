@@ -1,9 +1,9 @@
-@extends('layouts.appdashboard') @section('title', 'Set Mata Pelajaran || Cordova')
+@extends('layouts.appdashboard') @section('title', 'Set Mata Pelajaran Ahli|| Cordova')
 @section('content')
 
 <div class="card">
     <div class="card-body">
-        <h4 class="header-title">Set Mata Pelajaran</h4>
+        <h4 class="header-title">Set Mata Pelajaran Keahlian</h4>
         <p class="sub-header">Tempat Mengelola data terkait Set Mata Pelajaran</p>
         <div class="row">
             <div class="button-list">
@@ -11,7 +11,7 @@
                     type="button"
                     class="btn btn-success waves-effect waves-light"
                     data-bs-toggle="modal"
-                    data-bs-target="#modal-set_mapel"
+                    data-bs-target="#modal-set_mapel_ahli"
                 >
                     <span class="btn-label"
                         ><i class="mdi mdi-book-plus-outline"></i></span
@@ -31,7 +31,8 @@
                     >
                         <thead>
                             <tr>
-                                <th>No</th>                                
+                                <th>No</th> 
+                                <th>Kelompok</th>                               
                                 <th>Nama Mata Pelajaran</th>
                                 <th>Nama Guru</th>
                                 <th>Nama Kelas</th> 
@@ -50,7 +51,7 @@
     </div>
 </div>
 <div
-    id="modal-set_mapel"
+    id="modal-set_mapel_ahli"
     class="modal fade"
     tabindex="-1"
     role="dialog"
@@ -74,7 +75,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <form action="" method="post" action="{{ url('') }}/dashboard/set_mapel/store" id="form-tambah">
+                        <form action="" method="post" action="{{ url('') }}/dashboard/set_mapel_ahli/store" id="form-tambah">
                             @csrf                                                      
                             <div class="form-group">
                                 <label for="kelas">Nama Kelas</label>
@@ -82,20 +83,16 @@
                                 <select class="form-control" id="kelas" name="kelas" required> 
                                 <option value="">Pilih Kelas</option>                                     
                                     @foreach($kf as $k)
-                                    <option value="{{$k->id}}">{{$k->nama_kelas.','.$k->tahun}}</option>
+                                    <option value="{{$k->id}}" data-tingkat="{{$k->tingkat}}" data-id="{{$k->id_keahlian}}">{{$k->nama_kelas.','.$k->tahun}}</option>
                                     @endforeach                                      
                                 </select>                            
                                 @endif
                             </div> 
                             <div class="form-group">
-                                <label for="mapel">Nama mapel</label>
-                                @if(!$mf->isEmpty())                              
-                                <select class="form-control" id="mapel" name="mapel" required>                                   
-                                    @foreach($mf as $k)
-                                    <option value="{{$k->id}}">{{$k->nama}}</option>
-                                    @endforeach                                      
-                                </select>                            
-                                @endif
+                                <label for="mapel">Nama mapel</label>                                                       
+                                <select class="form-control" id="mapel" name="mapel" required>                                                                     
+                                    <option disabled selected value="">-- Pilih  Kelas --</option>                                                                    
+                                </select>                                                          
                             </div> 
                             <div class="form-group">
                                 <label for="guru">Nama Guru</label>
@@ -134,7 +131,7 @@
 <!-- /.modal -->
 
 <div
-    id="modal-set_mapel-edit"
+    id="modal-set_mapel_ahli-edit"
     class="modal fade"
     tabindex="-1"
     role="dialog"
@@ -166,20 +163,16 @@
                                 @if(!$kf->isEmpty())                              
                                 <select class="form-control" id="kelas_edit" name="kelas_edit" required >                           
                                     @foreach($kf as $k)
-                                    <option value="{{$k->id}}">{{$k->nama_kelas.','.$k->tahun}}</option>
+                                    <option value="{{$k->id}}" data-tingkat="{{$k->tingkat}}" data-id="{{$k->id_keahlian}}" >{{$k->nama_kelas.','.$k->tahun}}</option>
                                     @endforeach                                      
                                 </select>                            
                                 @endif
                             </div>                             
                             <div class="form-group">
-                                <label for="mapel_edit">Nama Mapel</label>
-                                @if(!$mf->isEmpty())                              
+                                <label for="mapel_edit">Nama Mapel</label>                      
                                 <select class="form-control" id="mapel_edit" name="mapel_edit" required >                                   
-                                    @foreach($mf as $k)
-                                    <option value="{{$k->id}}">{{$k->nama}}</option>
-                                    @endforeach                                      
+                                    <option disabled selected value="">-- Pilih  Kelas --</option>                                            
                                 </select>                            
-                                @endif
                             </div>       
                             <div class="form-group">
                                 <label for="guru_edit">Nama Guru</label>
@@ -190,6 +183,7 @@
                                     @endforeach                                      
                                 </select>                            
                                 @endif
+                                <input type="hidden" name="tingkat_edit" id="tingkat_edit">
                             </div>                      
                             <div class="form-group">
                                 <label for="tahun_edit">Tahun :</label>
@@ -218,13 +212,70 @@ $(document).ready(function () {
     $('#kelas').on('change', function() {
         let data = $(this).find("option:selected").text()
         let arr = data.split(',')
+        let tingkat = $(this).find("option:selected").data('tingkat')
         $('#tahun').val(arr[1])
+        var formData = new FormData()
+        formData.append('id', $(this).find("option:selected").data('id')); 
+        formData.append('tingkat', tingkat); 
+            $.ajax({
+				type: 'post',
+				url: '/dashboard/set_mapel_ahli/get_mapel',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(response) {
+                    if(response.length != 0){
+                        $('#mapel').empty();
+                        for (const element of response) {
+                            $('#mapel').append(new Option(element.nama, element.id))
+                        }
+                    }else{
+                        $('#mapel').empty();
+                        $('#mapel').append(new Option('Mapel Keahlian belum ditambahkan',''))
+                        $("#mapel option:selected").attr('disabled','disabled')
+                    }
+                      
+                   
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			}); 
     });
 
     $('#kelas_edit').on('change', function() {
         let data = $(this).find("option:selected").text()
         let arr = data.split(',')
+        let tingkat = $(this).find("option:selected").data('tingkat')
         $('#tahun_edit').val(arr[1])
+        var formData = new FormData()
+        formData.append('id', $(this).find("option:selected").data('id')); 
+        
+        formData.append('tingkat', tingkat); 
+            $.ajax({
+				type: 'post',
+				url: '/dashboard/set_mapel_ahli/get_mapel',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(response) {
+                    if(response.length != 0){
+                        $('#mapel_edit').empty();
+                        for (const element of response) {
+                            $('#mapel_edit').append(new Option(element.nama, element.id))
+                        }
+                    }else{
+                        $('#mapel_edit').empty();
+                        $('#mapel_edit').append(new Option('Mapel Keahlian belum ditambahkan',''))
+                        $("#mapel_edit option:selected").attr('disabled','disabled')
+                    }
+                      
+                   
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			}); 
     });
 
    
@@ -239,7 +290,7 @@ $(document).ready(function () {
                     processing: true,
                     
                     ajax: {
-                        url: '/dashboard/set_mapel/show',
+                        url: '/dashboard/set_mapel_ahli/show',
                         type: 'get'
                     },
                     columns: [
@@ -248,6 +299,21 @@ $(document).ready(function () {
                             name: 'DT_RowIndex',
                             searchable: false,
                             className: 'align-middle text-center'
+                        },
+                        {
+                            data: "mapel",
+                            className: 'align-middle text-center',
+                            render: function (data, type, row) {
+                                //return data.length;
+                                var txt = "";
+                                data.forEach(function (item) {
+                                    if (txt.length > 0) {
+                                        txt += ", ";
+                                    }
+                                    txt += item.kelompok+", "+item.sub;
+                                });
+                                return txt;
+                            },
                         },
                         {
                             data: "mapel",
@@ -334,7 +400,7 @@ $(document).ready(function () {
             formData.append('kelas', $('#kelas').val());
             $.ajax({
 				type: 'post',
-				url: '/dashboard/set_mapel/store',
+				url: '/dashboard/set_mapel_ahli/store',
 				data: formData,
 				processData: false,
 				contentType: false,
@@ -348,7 +414,7 @@ $(document).ready(function () {
 							showConfirmButton: false
 						});
 					} else {
-						$('#modal-set_mapel').modal('hide');
+						$('#modal-set_mapel_ahli').modal('hide');
                         $('#form-tambah').trigger('reset');
                        
 						Swal.fire({
@@ -371,14 +437,18 @@ $(document).ready(function () {
             $('input[name=edit-id]').val(id);
             e.preventDefault()
             $.ajax({
-            url: '/dashboard/set_mapel/edit/'+id,
+            url: '/dashboard/set_mapel_ahli/edit/'+id,
             type: 'GET',
             success: function(res) {
-                $('#modal-set_mapel-edit').modal('show');               
-                $('#guru_edit').val(res.values.m_guru_id)
-                $('#mapel_edit').val(res.values.m_mapel_id)
+                $('#modal-set_mapel_ahli-edit').modal('show');               
+                $('#guru_edit').val(res.values.m_guru_id)                
                 $('#kelas_edit').val(res.values.m_kelas_id)
                 $('#tahun_edit').val(res.values.tahun)
+                $('#mapel_edit').empty();
+                for (const element of res.mapel) {
+                    $('#mapel_edit').append(new Option(element.nama, element.id))
+                }
+                $('#mapel_edit').val(res.values.m_mapel_id)
                 }
             });
 		
@@ -393,7 +463,7 @@ $(document).ready(function () {
             formData.append('tahun', $('#tahun_edit').val());
             $.ajax({
 				type: 'post',
-                url: '/dashboard/set_mapel/update/'+id,
+                url: '/dashboard/set_mapel_ahli/update/'+id,
 				data: formData,
 				processData: false,
 				contentType: false,
@@ -407,7 +477,7 @@ $(document).ready(function () {
 							showConfirmButton: false
 						});
 					} else {
-						$('#modal-set_mapel-edit').modal('hide');
+						$('#modal-set_mapel_ahli-edit').modal('hide');
                         $('#form-edit').trigger('reset');
 						Swal.fire({
 							icon: 'success',
@@ -440,7 +510,7 @@ $(document).ready(function () {
                 if (result.value) {
                     $.ajax({
                         type: 'get',
-                        url: '/dashboard/set_mapel/destroy/' + id,
+                        url: '/dashboard/set_mapel_ahli/destroy/' + id,
                         success: function(response) {
                             Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
                             table.ajax.reload();

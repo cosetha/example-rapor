@@ -9,9 +9,9 @@ class m_guru extends Model
     protected $table = "m_guru";
     protected $guarded = ['id'];
     
-    public function relation()
+    public function gurumapel()
     {
-        return $this->hasMany('App\Relation', 'm_guru_id', 'id');
+        return $this->hasMany('App\t_guru_mapel', 'm_guru_id', 'id');
 
     }
 
@@ -24,4 +24,5 @@ class m_guru extends Model
     {
         return $this->belongsToMany('App\m_kelas', 't_walikelas', 'id_guru', 'id_kelas');
     }
+
 }

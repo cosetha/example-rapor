@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\m_siswa;
-class MSiswaSeeder extends Seeder
+
+class TGuruMapelAhliSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class MSiswaSeeder extends Seeder
      */
     public function run()
     {
-        m_siswa::factory()->count(10)->create();
+        //
     }
 }

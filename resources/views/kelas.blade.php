@@ -266,7 +266,7 @@ $(document).ready(function () {
                     if(response.length != 0){
                         $('#bidang-edit').empty();
                         for (const element of response) {
-                            $('#bidang').append(new Option(element.nama_bidang, element.id))
+                            $('#bidang-edit').append(new Option(element.nama_bidang, element.id))
                         }
                     }else{
                         $('#bidang-edit').empty();

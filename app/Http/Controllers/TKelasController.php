@@ -94,7 +94,7 @@ class TKelasController extends Controller
 
     public function getSiswa(Request $request)
     {
-        $siswa = m_siswa::with('komKeahlian')->where('id_bidang',$request->id)->doesntHave('kelas')->get();
+        $siswa = m_siswa::with('komKeahlian')->where('id_bidang',$request->id)->get();
         return response()->json($siswa);
     }
 

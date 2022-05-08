@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\t_nilai;
+use App\t_guru_mapel;
+use App\t_kelas;
+use App\m_guru;
+use Auth;
 use Illuminate\Http\Request;
 
 class TNilaiController extends Controller
@@ -14,7 +18,11 @@ class TNilaiController extends Controller
      */
     public function index()
     {
-        //
+        $user = m_guru::where('id_user',Auth::id())->first();
+        $kelas = t_guru_mapel::with(['kelas','kelas.keahlian','mapel'])->where('m_guru_id',m_guru::where('id_user',Auth::id())->first()->id)->get();
+        return view('nilai.nilaiUmum',['kelas'=> $kelas]);
+        // echo $kelas;
+        
     }
 
     /**
@@ -22,9 +30,31 @@ class TNilaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id,Request $request)
     {
-        //
+        $kelas = t_kelas::where('id_kelas',$id)->with('siswa')->orderby('id_siswa','asc')->get();
+        $guru = m_guru::select('id')->where('id_user',Auth::id())->first();
+        $id_guru = t_guru_mapel::select('id')->where([['m_guru_id',$guru->id],['m_kelas_id',$id],['m_mapel_id',$request->mapel]])->first();
+        $nilai = t_nilai::where('id_guru',$id_guru->id)->orderby('id_siswa','asc')->get();
+        
+
+        // for ($i=0; $i <count($kelas->siswa) ; $i++) { 
+        //    $kelas->siswa[$i]['nilai'] = $nilai[$i]->
+        // }
+        foreach($kelas as $k){
+            foreach ($k->siswa as $s) {
+                foreach ($nilai as $n) {
+                  if($s->id == $n->id_siswa){
+                    $s['nilai'] = $n->nilai;
+                    break;
+                  }else{
+                    $s['nilai'] = '0,0,0,0,0,0,0,0';
+                  }
+                }
+              
+            }
+        }
+        return view('nilai.nilaiUmumAdd',['kelas'=>$kelas,'guru'=>$id_guru]);
     }
 
     /**
@@ -33,9 +63,38 @@ class TNilaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        print_r($request->all());
+        $data = [];
+        foreach ($request->siswa as $key => $value) {
+            $nilai = [$request->nh1[$key],$request->nh2[$key],$request->nh3[$key],$request->nh4[$key],$request->uts[$key],$request->uas[$key],$request->nk[$key],$request->total[$key],$this->konversi($request->total[$key]),$this->konversi($request->nk[$key])];
+            $data[]= [
+                'id_siswa' => $request->siswa[$key],
+                'id_guru' => $id,
+                'tahun' => $request->tahun,
+                'nilai' => implode(',',$nilai),
+            ];
+        }
+        t_nilai::where('id_guru',$id)->delete();
+        t_nilai::insert($data);       
+        print_r($data);
+    }
+
+    function konversi($val){
+        if($val<=100 && $val >= 81){
+            return 'A';
+        }elseif($val<=80 && $val >= 71){
+            return 'AB';
+        }elseif($val<=70 && $val >= 66){
+            return 'B';
+        }elseif($val<=65 && $val >= 61){
+            return 'BC';
+        }elseif($val<=60 && $val >= 56){
+            return 'C';
+        }else{
+            return 'D';
+        }
     }
 
     /**

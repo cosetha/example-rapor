@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 class m_siswa extends Model
 {
+   
     protected $table = "m_siswa";
     protected $guarded = ['id'];
+   
 
     public function komKeahlian()
     {

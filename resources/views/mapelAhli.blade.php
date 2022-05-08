@@ -35,7 +35,7 @@
                                 <th>Bidang Keahlian</th>
                                 <th>Sub</th>
                                 <th>Nama Mapel</th>
-                                <th>Tingkatp</th>
+                                <th>Tingkat</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -290,7 +290,6 @@ $(document).ready(function () {
             var formData = new FormData();
             formData.append('nama', $('input[name=nama-tambah]').val());
             formData.append('bidang', $('#bidang').val());
-            formData.append('bidang', $('#tingkat').val());
             formData.append('sub', $('#sub').val());
             formData.append('tingkat', $('#tingkat').val());
             if(!$('#bidang').val()){

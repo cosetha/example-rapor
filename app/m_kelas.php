@@ -10,9 +10,9 @@ class m_kelas extends Model
     protected $guarded = ['id'];
 
 
-    public function relation()
+    public function gurumapel()
     {
-        return $this->hasMany('App\Relation', 'm_kelas_id', 'id');
+        return $this->hasMany('App\t_guru_mapel', 'm_kelas_id', 'id');
 
     }
 
