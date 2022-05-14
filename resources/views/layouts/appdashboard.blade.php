@@ -269,28 +269,30 @@
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarAuth">
+                                @php $guru = \App\m_guru::where('id_user',Auth::id())->get(); @endphp
                                     <ul class="nav-second-level">  
+                                        @if(\App\m_guru::where('id_user',Auth::id())->whereHas('gurumapel')->count() > 0) 
                                         <li>
                                             <a href="/dashboard/nilai_umum">Nilai Umum</a>
-                                        </li>                                     
+                                        </li>  
+                                        @endif  
+                                        @if(\App\m_guru::where('id_user',Auth::id())->whereHas('gurumapelahli')->count() > 0)     
                                         <li>
-                                            <a href="/dashboard/nilai_ekstra">Nilai Ekstra</a>
+                                            <a href="/dashboard/nilai_ahli">Nilai Ahli</a>
+                                        </li> 
+                                        @endif                                                                                                                                                  
+                                        @if(\App\m_guru::where('id_user',Auth::id())->whereHas('walikelas')->count() > 0 || $guru[0]->is_bk == 'Y')                                       
+                                        <li>
+                                            <a href="/dashboard/nilai_absen">Data Absen</a>
                                         </li>
                                         <li>
-                                            <a href="/dashboard/nilai_absen">Nilai Absen</a>
+                                            <a href="/dashboard/nilai_ekstra">Data Nilai Ekstra</a>
                                         </li>
                                         <li>
                                             <a href="/dashboard/nilai_sikap">Nilai Sikap</a>
                                         </li>
                                         <li>
                                             <a href="/dashboard/PKL">PKL</a>
-                                        </li>
-                                        @if(\App\m_guru::where('id_user',Auth::id())->whereHas('walikelas')->count() > 0)                                       
-                                        <li>
-                                            <a href="/dashboard/absen">Data Absen</a>
-                                        </li>
-                                        <li>
-                                            <a href="/dashboard/nilai_ekstra">Data Nilai Ekstra</a>
                                         </li>
                                         @endif                             
                                     </ul>

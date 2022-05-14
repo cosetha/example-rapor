@@ -1,4 +1,4 @@
-@extends('layouts.appdashboard') @section('title', 'Nilai Umum || Cordova')
+@extends('layouts.appdashboard') @section('title', 'Nilai Ahli || Cordova')
 @section('css')
 <style>
 input::-webkit-outer-spin-button,
@@ -17,13 +17,13 @@ input[type=number] {
 
 <div class="card">
     <div class="card-body">
-        <h4 class="header-title">Nilai Umum</h4>
-        <p class="sub-header">Tempat Mengelola data terkait Nilai Umum</p>
+        <h4 class="header-title">Nilai Ahli</h4>
+        <p class="sub-header">Tempat Mengelola data terkait Nilai Ahli</p>
         <div class="row mt-3">
             <div class="col-sm-12">
             @if (\Session::has('success'))
                 <div class="alert alert-success">                   
-                    {!! \Session::get('success') !!}               
+                   {!! \Session::get('success') !!}               
                 </div>
             @endif
                 <div class="table-responsive">
@@ -43,13 +43,13 @@ input[type=number] {
                             </tr>
                         </thead>
                         <tbody> 
-                        <form action="{{url('dashboard/nilai_umum/store').'/'.$guru->id}}" method="POST">
+                        <form action="{{url('dashboard/nilai_ahli/store').'/'.$guru->id}}" method="POST">
                         @csrf
                         <input type="hidden" name="tahun" value="{{ isset($_GET['smt']) ? $_GET['smt'] :''}}">
                         @foreach($kelas as $t)
                             @foreach($t->siswa as $k)
                             @php
-                            $nilai = explode(',',$k->nilai);                        
+                            $nilai = explode(',',$k->nilai);                           
                             @endphp
                             
                             <tr>

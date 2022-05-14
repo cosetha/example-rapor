@@ -25,7 +25,7 @@ class Role
             if($role == "Walikelas" && $user->Guru()->count() >0 ){
                 return $next($request);
             }
-            if($role == "BK" && $user->Guru()->is_bk == 'Y' ){
+            if($role == "BK" && $user->Guru()->first()->is_bk == 'Y' ){
                 return $next($request);
             }
             if($user->level == $role){

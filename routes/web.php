@@ -145,11 +145,11 @@ Route::prefix('dashboard')
 });
 
 Route::prefix('dashboard')
-    ->middleware(['auth','role:Walikelas'])
+    ->middleware(['auth','role:Walikelas,BK'])
     ->group(function () {
-        Route::get('absen', 'TKeahlianController@index');
-        Route::get('nilai_umum', 'TNilaiController@index');
-        Route::post('set_kelas/get_siswa', 'TKelasController@getSiswa');
+        Route::get('nilai_absen', 'TNilaiAbsensiController@index');
+        Route::get('nilai_absen/add/{id}', 'TNilaiAbsensiController@create');
+        Route::POST('nilai_absen/store/{id}', 'TNilaiAbsensiController@store');
 });
 
 Route::prefix('dashboard')
@@ -159,4 +159,16 @@ Route::prefix('dashboard')
         Route::get('nilai_umum', 'TNilaiController@index');
         Route::get('nilai_umum/add/{id}', 'TNilaiController@create');
         Route::POST('nilai_umum/store/{id}', 'TNilaiController@store');
+
+        Route::get('nilai_ahli', 'TNilaiAhliController@index');
+        Route::get('nilai_ahli/add/{id}', 'TNilaiAhliController@create');
+        Route::POST('nilai_ahli/store/{id}', 'TNilaiAhliController@store');
+});
+
+Route::prefix('dashboard')
+    ->middleware(['auth','role:BK'])
+    ->group(function () {
+        Route::get('nilai_absen', 'TNilaiAbsensiController@index');
+        Route::get('nilai_absen/add/{id}', 'TNilaiAbsensiController@create');
+        Route::POST('nilai_absen/store/{id}', 'TNilaiAbsensiController@store');
 });

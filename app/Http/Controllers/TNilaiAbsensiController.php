@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\t_nilai_absensi;
+use App\m_kelas;
 use Illuminate\Http\Request;
+use DB;
 
 class TNilaiAbsensiController extends Controller
 {
@@ -14,7 +16,8 @@ class TNilaiAbsensiController extends Controller
      */
     public function index()
     {
-        //
+        $kelas = m_kelas::all();
+         return view('absen.nilaiUmum',['kelas'=> $kelas]);
     }
 
     /**
@@ -22,9 +25,13 @@ class TNilaiAbsensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id, Request $request )
     {
-        //
+        $kelas = m_kelas::where('id',$id)->with('siswa')->with(['siswa.absensi' => function($query) use ($request) {
+            $query->where('tahun', $request->smt);
+          }])->orderby('id','asc')->get();
+        // echo $kelas[0]->siswa[0]->absensi[0];
+          return view('absen.nilaiUmumAdd',['kelas'=>$kelas]);
     }
 
     /**
@@ -35,7 +42,25 @@ class TNilaiAbsensiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = [];
+        $data = [];
+        foreach ($request->siswa as $key => $value) {
+            $id[] = $request->siswa[$key];
+            $data[]= [
+                'id_siswa' => $request->siswa[$key],
+                'tahun' => $request->tahun,
+                's' => $request->nh1[$key],
+                'i' => $request->nh2[$key],
+                'a' => $request->nh3[$key],
+                'keterangan' => $request->nk[$key],
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+                'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ];
+        }
+        t_nilai_absensi::where('tahun',$request->tahun)->whereIn('id_siswa', $id)->delete();
+        t_nilai_absensi::insert($data);       
+     
+        return redirect()->back()->with('success', 'Sukses');   
     }
 
     /**

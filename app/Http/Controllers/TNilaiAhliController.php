@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\t_nilai;
-use App\t_guru_mapel;
+use App\t_nilai_ahli;
+use Illuminate\Http\Request;
+use App\t_guru_mapel_ahli;
 use App\t_kelas;
 use App\m_guru;
 use Auth;
-use Illuminate\Http\Request;
 
-class TNilaiController extends Controller
+class TNilaiAhliController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +19,8 @@ class TNilaiController extends Controller
     public function index()
     {
         $user = m_guru::where('id_user',Auth::id())->first();
-        $kelas = t_guru_mapel::with(['kelas','kelas.keahlian','mapel'])->where('m_guru_id',m_guru::where('id_user',Auth::id())->first()->id)->get();
-        return view('nilai.nilaiUmum',['kelas'=> $kelas]);
-        // echo $kelas;
-        
+        $kelas = t_guru_mapel_ahli::with(['kelas','kelas.keahlian','mapel'])->where('m_guru_id',m_guru::where('id_user',Auth::id())->first()->id)->get();
+        return view('ahli.nilaiUmum',['kelas'=> $kelas]);
     }
 
     /**
@@ -30,12 +28,12 @@ class TNilaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id,Request $request)
+    public function create(Request $request,$id)
     {
         $kelas = t_kelas::where('id_kelas',$id)->with('siswa')->orderby('id_siswa','asc')->get();
         $guru = m_guru::select('id')->where('id_user',Auth::id())->first();
-        $id_guru = t_guru_mapel::select('id')->where([['m_guru_id',$guru->id],['m_kelas_id',$id],['m_mapel_id',$request->mapel]])->first();
-        $nilai = t_nilai::where([['id_guru',$id_guru->id],['tahun',$request->smt]])->orderby('id_siswa','asc')->get();
+        $id_guru = t_guru_mapel_ahli::select('id')->where([['m_guru_id',$guru->id],['m_kelas_id',$id],['m_mapel_id',$request->mapel]])->first();
+        $nilai = t_nilai_ahli::where([['id_guru',$id_guru->id],['tahun',$request->smt]])->orderby('id_siswa','asc')->get();
         
 
         // for ($i=0; $i <count($kelas->siswa) ; $i++) { 
@@ -58,7 +56,8 @@ class TNilaiController extends Controller
                 
             }
         }
-        return view('nilai.nilaiUmumAdd',['kelas'=>$kelas,'guru'=>$id_guru]);
+        
+        return view('ahli.nilaiUmumAdd',['kelas'=>$kelas,'guru'=>$id_guru]);
     }
 
     /**
@@ -69,7 +68,7 @@ class TNilaiController extends Controller
      */
     public function store(Request $request,$id)
     {
-       
+        
         $data = [];
         foreach ($request->siswa as $key => $value) {
             $nilai = [$request->nh1[$key],$request->nh2[$key],$request->nh3[$key],$request->nh4[$key],$request->uts[$key],$request->uas[$key],$request->nk[$key],$request->total[$key],$this->konversi($request->total[$key]),$this->konversi($request->nk[$key])];
@@ -82,12 +81,11 @@ class TNilaiController extends Controller
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
             ];
         }
-        t_nilai::where('id_guru',$id)->delete();
-        t_nilai::insert($data);       
-     
+        t_nilai_ahli::where('id_guru',$id)->delete();
+        t_nilai_ahli::insert($data);       
+       
         return redirect()->back()->with('success', 'Sukses');   
     }
-
     function konversi($val){
         if($val<=100 && $val >= 81){
             return 'A';
@@ -103,14 +101,13 @@ class TNilaiController extends Controller
             return 'D';
         }
     }
-
     /**
      * Display the specified resource.
      *
-     * @param  \App\t_nilai  $t_nilai
+     * @param  \App\t_nilai_ahli  $t_nilai_ahli
      * @return \Illuminate\Http\Response
      */
-    public function show(t_nilai $t_nilai)
+    public function show(t_nilai_ahli $t_nilai_ahli)
     {
         //
     }
@@ -118,10 +115,10 @@ class TNilaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\t_nilai  $t_nilai
+     * @param  \App\t_nilai_ahli  $t_nilai_ahli
      * @return \Illuminate\Http\Response
      */
-    public function edit(t_nilai $t_nilai)
+    public function edit(t_nilai_ahli $t_nilai_ahli)
     {
         //
     }
@@ -130,10 +127,10 @@ class TNilaiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\t_nilai  $t_nilai
+     * @param  \App\t_nilai_ahli  $t_nilai_ahli
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, t_nilai $t_nilai)
+    public function update(Request $request, t_nilai_ahli $t_nilai_ahli)
     {
         //
     }
@@ -141,10 +138,10 @@ class TNilaiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\t_nilai  $t_nilai
+     * @param  \App\t_nilai_ahli  $t_nilai_ahli
      * @return \Illuminate\Http\Response
      */
-    public function destroy(t_nilai $t_nilai)
+    public function destroy(t_nilai_ahli $t_nilai_ahli)
     {
         //
     }

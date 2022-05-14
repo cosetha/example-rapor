@@ -14,6 +14,11 @@ class m_guru extends Model
         return $this->hasMany('App\t_guru_mapel', 'm_guru_id', 'id');
 
     }
+    public function gurumapelahli()
+    {
+        return $this->hasMany('App\t_guru_mapel_ahli', 'm_guru_id', 'id');
+
+    }
 
     public function guru()
     {

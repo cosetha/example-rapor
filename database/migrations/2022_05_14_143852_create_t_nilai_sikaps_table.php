@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTNilaisTable extends Migration
+class CreateTNilaiSikapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateTNilaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_nilai_umum', function (Blueprint $table) {
+        Schema::create('t_nilai_sikap', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_guru');
-            $table->unsignedBigInteger('id_siswa');
-            $table->foreign('id_guru')->references('id')->on('t_guru_mapel')->onDelete('cascade');
-            $table->foreign('id_siswa')->references('id')->on('m_siswa')->onDelete('cascade');
-            $table->string('nilai');
             $table->integer('tahun')->length(5)->unsigned();
+            $table->unsignedBigInteger('id_siswa');
+            $table->foreign('id_siswa')->references('id')->on('m_siswa')->onDelete('cascade');
+            $table->string('sikap');
+            $table->string('deskripsi');
+            $table->string('catatan');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateTNilaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_nilais');
+        Schema::dropIfExists('t_nilai_sikaps');
     }
 }
