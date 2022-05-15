@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\t_nilai_sikap;
 use Illuminate\Http\Request;
+use App\m_kelas;
 
 class TNilaiSikapController extends Controller
 {
@@ -14,7 +15,8 @@ class TNilaiSikapController extends Controller
      */
     public function index()
     {
-        //
+        $kelas = m_kelas::orderBy('tahun','desc')->orderBy('tingkat','desc')->get();
+        return view('sikap.nilai',['kelas'=> $kelas]);
     }
 
     /**
@@ -22,9 +24,12 @@ class TNilaiSikapController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
+        $kelas = m_kelas::where('id',$id)->with('siswa')->with(['siswa.sikap' => function($query) use ($request) {
+            $query->where('tahun', $request->smt);
+        }])->orderby('id','asc')->get();
+        return view('sikap.nilaiAdd',['kelas'=>$kelas]);
     }
 
     /**
@@ -33,9 +38,21 @@ class TNilaiSikapController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        $deskripsi = [$request->integritas,$request->religius,$request->nasionalis,$request->mandiri,$request->gotong];
+
+        $nilai = t_nilai_sikap::updateOrCreate(
+            ['id_siswa' =>  request('siswa'),'tahun'=>request('tahun')],
+            ['tahun' => request('tahun'),
+            'id_siswa' => request('siswa'),
+            'catatan' => request('catatan'),
+            'sikap' => 'Integritas/Religius/Nasionalis/Mandiri/Gotong-royong',
+            'deskripsi' =>  implode('/',$deskripsi),            
+            ]
+        );
+        
+        return redirect()->back()->with('success', 'Sukses');  
     }
 
     /**

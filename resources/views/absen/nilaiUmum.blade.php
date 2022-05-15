@@ -1,10 +1,10 @@
-@extends('layouts.appdashboard') @section('title', 'Nilai Ahli || Cordova')
+@extends('layouts.appdashboard') @section('title', 'Nilai Absen || Cordova')
 @section('content')
 
 <div class="card">
     <div class="card-body">
-        <h4 class="header-title ">Nilai Ahli</h4>
-        <p class="sub-header">Tempat Mengelola data terkait Nilai Ahli</p>
+        <h4 class="header-title ">Nilai Absen</h4>
+        <p class="sub-header">Tempat Mengelola data terkait Nilai Absen</p>
         @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}

@@ -56,6 +56,7 @@ class MSiswaController extends Controller
          $siswa->no_ijazah = $request->ijazah;
          $siswa->tahun_ijazah = $request->tahun;
          $siswa->tempat_lahir = $request->tempat;
+         $siswa->status = $request->status;
          $siswa->tanggal_lahir = $date;
          $siswa->tanggal_masuk = $tgl;
          $siswa->save();

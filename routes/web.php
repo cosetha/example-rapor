@@ -145,11 +145,9 @@ Route::prefix('dashboard')
 });
 
 Route::prefix('dashboard')
-    ->middleware(['auth','role:Walikelas,BK'])
+    ->middleware(['auth','role:Walikelas'])
     ->group(function () {
-        Route::get('nilai_absen', 'TNilaiAbsensiController@index');
-        Route::get('nilai_absen/add/{id}', 'TNilaiAbsensiController@create');
-        Route::POST('nilai_absen/store/{id}', 'TNilaiAbsensiController@store');
+        Route::get('raport/sampul1', 'RaportController@sampul1');
 });
 
 Route::prefix('dashboard')
@@ -171,4 +169,16 @@ Route::prefix('dashboard')
         Route::get('nilai_absen', 'TNilaiAbsensiController@index');
         Route::get('nilai_absen/add/{id}', 'TNilaiAbsensiController@create');
         Route::POST('nilai_absen/store/{id}', 'TNilaiAbsensiController@store');
+
+        Route::get('nilai_sikap', 'TNilaiSikapController@index');
+        Route::get('nilai_sikap/add/{id}', 'TNilaiSikapController@create');
+        Route::POST('nilai_sikap/store/{id}', 'TNilaiSikapController@store');
+
+        Route::get('nilai_ekstra', 'TNilaiExtraController@index');
+        Route::get('nilai_ekstra/add/{id}', 'TNilaiExtraController@create');
+        Route::POST('nilai_ekstra/store/{id}', 'TNilaiExtraController@store');
+
+        Route::get('pkl', 'TPklController@index');
+        Route::get('pkl/add/{id}', 'TPklController@create');
+        Route::POST('pkl/store/{id}', 'TPklController@store');
 });

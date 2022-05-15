@@ -16,8 +16,8 @@ class TNilaiAbsensiController extends Controller
      */
     public function index()
     {
-        $kelas = m_kelas::all();
-         return view('absen.nilaiUmum',['kelas'=> $kelas]);
+        $kelas = m_kelas::orderBy('tahun','desc')->orderBy('tingkat','desc')->get();
+        return view('absen.nilaiUmum',['kelas'=> $kelas]);
     }
 
     /**
@@ -29,7 +29,7 @@ class TNilaiAbsensiController extends Controller
     {
         $kelas = m_kelas::where('id',$id)->with('siswa')->with(['siswa.absensi' => function($query) use ($request) {
             $query->where('tahun', $request->smt);
-          }])->orderby('id','asc')->get();
+        }])->orderby('id','asc')->get();
         // echo $kelas[0]->siswa[0]->absensi[0];
           return view('absen.nilaiUmumAdd',['kelas'=>$kelas]);
     }

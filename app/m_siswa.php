@@ -21,6 +21,18 @@ class m_siswa extends Model
         return $this->hasMany('App\t_nilai_absensi', 'id_siswa', 'id');
     }
 
+    public function sikap()
+    {
+        return $this->hasMany('App\t_nilai_sikap', 'id_siswa', 'id');
+    }
+    public function ekstra()
+    {
+        return $this->hasMany('App\t_nilai_extra', 'id_siswa', 'id');
+    }
+    public function pkl()
+    {
+        return $this->hasMany('App\t_pkl', 'id_siswa', 'id');
+    }
     public function kelas()
     {
         return $this->belongsToMany('App\m_kelas', 't_kelas_siswa', 'id_siswa', 'id_kelas');

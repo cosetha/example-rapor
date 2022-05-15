@@ -1,10 +1,10 @@
-@extends('layouts.appdashboard') @section('title', 'Nilai Sikap || Cordova')
+@extends('layouts.appdashboard') @section('title', 'Nilai Ekstra || Cordova')
 @section('content')
 
 <div class="card">
     <div class="card-body">
-        <h4 class="header-title ">Nilai Sikap</h4>
-        <p class="sub-header">Tempat Mengelola data terkait Nilai Sikap</p>
+        <h4 class="header-title ">Nilai Ekstra</h4>
+        <p class="sub-header">Tempat Mengelola data terkait Nilai Ekstra</p>
         @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
@@ -22,11 +22,11 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h4 class="card-title"> Kelas: {{$k->nama_kelas}} {{$k->tahun}} </h4>
-                        <h5 class="card-subtitle mb-2 text-muted"> Data Sikap</h5>
-                        <p class="card-text"> <button class="btn btn-success w-100">Tabel nilai sikap</button> </p>
+                        <h5 class="card-subtitle mb-2 text-muted"> Data ekstra</h5>
+                        <p class="card-text"> <button class="btn btn-success w-100">Tabel nilai ekstra</button> </p>
                         <i class="card-link">Nilai :</i>
-                        <a href="nilai_sikap/add/{{$k->id}}?smt={{$k->tahun.'1'}}" class="card-link">Ganjil</a>
-                        <a href="nilai_sikap/add/{{$k->id}}?smt={{$k->tahun.'2'}}" class="card-link">Genap</a>
+                        <a href="nilai_ekstra/add/{{$k->id}}?smt={{$k->tahun.'1'}}" class="card-link">Ganjil</a>
+                        <a href="nilai_ekstra/add/{{$k->id}}?smt={{$k->tahun.'2'}}" class="card-link">Genap</a>
                     </div>                   
                 </div>
             </div>

@@ -59,28 +59,28 @@ input[type=number] {
                                 <td>
                                     <div class="row">
                                         <div class="col">
-                                            NH1: <input type="number" name="nh1[]" class="form-control calculate input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[0]}}">
+                                            NH1: <input type="number" name="nh1[]" class="form-control calculate input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[0]}}" required>
                                         </div>
                                         <div class="col">
                                             NH2:
-                                            <input type="number" name="nh2[]" class="form-control calculate input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[1]}}">
+                                            <input type="number" name="nh2[]" class="form-control calculate input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[1]}}" required>
                                         </div>
                                         <div class="col">
-                                            NH3:<input type="number" name="nh3[]" class="form-control calculate input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[2]}}">
+                                            NH3:<input type="number" name="nh3[]" class="form-control calculate input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[2]}}" required>
                                         </div>
                                         <div class="col">
-                                            NH4:<input type="number" name="nh4[]" class="form-control calculate input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[3]}}">
+                                            NH4:<input type="number" name="nh4[]" class="form-control calculate input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[3]}}" required>
                                         </div>
                                         <div class="col">
-                                        UTS:<input type="number" name="uts[]" class="form-control calculatemore input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[4]}}">
+                                        UTS:<input type="number" name="uts[]" class="form-control calculatemore input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[4]}}" required>
                                         </div>
                                         <div class="col">
-                                        UAS <input type="number" name="uas[]" class="form-control calculatemore input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[5]}}">
+                                        UAS <input type="number" name="uas[]" class="form-control calculatemore input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0" max="100" value="{{$nilai[5]}}" required>
                                         </div>
                                     </div>                                                                                   
                                 </td>
                                 <td>
-                                    Nilai <input type="number" name="nk[]" class="form-control input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0"  max="100" value="{{$nilai[6]}}">
+                                    Nilai <input type="number" name="nk[]" class="form-control input-sm" onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }" min="0"  max="100" value="{{$nilai[6]}}" required>
                                 </td>
                                 <td>
                                     <div style="display:inline;"> <button class="btn btn-success jumlah w-100">Jumlah</button>

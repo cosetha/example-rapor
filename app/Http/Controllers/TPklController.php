@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\t_nilai_extra;
+use App\t_pkl;
 use Illuminate\Http\Request;
 use App\m_kelas;
-use App\m_extra;
-
-class TNilaiExtraController extends Controller
+class TPklController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,8 @@ class TNilaiExtraController extends Controller
      */
     public function index()
     {
-       
         $kelas = m_kelas::orderBy('tahun','desc')->orderBy('tingkat','desc')->get();
-        return view('ekstra.nilai',['kelas'=>$kelas]);
+        return view('pkl.nilai',['kelas'=>$kelas]);
     }
 
     /**
@@ -28,11 +25,10 @@ class TNilaiExtraController extends Controller
      */
     public function create($id, Request $request)
     {
-        $ekstra = m_extra::all();
-        $kelas = m_kelas::where('id',$id)->with('siswa')->with(['siswa.ekstra' => function($query) use ($request) {
+        $kelas = m_kelas::where('id',$id)->with('siswa')->with(['siswa.pkl' => function($query) use ($request) {
             $query->where('tahun', $request->smt);
         }])->orderby('id','asc')->get();
-        return view('ekstra.nilaiAdd',['kelas'=>$kelas,'ekstra'=>$ekstra]);
+        return view('pkl.nilaiAdd',['kelas'=>$kelas]);
     }
 
     /**
@@ -43,28 +39,30 @@ class TNilaiExtraController extends Controller
      */
     public function store(Request $request, $id)
     {
-        foreach ($request->ekstra as $key => $value) {
+        foreach ($request->mitra as $key => $value) {
             $data[]= [
-                'id_siswa' => $request->siswa,
-                'id_extra' => $request->ekstra[$key],
+                'id_siswa' => $request->siswa,               
                 'tahun' => $request->tahun,
-                'nilai' => $request->nilai[$key],
+                'mitra' => $request->mitra[$key],
+                'lokasi' => $request->lokasi[$key],
+                'lama' => $request->lama[$key],
+                'keterangan' => $request->keterangan[$key],
                 'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
             ];
         }
-        t_nilai_extra::where('id_siswa',$request->siswa)->where('tahun',$request->tahun)->delete();
-        t_nilai_extra::insert($data);       
+        t_pkl::where('id_siswa',$request->siswa)->where('tahun',$request->tahun)->delete();
+        t_pkl::insert($data);       
         return redirect()->back()->with('success', 'Sukses');  
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\t_nilai_extra  $t_nilai_extra
+     * @param  \App\t_pkl  $t_pkl
      * @return \Illuminate\Http\Response
      */
-    public function show(t_nilai_extra $t_nilai_extra)
+    public function show(t_pkl $t_pkl)
     {
         //
     }
@@ -72,10 +70,10 @@ class TNilaiExtraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\t_nilai_extra  $t_nilai_extra
+     * @param  \App\t_pkl  $t_pkl
      * @return \Illuminate\Http\Response
      */
-    public function edit(t_nilai_extra $t_nilai_extra)
+    public function edit(t_pkl $t_pkl)
     {
         //
     }
@@ -84,10 +82,10 @@ class TNilaiExtraController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\t_nilai_extra  $t_nilai_extra
+     * @param  \App\t_pkl  $t_pkl
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, t_nilai_extra $t_nilai_extra)
+    public function update(Request $request, t_pkl $t_pkl)
     {
         //
     }
@@ -95,10 +93,10 @@ class TNilaiExtraController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\t_nilai_extra  $t_nilai_extra
+     * @param  \App\t_pkl  $t_pkl
      * @return \Illuminate\Http\Response
      */
-    public function destroy(t_nilai_extra $t_nilai_extra)
+    public function destroy(t_pkl $t_pkl)
     {
         //
     }

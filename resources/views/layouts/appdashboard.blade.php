@@ -281,7 +281,7 @@
                                             <a href="/dashboard/nilai_ahli">Nilai Ahli</a>
                                         </li> 
                                         @endif                                                                                                                                                  
-                                        @if(\App\m_guru::where('id_user',Auth::id())->whereHas('walikelas')->count() > 0 || $guru[0]->is_bk == 'Y')                                       
+                                        @if($guru[0]->is_bk == 'Y')                                       
                                         <li>
                                             <a href="/dashboard/nilai_absen">Data Absen</a>
                                         </li>
@@ -292,9 +292,15 @@
                                             <a href="/dashboard/nilai_sikap">Nilai Sikap</a>
                                         </li>
                                         <li>
-                                            <a href="/dashboard/PKL">PKL</a>
+                                            <a href="/dashboard/pkl">PKL</a>
                                         </li>
-                                        @endif                             
+                                        @endif      
+                                        
+                                        @if(\App\m_guru::where('id_user',Auth::id())->whereHas('walikelas')->count() > 0)                                       
+                                        <li>
+                                            <a href="/dashboard/raport">Data Raport</a>
+                                        </li>                                        
+                                        @endif      
                                     </ul>
                                 </div>
                             </li>

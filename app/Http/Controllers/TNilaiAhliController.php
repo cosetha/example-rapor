@@ -81,7 +81,7 @@ class TNilaiAhliController extends Controller
                 'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
             ];
         }
-        t_nilai_ahli::where('id_guru',$id)->delete();
+        t_nilai_ahli::where('id_guru',$id)->where('tahun',$request->tahun)->delete();
         t_nilai_ahli::insert($data);       
        
         return redirect()->back()->with('success', 'Sukses');   

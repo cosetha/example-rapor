@@ -20,6 +20,7 @@ class CreateTNilaiExtrasTable extends Migration
             $table->unsignedBigInteger('id_extra');
             $table->foreign('id_siswa')->references('id')->on('m_siswa')->onDelete('cascade');
             $table->foreign('id_extra')->references('id')->on('m_extra')->onDelete('cascade');
+            $table->string('nilai');
             $table->timestamps();
         });
     }

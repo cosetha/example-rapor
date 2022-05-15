@@ -54,19 +54,19 @@ input[type=number] {
                                 <td>
                                     <div class="row">
                                         <div class="col">
-                                            Sakit: <input type="number" name="nh1[]" class="form-control calculate input-sm"  min="0" max="100" value="{{ $k->absensi->count() > 0 ? $k->absensi[0]->s: '0' }}">
+                                            Sakit: <input type="number" name="nh1[]" class="form-control calculate input-sm"  min="0" max="100" value="{{ $k->absensi->count() > 0 ? $k->absensi[0]->s: '0' }}" required>
                                         </div>
                                         <div class="col">
                                             Izin:
-                                            <input type="number" name="nh2[]" class="form-control calculate input-sm"  min="0" max="100" value="{{ $k->absensi->count() > 0 ? $k->absensi[0]->i: '0' }}">
+                                            <input type="number" name="nh2[]" class="form-control calculate input-sm"  min="0" max="100" value="{{ $k->absensi->count() > 0 ? $k->absensi[0]->i: '0' }}" required>
                                         </div>
                                         <div class="col">
-                                            Alpha:<input type="number" name="nh3[]" class="form-control calculate input-sm"  min="0" max="100" value="{{ $k->absensi->count() > 0 ? $k->absensi[0]->a: '0' }}">
+                                            Alpha:<input type="number" name="nh3[]" class="form-control calculate input-sm"  min="0" max="100" value="{{ $k->absensi->count() > 0 ? $k->absensi[0]->a: '0' }}" required>
                                         </div>
                                     </div>                                                                                   
                                 </td>
                                 <td>
-                                    Keterangan <input type="text" name="nk[]" class="form-control input-sm"  min="0"  max="100" value="{{ $k->absensi->count() > 0 ? $k->absensi[0]->keterangan: '' }}">
+                                    Keterangan <input type="text" name="nk[]" class="form-control input-sm"  min="0"  max="100" value="{{ $k->absensi->count() > 0 ? $k->absensi[0]->keterangan: '' }}" required>
                                 </td>                               
                             </tr>
                             @endforeach

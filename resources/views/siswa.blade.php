@@ -182,6 +182,30 @@ input[type=number] {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
+                                        <label for="status-kel">Status dalam keluarga</label>
+                                        <input type="text" name="status-kel" id="status-kel" class="form-control" required>
+                                    </div>  
+                                </div> 
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="anak">Anak ke-</label>
+                                        <input type="text" name="anak" id="anak" class="form-control" required>
+                                    </div>  
+                                </div>   
+                                <div class="col">
+                                    <div class="form-group">
+                                    <label for="diterima">Diterima di kelas-</label>
+                                       <select name="diterima" id="diterima" class="form-control" required>
+                                           <option value="10">10</option>
+                                           <option value="11">11</option>
+                                           <option value="12">12</option>
+                                       </select>
+                                    </div>  
+                                </div>                                 
+                            </div> 
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
                                         <label for="alamat">Alamat</label>
                                         <input type="text" name="alamat" id="alamat" class="form-control" required>
                                     </div>  
@@ -341,6 +365,30 @@ input[type=number] {
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="status-edit">Status dalam keluarga</label>
+                                        <input type="text" name="status-edit" id="status-edit" class="form-control" required>
+                                    </div>  
+                                </div>  
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="anak-edit">Anak ke-</label>
+                                        <input type="text" name="anak-edit" id="anak-edit" class="form-control" required>
+                                    </div>  
+                                </div>   
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="diterima-edit">Diterima di kelas-</label>
+                                       <select name="diterima-edit" id="diterima-edit" class="form-control" required>
+                                           <option value="10">10</option>
+                                           <option value="11">11</option>
+                                           <option value="12">12</option>
+                                       </select>
+                                    </div>  
+                                </div>                                 
+                            </div> 
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -518,7 +566,7 @@ $(document).ready(function () {
             var formData = new FormData();
             formData.append('nama', $('#nama').val());
             formData.append('email', $('#email-tambah').val());
-            formData.append('asal', $('#asal').val());
+            formData.append('asal', $('#asal').val()+'/'+$('#diterima').val());
             formData.append('agama', $('#agama').val());
             formData.append('jurusan', $('#jurusan').val());
             formData.append('bidang', $('#bidang').val());
@@ -530,6 +578,7 @@ $(document).ready(function () {
             formData.append('tempat', $('#tempat').val());
             formData.append('tanggal', $('#tanggal').val()); 
             formData.append('alamat', $('#alamat').val()); 
+            formData.append('status', $('#status-kel').val()+'/'+$('#anak').val()); 
             formData.append('tanggal_masuk', $('#tanggal-masuk').val()); 
             console.log($('#tanggal_masuk').val());
             $.ajax({
@@ -576,9 +625,14 @@ $(document).ready(function () {
             success: function(res) {
                 $('#modal-siswa-edit').modal('show');
                 console.log(res.values)
+                let asal = res.values.asal_sekolah.split('/')
+                let status = res.values.status.split('/')
+                $('#status-edit').val(status[0])
+                $('#anak-edit').val(status[1])
                 $('#nama-edit').val(res.values.nama)
                 $('#email-edit').val(res.values.email)
-                $('#asal-edit').val(res.values.asal_sekolah)
+                $('#asal-edit').val(asal[0])
+                $('#diterima-edit').val(asal[1])
                 $('#agama-edit').val(res.values.agama)
                 $('#nipdn-edit').val(res.values.nipdn)
                 $('#nisn-edit').val(res.values.nisn)
@@ -593,6 +647,7 @@ $(document).ready(function () {
                 $('#tahun-ijazah-edit').yearpicker({
                     year:res.values.tahun_ijazah,
                 });
+                $('#tahun-ijazah-edit').val(res.values.tahun_ijazah)
                 var formData = new FormData();
                 $("#jurusan-edit").val(res.values.kom_keahlian[0].id_bidang);
                 formData.append('id', res.values.kom_keahlian[0].id_bidang);
@@ -625,7 +680,7 @@ $(document).ready(function () {
             var formData = new FormData();
             formData.append('nama',    $('#nama-edit').val());
             formData.append('email',   $('#email-edit').val());
-            formData.append('asal',    $('#asal-edit').val());
+            formData.append('asal',    $('#asal-edit').val()+'/'+$('#diterima-edit').val());
             formData.append('agama',   $('#agama-edit').val());
             formData.append('jurusan', $('#jurusan-edit').val());
             formData.append('bidang',  $('#bidang-edit').val());
@@ -638,6 +693,7 @@ $(document).ready(function () {
             formData.append('tanggal', $('#tanggal-edit').val()); 
             formData.append('tanggal_masuk', $('#tanggal-masuk-edit').val()); 
             formData.append('alamat',  $('#alamat-edit').val()); 
+            formData.append('status', $('#status-edit').val()+'/'+$('#anak-edit').val()); 
             $.ajax({
 				type: 'post',
 				url: '/dashboard/siswa/update/'+id,

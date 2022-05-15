@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTNilaiSikapsTable extends Migration
+class CreateTPklsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateTNilaiSikapsTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_nilai_sikap', function (Blueprint $table) {
+        Schema::create('t_pkl', function (Blueprint $table) {
             $table->id();
             $table->integer('tahun')->length(5)->unsigned();
             $table->unsignedBigInteger('id_siswa');
             $table->foreign('id_siswa')->references('id')->on('m_siswa')->onDelete('cascade');
-            $table->string('sikap');
-            $table->text('deskripsi');
-            $table->string('catatan');
+            $table->string('mitra');
+            $table->string('lokasi');
+            $table->string('lama');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateTNilaiSikapsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_nilai_sikaps');
+        Schema::dropIfExists('t_pkls');
     }
 }
