@@ -57,6 +57,7 @@ class MSiswaController extends Controller
          $siswa->tahun_ijazah = $request->tahun;
          $siswa->tempat_lahir = $request->tempat;
          $siswa->status = $request->status;
+         $siswa->jenis_kelamin = $request->jk;
          $siswa->tanggal_lahir = $date;
          $siswa->tanggal_masuk = $tgl;
          $siswa->save();
@@ -133,6 +134,8 @@ class MSiswaController extends Controller
          $siswa->tempat_lahir = $request->tempat;
          $siswa->tanggal_lahir = $date;
          $siswa->tanggal_masuk = $tgl;
+         $siswa->status = $request->status;
+         $siswa->jenis_kelamin = $request->jk;
          $siswa->save();
     }
 

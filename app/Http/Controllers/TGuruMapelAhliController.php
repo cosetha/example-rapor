@@ -32,7 +32,7 @@ class TGuruMapelAhliController extends Controller
      */
     public function create(Request $request)
     {
-        $ahli = m_mapel_ahli::where('id_bidang',$request->id)->get();
+        $ahli = m_mapel_ahli::where('id_bidang',$request->id)->where('tingkat',$request->tingkat)->get();
         return response()->json($ahli);
     }
 
@@ -95,7 +95,7 @@ class TGuruMapelAhliController extends Controller
     {
         $data = t_guru_mapel_ahli::find($id);
         $kelas = t_guru_mapel_ahli::with('kelas')->find($id);
-        $mapel = m_mapel_ahli::where('id_bidang',$kelas->kelas[0]->id_keahlian)->get();
+        $mapel = m_mapel_ahli::where('id_bidang',$kelas->kelas[0]->id_keahlian)->where('tingkat',$kelas->kelas[0]->tingkat)->get();
         if($data !=null){
             $res['message'] = "Success!";
             $res['values'] = $data;

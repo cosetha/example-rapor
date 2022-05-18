@@ -31,6 +31,7 @@ class CreateMSiswasTable extends Migration
             $table->unsignedBigInteger('id_bidang');
             $table->foreign('id_bidang')->references('id')->on('t_keahlian')->onDelete('cascade');
             $table->string('status');
+            $table->string('jenis_kelamin');
             $table->timestamps();
         });
     }

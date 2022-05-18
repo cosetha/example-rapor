@@ -73,7 +73,7 @@ input[type=number] {
     aria-hidden="true"
     data-bs-backdrop="static"
 >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="modal-tambah">
@@ -95,13 +95,13 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_ayah" class="form-label">Nama Auah</label>
-                                        <input type="text" name="nama_ayah" id="nama_ayah" class="form-control" required>
+                                        <input type="text" name="nama_ayah" id="nama_ayah" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_ibu" class="form-label">Nama Ibu</label>
-                                        <input type="text" name="nama_ibu" id="nama_ibu" class="form-control" required>
+                                        <input type="text" name="nama_ibu" id="nama_ibu" class="form-control" >
                                     </div>
                                 </div>
                             </div>
@@ -119,13 +119,13 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tempat_lahir" class="form-label">Tempat Lahir Ayah</label>
-                                        <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" required>
+                                        <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col">                                   
                                     <div class="form-group">
                                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir Ayah</label>
-                                        <input type="text" name="tanggal_lahir" id="tanggal_lahir" class="form-control datepicker" readonly required>
+                                        <input type="text" name="tanggal_lahir" id="tanggal_lahir" class="form-control datepicker" readonly >
                                     </div>                                    
                                 </div>                                
                             </div>
@@ -133,13 +133,13 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="alamat" class="form-label">Alamat Orang Tua</label>
-                                        <input type="text" name="alamat" id="alamat" class="form-control" required>
+                                        <input type="text" name="alamat" id="alamat" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="telepon" class="form-label">No Telp Orang Tua</label>
-                                        <input type="number" name="telepon" id="telepon" class="form-control" required>
+                                        <input type="number" name="telepon" id="telepon" class="form-control" >
                                     </div>
                                 </div>                                
                             </div>
@@ -147,15 +147,42 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah</label>
-                                        <input type="text" name="pekerjaan_ayah" id="pekerjaan_ayah" class="form-control" required>
+                                        <input type="text" name="pekerjaan_ayah" id="pekerjaan_ayah" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col">                                   
                                     <div class="form-group">
                                         <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu</label>
-                                        <input type="text" name="pekerjaan_ibu" id="pekerjaan_ibu" class="form-control" required>
+                                        <input type="text" name="pekerjaan_ibu" id="pekerjaan_ibu" class="form-control" >
                                     </div>                                    
                                 </div>                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="nama_wali" class="form-label">Nama Wali</label>
+                                        <input type="text" name="nama_wali" id="nama_wali" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col">                                   
+                                    <div class="form-group">
+                                        <label for="pekerjaan_wali" class="form-label">Pekerjaan Wali</label>
+                                        <input type="text" name="pekerjaan_wali" id="pekerjaan_wali" class="form-control">
+                                    </div>                                    
+                                </div>
+                                <div class="col">                                   
+                                    <div class="form-group">
+                                        <label for="alamat_wali" class="form-label">Alamat Wali</label>
+                                        <input type="text" name="alamat_wali" id="alamat_wali" class="form-control">
+                                    </div>                                    
+                                </div>
+                                <div class="col">                                   
+                                    <div class="form-group">
+                                        <label for="no_telp_wali" class="form-label">No Telp Wali</label>
+                                        <input type="number" name="no_telp_wali" id="no_telp_wali" class="form-control">
+                                    </div>                                    
+                                </div>                              
                             </div>
 
                             <div class="row">
@@ -214,7 +241,7 @@ input[type=number] {
     aria-hidden="true"
     data-bs-backdrop="static"
 >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="judul-edit">
@@ -237,13 +264,13 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_ayah-edit" class="form-label">Nama Auah</label>
-                                        <input type="text" name="nama_ayah-edit" id="nama_ayah-edit" class="form-control" required>
+                                        <input type="text" name="nama_ayah-edit" id="nama_ayah-edit" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_ibu-edit" class="form-label">Nama Ibu</label>
-                                        <input type="text" name="nama_ibu-edit" id="nama_ibu-edit" class="form-control" required>
+                                        <input type="text" name="nama_ibu-edit" id="nama_ibu-edit" class="form-control" >
                                     </div>
                                 </div>
                             </div>
@@ -261,13 +288,13 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tempat_lahir-edit" class="form-label">Tempat Lahir Ayah</label>
-                                        <input type="text" name="tempat_lahir-edit" id="tempat_lahir-edit" class="form-control" required>
+                                        <input type="text" name="tempat_lahir-edit" id="tempat_lahir-edit" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col">                                   
                                     <div class="form-group">
                                         <label for="tanggal_lahir-edit" class="form-label">Tanggal Lahir Ayah</label>
-                                        <input type="text" name="tanggal_lahir-edit" id="tanggal_lahir-edit" class="form-control datepicker"  readonly required>
+                                        <input type="text" name="tanggal_lahir-edit" id="tanggal_lahir-edit" class="form-control datepicker"  readonly >
                                     </div>                                    
                                 </div>                                
                             </div>
@@ -275,13 +302,13 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="alamat-edit" class="form-label">Alamat Orang Tua</label>
-                                        <input type="text" name="alamat-edit" id="alamat-edit" class="form-control" required>
+                                        <input type="text" name="alamat-edit" id="alamat-edit" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="telepon-edit" class="form-label">No Telp Orang Tua</label>
-                                        <input type="number" name="telepon-edit" id="telepon-edit" class="form-control" required>
+                                        <input type="number" name="telepon-edit" id="telepon-edit" class="form-control" >
                                     </div>
                                 </div>                                
                             </div>
@@ -289,16 +316,42 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="pekerjaan_ayah-edit" class="form-label">Pekerjaan Ayah</label>
-                                        <input type="text" name="pekerjaan_ayah-edit" id="pekerjaan_ayah-edit" class="form-control" required>
+                                        <input type="text" name="pekerjaan_ayah-edit" id="pekerjaan_ayah-edit" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col">                                   
                                     <div class="form-group">
                                         <label for="pekerjaan_ibu-edit" class="form-label">Pekerjaan Ibu</label>
-                                        <input type="text" name="pekerjaan_ibu-edit" id="pekerjaan_ibu-edit" class="form-control" required>
+                                        <input type="text" name="pekerjaan_ibu-edit" id="pekerjaan_ibu-edit" class="form-control" >
                                     </div>                                    
                                 </div>                                
-                            </div>                           
+                            </div> 
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="nama_wali-edit" class="form-label">Nama Wali</label>
+                                        <input type="text" name="nama_wali-edit" id="nama_wali-edit" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col">                                   
+                                    <div class="form-group">
+                                        <label for="pekerjaan_wali-edit" class="form-label">Pekerjaan Wali</label>
+                                        <input type="text" name="pekerjaan_wali-edit" id="pekerjaan_wali-edit" class="form-control">
+                                    </div>                                    
+                                </div>
+                                <div class="col">                                   
+                                    <div class="form-group">
+                                        <label for="alamat_wali-edit" class="form-label">Alamat Wali</label>
+                                        <input type="text" name="alamat_wali-edit" id="alamat_wali-edit" class="form-control">
+                                    </div>                                    
+                                </div>
+                                <div class="col">                                   
+                                    <div class="form-group">
+                                        <label for="no_telp_wali-edit" class="form-label">No Telp Wali</label>
+                                        <input type="number" name="no_telp_wali-edit" id="no_telp_wali-edit" class="form-control">
+                                    </div>                                    
+                                </div>                              
+                            </div>                          
                     </div>
                 </div>
             </div>
@@ -398,7 +451,8 @@ $(document).ready(function () {
             formData.append('id_siswa', $('#siswa').val());
             formData.append('username', $('#username-tambah').val());
             formData.append('email', $('#email-tambah').val());
-            formData.append('password', $('#password').val());            
+            formData.append('password', $('#password').val());
+            formData.append('wali_siswa', $('#nama_wali').val()+'/'+ $('#alamat_wali').val()+'/'+ $('#no_telp_wali').val()+'/'+ $('#pekerjaan_wali').val());            
             $.ajax({
 				type: 'post',
 				url: '/dashboard/wali/store',
@@ -445,6 +499,11 @@ $(document).ready(function () {
                 $('#nama_ayah-edit').val(res.values.nama_ayah);
                 $('#nama_ibu-edit').val(res.values.nama_ibu);
                 let pekerjaan = res.values.pekerjaan.split(",")
+                let wali = res.values.wali_siswa.split("/")
+                $('#nama_wali-edit').val(wali[0]);
+                $('#alamat_wali-edit').val(wali[1]);
+                $('#no_telp_wali-edit').val(wali[2]);
+                $('#pekerjaan_wali-edit').val(wali[3]);
                 $('#pekerjaan_ayah-edit').val(pekerjaan[0]);
                 $('#pekerjaan_ibu-edit').val(pekerjaan[1]);
                 let tanggal = new Date(res.values.tanggal_lahir)                               
@@ -452,8 +511,7 @@ $(document).ready(function () {
                 $('#tempat_lahir-edit').val(res.values.tempat_lahir);
                 $('#telepon-edit').val(res.values.no_telp);
                 $('#alamat-edit').val(res.values.alamat);
-                $('#siswa-edit').val(res.values.id_siswa);              
-                console.log(res.values)
+                $('#siswa-edit').val(res.values.id_siswa);                             
                 }
             });
 		
@@ -472,7 +530,8 @@ $(document).ready(function () {
             formData.append('tanggal_lahir', $('#tanggal_lahir-edit').val());
             formData.append('no_telp', $('#telepon-edit').val());
             formData.append('pekerjaan', pekerjaan);
-            formData.append('id_siswa', $('#siswa-edit').val());          
+            formData.append('id_siswa', $('#siswa-edit').val()); 
+            formData.append('wali_siswa', $('#nama_wali-edit').val()+'/'+ $('#alamat_wali-edit').val()+'/'+ $('#no_telp_wali-edit').val()+'/'+ $('#pekerjaan_wali-edit').val());          
             $.ajax({
 				type: 'post',
 				url: '/dashboard/wali/update/'+id,

@@ -88,6 +88,9 @@ class MWaliMuridController extends Controller
                 $w->tempat_lahir = $request->tempat_lahir;
                 $w->pekerjaan = $request->pekerjaan;
                 $w->no_telp = $request->no_telp;
+                if($request->has('wali_siswa')){
+                    $w->wali_siswa = $request->wali_siswa;
+                }
                 $w->id_siswa = $request->id_siswa;
                 $w->id_user = $u->id;
                 $w->save();
@@ -158,7 +161,10 @@ class MWaliMuridController extends Controller
         $w->tempat_lahir = $request->tempat_lahir;
         $w->pekerjaan = $request->pekerjaan;
         $w->no_telp = $request->no_telp;
-        $w->id_siswa = $request->id_siswa;       
+        $w->id_siswa = $request->id_siswa;
+        if($request->has('wali_siswa')){
+            $w->wali_siswa = $request->wali_siswa;
+        }       
         $w->save();
     }
 

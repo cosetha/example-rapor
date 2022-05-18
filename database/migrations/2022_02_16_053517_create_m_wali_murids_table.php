@@ -15,13 +15,14 @@ class CreateMWaliMuridsTable extends Migration
     {
         Schema::create('m_wali_murid', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_ayah');
-            $table->string('nama_ibu');
-            $table->string('alamat');
-            $table->string('no_telp');
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
-            $table->string('pekerjaan');
+            $table->string('nama_ayah')->nullable();
+            $table->string('nama_ibu')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->text('wali_siswa')->nullable();
             //Pekerjaan Ayah Ibu
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');

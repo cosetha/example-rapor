@@ -326,6 +326,7 @@ $(document).ready(function () {
 					console.log(err);
 				}
 			});
+            setTimeout(location.reload.bind(location), 1800);
             table.ajax.reload();
     });
     $('body').on('click', '.btn-edit', function(e) {

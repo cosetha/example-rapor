@@ -9,10 +9,15 @@
         margin: 0;
         }
         @media print {
-        html, body {
-            width: 210mm;
-            height: 297mm;
-        }
+            html{
+                width: 8.5in;
+                height: 13in; 
+                }  
+            body{
+                width: 6.5in; 
+                padding: 0; 
+                margin-left: 0.65in;                          
+                }    
         
         }
         hr {
@@ -35,15 +40,15 @@
                 <br><br>
                 <br>
                 <br>
-                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">Nama peserta didik</p>
+                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">{{$siswa[0]->nama}}</p>
                 <hr>
-                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">NISN</p>
+                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">{{$siswa[0]->nisn}}</p>
                 <hr>
-                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">NIS</p>
+                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">{{$siswa[0]->nipdn}}</p>
                 <hr>
-                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">Bidang Studi</p>
+                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">{{$siswa[0]->bidang_studi}}</p>
                 <hr>
-                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">Kompetensi Keahlian</p>
+                <p class="text-center font-weight-bold text-uppercase" style="margin-bottom: 25px; font-size:20px">{{$siswa[0]->kompetensi_keahlian}}</p>
                 <hr>
                 <br>
                 <br>

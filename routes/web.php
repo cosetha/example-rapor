@@ -147,7 +147,14 @@ Route::prefix('dashboard')
 Route::prefix('dashboard')
     ->middleware(['auth','role:Walikelas'])
     ->group(function () {
-        Route::get('raport/sampul1', 'RaportController@sampul1');
+
+        Route::get('raport', 'RaportController@index');
+        Route::get('raport/list/{id}', 'RaportController@create');
+
+        Route::get('raport/sampul1/{id}', 'RaportController@sampul1');
+        Route::get('raport/sampul2/{id}', 'RaportController@sampul2');
+        Route::get('raport/sampul3/{id}', 'RaportController@sampul3');
+        Route::get('raport/raport/{id}', 'RaportController@raport');
 });
 
 Route::prefix('dashboard')

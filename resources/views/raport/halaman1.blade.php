@@ -5,14 +5,19 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <style>
         @page {
-        size: A4;
+        size: F4;
         margin: 0;
         }
         @media print {
-        html, body {
-            width: 210mm;
-            height: 297mm;
-        }
+            html{
+                width: 8.5in;
+                height: 13in; 
+                }  
+            body{
+                width: 6.5in; 
+                padding: 0; 
+                margin-left: 0.65in;                          
+                }    
         
         }
     </style>
@@ -27,13 +32,14 @@
                 <h1 class="text-center font-weight-bold">LAPORAN HASIL BELAJAR SEKOLAH MENENGAH KEJURUAN (SMK) </h1>
                 <br>           
                 <table class="mt-5 table" style="width:100%;">
+               
                     <tr>
                         <td class="font-weight-bold" style="width:40%">Bidang Studi</td>
-                        <td class="font-weight-bold text-uppercase">: </td>
+                        <td class="font-weight-bold text-uppercase">:   {{$siswa[0]->bidang_studi}}        </td>
                     </tr>
                     <tr>
                         <td class="font-weight-bold">Kompetensi Keahlian</td>
-                        <td class="font-weight-bold text-uppercase">: </td>
+                        <td class="font-weight-bold text-uppercase">: {{$siswa[0]->kompetensi_keahlian}} </td>
                     </tr>                    
                     <tr>
                         <td class="font-weight-bold">Nama Sekolah</td>

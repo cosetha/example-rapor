@@ -178,6 +178,16 @@ input[type=number] {
                                     </div>
                                     <input type="text" class="form-control datepicker" id="tanggal" name="tanggal" readonly required value = "" autocomplete="off">  
                                 </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="jk">Jenis Kelamin</label>
+                                   
+                                        <select name="" id="jk" class="form-control">
+                                            <option value="Laki-laki">Laki-laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>  
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -362,6 +372,16 @@ input[type=number] {
                                         <label for="tanggal-edit">Tanggal lahir</label>
                                    
                                         <input type="text" class="form-control datepicker" id="tanggal-edit" name="tanggal-edit"  readonly required value = "" autocomplete="off">  
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="jk-edit">Jenis Kelamin</label>
+                                   
+                                        <select name="" id="jk-edit" class="form-control">
+                                            <option value="Laki-laki">Laki-laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>  
                                     </div>
                                 </div>
                             </div>
@@ -578,6 +598,7 @@ $(document).ready(function () {
             formData.append('tempat', $('#tempat').val());
             formData.append('tanggal', $('#tanggal').val()); 
             formData.append('alamat', $('#alamat').val()); 
+            formData.append('jk', $('#jk').val()); 
             formData.append('status', $('#status-kel').val()+'/'+$('#anak').val()); 
             formData.append('tanggal_masuk', $('#tanggal-masuk').val()); 
             console.log($('#tanggal_masuk').val());
@@ -638,6 +659,7 @@ $(document).ready(function () {
                 $('#nisn-edit').val(res.values.nisn)
                 $('#telpon-edit').val(res.values.no_telp)
                 $('#ijazah-edit').val(res.values.no_ijazah)
+                $('#jk-edit').val(res.values.jenis_kelamin)
                 $('#tempat-edit').val(res.values.tempat_lahir)
                 let tanggal = new Date(res.values.tanggal_lahir)                
                 $("#tanggal-edit").val(String(tanggal.getDate() +'-'+ (parseInt(tanggal.getMonth()) + 1) + '-' + tanggal.getFullYear())); 
@@ -688,6 +710,7 @@ $(document).ready(function () {
             formData.append('nisn',    $('#nisn-edit').val());
             formData.append('telpon',  $('#telpon-edit').val());
             formData.append('ijazah',  $('#ijazah-edit').val());
+            formData.append('jk',  $('#jk-edit').val());
             formData.append('tahun',   $('#tahun-ijazah-edit').val());
             formData.append('tempat',  $('#tempat-edit').val());
             formData.append('tanggal', $('#tanggal-edit').val()); 

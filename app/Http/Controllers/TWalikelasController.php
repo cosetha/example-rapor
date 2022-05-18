@@ -19,7 +19,7 @@ class TWalikelasController extends Controller
     {
        
         $kelas = m_kelas::doesntHave('walikelas')->get();
-        $guru = m_guru::doesnthave('walikelas')->get();
+        $guru = m_guru::get();
         $kf = m_kelas::all();
         $gf = m_guru::all();
         return view('setWalikelas',['kelas' => $kelas,'guru'=>$guru,'kf' => $kf,'gf' => $gf]);    
