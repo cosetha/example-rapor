@@ -218,53 +218,41 @@
                                                         <td colspan="1" class="text-center">-</td> 
                                                     @endif                                                  
                                                 @endforeach                                        
-                                            </tr>  
-                                            @else
-                                                        <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
-                                                        <td colspan="2">-</td>
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td>                                           
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td> 
-                                                        @break
+                                            </tr>                                          
                                             @endif
                                         @endforeach 
                                         <tr>                                            
                                             <td style="padding-left:25px;" colspan="8"><b>C2. Dasar Program Keahlian</b></td>
                                         </tr>
+                                        @php $no = 1; @endphp
                                         @foreach($mapel_a as $key=>$value)
                                             @if($value->sub == "C2")
                                             <tr>
+                                           
                                                 @foreach($nilai_a as $nu)
+                                                
                                                 @if($value->id == $nu->guruMapel()->first()->mapel()->first()->id)
                                                 @php
                                                     $nilai = explode(',',$nu->nilai);                                                                       
                                                     @endphp
-                                                        <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
+                                                        <td class="text-center" colspan="1">{{strval($no).'.'}}</td>
                                                         <td colspan="2">{{$value->nama}}</td>
                                                         <td colspan="1" class="text-center">{{$nilai[7]}}</td>
                                                         <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
                                                         <td colspan="1" class="text-center">{{$nilai[6]}}</td>
                                                         <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
                                                         @break
-                                                    @else
-                                                        <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
+                                                @else
+                                                        <td class="text-center" colspan="1">{{strval($no).'.'}}</td>
                                                         <td colspan="2">{{$value->nama}}</td>
                                                         <td colspan="1" class="text-center">-</td>
                                                         <td colspan="1" class="text-center">-</td>                                           
                                                         <td colspan="1" class="text-center">-</td>
                                                         <td colspan="1" class="text-center">-</td> 
-                                                    @endif                                                  
+                                                @endif    
+                                                @php $no++;@endphp                                              
                                                 @endforeach                                        
-                                            </tr>  
-                                            @else
-                                                        <td class="text-center" colspan="1">-</td>
-                                                        <td class="text-center"colspan="2">-</td>
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td>                                           
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td> 
-                                                        @break
+                                            </tr>                                              
                                             @endif
                                         @endforeach  
                                         <tr>                                            
@@ -295,15 +283,7 @@
                                                         <td colspan="1" class="text-center">-</td> 
                                                     @endif                                                  
                                                 @endforeach                                        
-                                            </tr>  
-                                            @else
-                                                        <td class="text-center" colspan="1">-</td>
-                                                        <td class="text-center"colspan="2">-</td>
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td>                                           
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td> 
-                                                        @break
+                                            </tr>                                             
                                             @endif
                                         @endforeach                                       
                                     </tbody>

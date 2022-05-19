@@ -71,17 +71,16 @@ class RaportController extends Controller
         },'sikap' => function($query) use ($request) {
             $query->where('tahun', $request->tahun);
         }])->where('id',$id)->get();
-        $sub = "C1";
+       
         $mapel_ua = m_mapel::where('kelompok','A')->get();
         $mapel_ub = m_mapel::where('kelompok','B')->get();
         $kelas = m_kelas::find($request->kelas);
         if($kelas->tingkat == 1){
-            $mapel_a = m_mapel_ahli::where('sub',$sub)->where('id_bidang',$kelas->id_keahlian)->where('tingkat',$kelas->tingkat)->get();
+            $mapel_a = m_mapel_ahli::where('sub','!=','C3')->where('id_bidang',$kelas->id_keahlian)->where('tingkat',$kelas->tingkat)->get();
         }else{
-            $mapel_a = m_mapel_ahli::where('sub','!=',$sub)->where('id_bidang',$kelas->id_keahlian)->where('tingkat',$kelas->tingkat)->get();
-        }
-        $nilai_u = t_nilai::where('id_siswa',$id)->where('tahun',$request->tahun)->with(['guruMapel.mapel'])->get();
-       
+            $mapel_a = m_mapel_ahli::where('sub','C3')->where('id_bidang',$kelas->id_keahlian)->where('tingkat',$kelas->tingkat)->get();
+        }        
+        $nilai_u = t_nilai::where('id_siswa',$id)->where('tahun',$request->tahun)->with(['guruMapel.mapel'])->get();        
         $nilai_a = t_nilai_ahli::where('id_siswa',$id)->where('tahun',$request->tahun)->with(['guruMapel.mapel'])->get();
         $tahun = tahun::where('tahun',request('tahun'))->get(); 
         $walikelas = t_walikelas::with('guru')->where('id_kelas',$request->kelas)->get(); 
@@ -123,5 +122,11 @@ class RaportController extends Controller
     {
         $kelas = t_kelas::where('id_kelas',$id)->with('siswa')->orderby('id_siswa','asc')->get();
         return view('raport.listsiswa',['kelas'=>$kelas]);
+    }
+
+    public function store($id)
+    {
+        $siswa = m_siswa::where('id',$id)->with('kelas')->get();
+        return view('raport.raport_siswa',['siswa'=>$siswa]);
     }
 }

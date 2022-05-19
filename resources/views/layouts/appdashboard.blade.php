@@ -243,19 +243,7 @@
                                         </li>
                                         <li>
                                             <a href="/dashboard/set_walikelas">Set Wali Kelas</a>
-                                        </li>
-                                        <li>
-                                            <a href="/dashboard/nilai_ekstra">Nilai Ekstra</a>
-                                        </li>
-                                        <li>
-                                            <a href="/dashboard/nilai_absen">Nilai Absen</a>
-                                        </li>
-                                        <li>
-                                            <a href="/dashboard/nilai_sikap">Nilai Sikap</a>
-                                        </li>
-                                        <li>
-                                            <a href="/dashboard/PKL">PKL</a>
-                                        </li>
+                                        </li>                                        
                                     </ul>
                                 </div>
                             </li>
@@ -304,6 +292,10 @@
                                     </ul>
                                 </div>
                             </li>
+                            @elseif(Auth::user()->level =='Wali')
+                                <li>
+                                    <a href="/dashboard/raport-siswa/{{\App\m_wali_murid::where('id_user',Auth::id())->first()->id_siswa}}">Data Raport</a>
+                                </li>  
                             @endif
                         </ul>
 

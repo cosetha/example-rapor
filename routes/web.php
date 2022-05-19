@@ -145,11 +145,12 @@ Route::prefix('dashboard')
 });
 
 Route::prefix('dashboard')
-    ->middleware(['auth','role:Walikelas'])
+    ->middleware(['auth','role:Walikelas,Wali'])
     ->group(function () {
 
         Route::get('raport', 'RaportController@index');
         Route::get('raport/list/{id}', 'RaportController@create');
+        Route::get('raport-siswa/{id}', 'RaportController@store');
 
         Route::get('raport/sampul1/{id}', 'RaportController@sampul1');
         Route::get('raport/sampul2/{id}', 'RaportController@sampul2');

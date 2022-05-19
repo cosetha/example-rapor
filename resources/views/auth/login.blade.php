@@ -2,13 +2,13 @@
 <div class="text-center">
     <a href="index.html">
         <img
-            src="assets/images/logo-dark.png"
+            src="/img/LOGO SMK.png"
             alt=""
-            height="22"
+            height="250px"
             class="mx-auto"
         />
     </a>
-    <p class="text-muted mt-2 mb-4">Responsive Admin Dashboard</p>
+    <p class="text-muted mt-2 mb-4">SMK CORODOVA</p>
 </div>
 <div class="card">
     <div class="card-body p-4">
@@ -77,22 +77,6 @@
 </div>
 <!-- end card -->
 
-<div class="row mt-3">
-    <div class="col-12 text-center">
-        <p>
-            <a href="pages-recoverpw.html" class="text-muted ms-1"
-                ><i class="fa fa-lock me-1"></i>Forgot your password?</a
-            >
-        </p>
-        <p class="text-muted">
-            Don't have an account?
-            <a href="pages-register.html" class="text-dark ms-1"
-                ><b>Sign Up</b></a
-            >
-        </p>
-    </div>
-    <!-- end col -->
-</div>
 <!-- end row -->
 
 <!-- end col -->
