@@ -16,12 +16,12 @@
             body{
                 width: 6.5in; 
                 padding: 0; 
-                margin-left: 0.65in;                          
+                margin-right: 0.65in;                          
                 }    
         
         }
         hr {
-            width: 100%;
+            width: 70%;
             border: 3px dotted;
             border-style: none none dotted;
             color: black;

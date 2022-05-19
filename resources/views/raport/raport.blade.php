@@ -64,17 +64,11 @@
 </head>
 <body class="min-vh-100">
 	<div class="container">
-             
+             <br><br>
             <div class="col-sm-12 page" style="padding: 0 100px 0 100px">
                 <table width="100%">
                     <thead></thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6" class="text-center font-weight-bold">HASIL PENCAPAIAN KOMPETENSI PESERTA DIDIK</td>
-                        </tr>
-                        <tr>
-                            <td colspan="6"><br><br></td>
-                        </tr>
+                    <tbody>                                            
                         <tr>
                             <td width="20%">Nama Sekolah</td>
                             <td width="1%">:</td>
@@ -647,9 +641,21 @@
                         <tr>
                            <td colspan="6">
                                 <table class="table-bordered w-100">
+                                    @if(count($rank) ==0)
                                     <tr>
-                                        <td style="width:100%" class="align-top p-2">cell content here</td>                                        
+                                        <td style="width:100%" class="text-center p-2">-</td>                                        
                                     </tr>
+                                   
+                                    @else
+                                    @foreach($rank as $key=> $a)
+                                        @if($a['id_siswa'] == $data[0]->id)
+                                        <tr>
+                                            <td style="width:100%" class="align-top p-2">{{'Ranking '.strval($key+1).' dari '.strval(count($rank)).' siswa'}}</td>                                        
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                    @endif
+                                   
                                 </table>
                            </td>
                         </tr>

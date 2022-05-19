@@ -84,8 +84,31 @@ class RaportController extends Controller
        
         $nilai_a = t_nilai_ahli::where('id_siswa',$id)->where('tahun',$request->tahun)->with(['guruMapel.mapel'])->get();
         $tahun = tahun::where('tahun',request('tahun'))->get(); 
-        $walikelas = t_walikelas::with('guru')->where('id_kelas',$request->kelas)->get();                              
-        return view('raport.raport',['data'=>$data,'mapel_ua'=>$mapel_ua,'mapel_ub'=>$mapel_ub,'mapel_a'=>$mapel_a,'nilai_u'=>$nilai_u,'nilai_a'=>$nilai_a,'walikelas'=>$walikelas,'tahun'=>$tahun]);
+        $walikelas = t_walikelas::with('guru')->where('id_kelas',$request->kelas)->get(); 
+        $ru = DB::table('t_nilai_umum as tu')->select(['tu.id_siswa',\DB::raw('SUM(SUBSTRING_INDEX(SUBSTRING_INDEX(tu.nilai,",", -3),",", 1)) as nilai_u')])->groupBy('tu.id_siswa')->where('tu.tahun',$request->tahun)->orderBy('nilai_u','desc')->get(); 
+        $ra =  DB::table('t_nilai_ahli as tu')->select(['tu.id_siswa',\DB::raw('SUM(SUBSTRING_INDEX(SUBSTRING_INDEX(tu.nilai,",", -3),",", 1)) as nilai_a')])->groupBy('tu.id_siswa')->where('tu.tahun',$request->tahun)->orderBy('nilai_a','desc')->get();  
+        foreach ($ru as $key => $value) {
+           foreach ($ra as $key1 => $value1) {
+              if($value1->id_siswa == $value->id_siswa){
+                  $value->nilai_a = $value1->nilai_a;
+                  $value->total = $value->nilai_u + $value1->nilai_a;
+              }
+           }
+        }   
+        // CONVERT KE ARRAY
+        $arr = json_decode($ru,true);
+        // SORT BY KEY VALUE
+        uasort($arr, function($item1, $item2){
+            if(isset($item1['total']) && isset($item2['total'])){
+                return $item1['total'] <$item2['total'];
+            }elseif(isset($item1['nilai_u']) && isset($item2['nilai_u'])){
+                return $item1['nilai_u'] < $item2['nilai_u'];
+            }else{
+                return $item1['nilai_a'] < $item2['nilai_a'];
+            }
+           
+        });                
+        return view('raport.raport',['data'=>$data,'mapel_ua'=>$mapel_ua,'mapel_ub'=>$mapel_ub,'mapel_a'=>$mapel_a,'nilai_u'=>$nilai_u,'nilai_a'=>$nilai_a,'walikelas'=>$walikelas,'tahun'=>$tahun,'rank'=> $arr]);
     }
 
     public function index()
