@@ -132,159 +132,139 @@
                                         <tr>                                            
                                             <td style="padding-left:15px;" colspan="8"><b>A. Muatan Nasional</b></td>
                                         </tr>
+                                        @php $no = 1; @endphp
                                         @foreach($mapel_ua as $key=>$value)
-                                        <tr>
-                                            @foreach($nilai_u as $nu)
-                                               @if($value->id == $nu->guruMapel()->first()->mapel()->first()->id)
-                                               @php
-                                                $nilai = explode(',',$nu->nilai);  
-                                                                  
-                                                @endphp
-                                                    <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
-                                                    <td colspan="2">{{$value->nama}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                    <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
-                                                    @break
-                                                @else
-                                                    <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
-                                                    <td colspan="2">{{$value->nama}}</td>
-                                                    <td colspan="1" class="text-center">-</td>
-                                                    <td colspan="1" class="text-center">-</td>                                           
-                                                    <td colspan="1" class="text-center">-</td>
-                                                    <td colspan="1" class="text-center">-</td> 
-                                                @endif                                                  
-                                            @endforeach                                        
-                                        </tr>  
-                                        @endforeach
+                                        <?php
+                                            $nilai;
+                                            foreach ($nilai_u as $nu) {
+                                                if($value->id == $nu->guruMapel()->first()->mapel()->first()->id){
+                                                    $nilai = explode(',',$nu->nilai); 
+                                                    break;
+                                                }else{
+                                                    $nilai = explode(',','0,0,0,0,0,0,0,0,D,D');;
+                                                }
+                                            }
+                                        ?>
+                                            <tr>
+                                                <td class="text-center" colspan="1">{{strval($no++).'.'}}</td>
+                                                <td colspan="2">{{$value->nama}}</td>
+                                                <td colspan="1" class="text-center">{{$nilai[7]}}</td>
+                                                <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
+                                                <td colspan="1" class="text-center">{{$nilai[6]}}</td>
+                                                <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                            </tr>                                                                                       
+                                        @endforeach 
                                         <tr>                                            
                                             <td style="padding-left:15px;" colspan="8"><b>B. Muatan Kewilayahan</b></td>
                                         </tr>
-                                        @foreach($mapel_ub as $key=>$value)
-                                        <tr>
-                                            @foreach($nilai_u as $nu)
-                                               @if($value->id == $nu->guruMapel()->first()->mapel()->first()->id)
-                                               @php
-                                                $nilai = explode(',',$nu->nilai);  
-                                                                    
-                                                @endphp
-                                                    <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
+                                        @php $no = 1; @endphp 
+                                        @foreach($mapel_ub as $key=>$value)                                       
+                                        <?php
+                                            $nilai;
+                                            foreach ($nilai_u as $nu) {
+                                                if($value->id == $nu->guruMapel()->first()->mapel()->first()->id){
+                                                    $nilai = explode(',',$nu->nilai); 
+                                                    break;
+                                                }else{
+                                                    $nilai = explode(',','0,0,0,0,0,0,0,0,D,D');;
+                                                }
+                                            }
+                                        ?>
+                                                <tr>
+                                                    <td class="text-center" colspan="1">{{strval($no++).'.'}}</td>
                                                     <td colspan="2">{{$value->nama}}</td>
                                                     <td colspan="1" class="text-center">{{$nilai[7]}}</td>
                                                     <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
                                                     <td colspan="1" class="text-center">{{$nilai[6]}}</td>
                                                     <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
-                                                    @break
-                                                @else
-                                                    <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
-                                                    <td colspan="2">{{$value->nama}}</td>
-                                                    <td colspan="1" class="text-center">-</td>
-                                                    <td colspan="1" class="text-center">-</td>                                           
-                                                    <td colspan="1" class="text-center">-</td>
-                                                    <td colspan="1" class="text-center">-</td> 
-                                                @endif                                                  
-                                            @endforeach                                        
-                                        </tr>  
+                                                </tr>                                                  
                                         @endforeach 
                                         <tr>                                            
                                             <td style="padding-left:15px;" colspan="8"><b>C. Muatan Pemintan Kejuruan</b></td>
                                         </tr>
                                         <tr>                                            
                                             <td style="padding-left:25px;" colspan="8"><b>C1. Dasar Bidang Keahlian</b></td>
-                                        </tr>                                        
+                                        </tr>  
+                                        @php $no = 1; @endphp                                     
                                         @foreach($mapel_a as $key=>$value)
                                             @if($value->sub == "C1")
-                                            <tr>
-                                                @foreach($nilai_a as $nu)
-                                                @if($value->id == $nu->guruMapel()->first()->mapel()->first()->id)
-                                                @php
-                                                    $nilai = explode(',',$nu->nilai);  
-                                                                        
-                                                    @endphp
-                                                        <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
-                                                        <td colspan="2">{{$value->nama}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                        <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
-                                                        @break
-                                                    @else
-                                                        <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
-                                                        <td colspan="2">{{$value->nama}}</td>
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td>                                           
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td> 
-                                                    @endif                                                  
-                                                @endforeach                                        
-                                            </tr>                                          
-                                            @endif
+                                                <?php
+                                                $nilai;
+                                                foreach ($nilai_a as $na) {
+                                                    if($value->id == $na->guruMapel()->first()->mapel()->first()->id){
+                                                        $nilai = explode(',',$na->nilai); 
+                                                        break;
+                                                    }else{
+                                                        $nilai = explode(',','0,0,0,0,0,0,0,0,D,D');;
+                                                    }
+                                                }
+                                                ?>
+                                                        <tr>                                                
+                                                            <td class="text-center" colspan="1">{{$no}}</td>
+                                                            <td colspan="2">{{$value->nama}}</td>
+                                                            <td colspan="1" class="text-center">{{$nilai[7]}}</td>
+                                                            <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
+                                                            <td colspan="1" class="text-center">{{$nilai[6]}}</td>
+                                                            <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                                        </tr>    
+                                                        @php $no++; @endphp                                                                                                                                                       
+                                            @endif  
+                                                                                    
                                         @endforeach 
                                         <tr>                                            
                                             <td style="padding-left:25px;" colspan="8"><b>C2. Dasar Program Keahlian</b></td>
                                         </tr>
-                                        @php $no = 1; @endphp
-                                        @foreach($mapel_a as $key=>$value)
-                                            @if($value->sub == "C2")
-                                            <tr>
-                                           
-                                                @foreach($nilai_a as $nu)
-                                                
-                                                @if($value->id == $nu->guruMapel()->first()->mapel()->first()->id)
-                                                @php
-                                                    $nilai = explode(',',$nu->nilai);                                                                       
-                                                    @endphp
-                                                        <td class="text-center" colspan="1">{{strval($no).'.'}}</td>
-                                                        <td colspan="2">{{$value->nama}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                        <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
-                                                        @break
-                                                @else
-                                                        <td class="text-center" colspan="1">{{strval($no).'.'}}</td>
-                                                        <td colspan="2">{{$value->nama}}</td>
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td>                                           
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td> 
-                                                @endif    
-                                                @php $no++;@endphp                                              
-                                                @endforeach                                        
-                                            </tr>                                              
-                                            @endif
-                                        @endforeach  
+                                        @foreach($mapel_a as $key=>$value)  
+                                        @if($value->sub == "C2")                                     
+                                        <?php
+                                            $nilai;
+                                            foreach ($nilai_a as $na) {
+                                                if($value->id == $na->guruMapel()->first()->mapel()->first()->id){
+                                                    $nilai = explode(',',$na->nilai); 
+                                                    break;
+                                                }else{
+                                                    $nilai = explode(',','0,0,0,0,0,0,0,0,D,D');;
+                                                }
+                                            }
+                                        ?>
+                                                <tr>
+                                                    <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
+                                                    <td colspan="2">{{$value->nama}}</td>
+                                                    <td colspan="1" class="text-center">{{$nilai[7]}}</td>
+                                                    <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
+                                                    <td colspan="1" class="text-center">{{$nilai[6]}}</td>
+                                                    <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                                </tr> 
+                                        @endif                                                 
+                                        @endforeach 
                                         <tr>                                            
                                             <td style="padding-left:25px;" colspan="8"><b>C3. Kompetensi Keahlian</b></td>
                                         </tr>
+                                        @php $no = 1; @endphp                                     
                                         @foreach($mapel_a as $key=>$value)
                                             @if($value->sub == "C3")
-                                            <tr>
-                                                @foreach($nilai_a as $nu)
-                                                @if($value->id == $nu->guruMapel()->first()->mapel()->first()->id)
-                                                @php
-                                                    $nilai = explode(',',$nu->nilai);  
-                                                                         
-                                                    @endphp
-                                                        <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
-                                                        <td colspan="2">{{$value->nama}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                        <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                        <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
-                                                        @break
-                                                    @else
-                                                        <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
-                                                        <td colspan="2">{{$value->nama}}</td>
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td>                                           
-                                                        <td colspan="1" class="text-center">-</td>
-                                                        <td colspan="1" class="text-center">-</td> 
-                                                    @endif                                                  
-                                                @endforeach                                        
-                                            </tr>                                             
-                                            @endif
+                                                <?php
+                                                $nilai;
+                                                foreach ($nilai_a as $na) {
+                                                    if($value->id == $na->guruMapel()->first()->mapel()->first()->id){
+                                                        $nilai = explode(',',$na->nilai); 
+                                                        break;
+                                                    }else{
+                                                        $nilai = explode(',','0,0,0,0,0,0,0,0,D,D');;
+                                                    }
+                                                }
+                                                ?>
+                                                        <tr>                                                
+                                                            <td class="text-center" colspan="1">{{$no}}</td>
+                                                            <td colspan="2">{{$value->nama}}</td>
+                                                            <td colspan="1" class="text-center">{{$nilai[7]}}</td>
+                                                            <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
+                                                            <td colspan="1" class="text-center">{{$nilai[6]}}</td>
+                                                            <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                                        </tr>    
+                                                        @php $no++; @endphp                                                                                                                                                       
+                                            @endif  
+                                                                                    
                                         @endforeach                                       
                                     </tbody>
                                 </table>
