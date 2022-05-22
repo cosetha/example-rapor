@@ -148,10 +148,10 @@
                                             <tr>
                                                 <td class="text-center" colspan="1">{{strval($no++).'.'}}</td>
                                                 <td colspan="2">{{$value->nama}}</td>
-                                                <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                                <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[7]: '-'}}</td>
+                                                <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[8]: '-'}}</td>                                           
+                                                <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[6]: '-'}}</td>
+                                                <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[9]: '-'}}</td> 
                                             </tr>                                                                                       
                                         @endforeach 
                                         <tr>                                            
@@ -173,10 +173,10 @@
                                                 <tr>
                                                     <td class="text-center" colspan="1">{{strval($no++).'.'}}</td>
                                                     <td colspan="2">{{$value->nama}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                    <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                                    <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[7]: '-'}}</td>
+                                                    <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[8]: '-'}}</td>                                           
+                                                    <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[6]: '-'}}</td>
+                                                    <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[9]: '-'}}</td> 
                                                 </tr>                                                  
                                         @endforeach 
                                         <tr>                                            
@@ -202,10 +202,10 @@
                                                         <tr>                                                
                                                             <td class="text-center" colspan="1">{{$no}}</td>
                                                             <td colspan="2">{{$value->nama}}</td>
-                                                            <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                            <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                            <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                            <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                                            <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[7]: '-'}}</td>
+                                                            <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[8]: '-'}}</td>                                           
+                                                            <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[6]: '-'}}</td>
+                                                            <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[9]: '-'}}</td> 
                                                         </tr>    
                                                         @php $no++; @endphp                                                                                                                                                       
                                             @endif  
@@ -230,10 +230,10 @@
                                                 <tr>
                                                     <td class="text-center" colspan="1">{{strval($key+1).'.'}}</td>
                                                     <td colspan="2">{{$value->nama}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                    <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                    <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                                    <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[7]: '-'}}</td>
+                                                    <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[8]: '-'}}</td>                                           
+                                                    <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[6]: '-'}}</td>
+                                                    <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[9]: '-'}}</td> 
                                                 </tr> 
                                         @endif                                                 
                                         @endforeach 
@@ -257,10 +257,10 @@
                                                         <tr>                                                
                                                             <td class="text-center" colspan="1">{{$no}}</td>
                                                             <td colspan="2">{{$value->nama}}</td>
-                                                            <td colspan="1" class="text-center">{{$nilai[7]}}</td>
-                                                            <td colspan="1" class="text-center">{{$nilai[8]}}</td>                                           
-                                                            <td colspan="1" class="text-center">{{$nilai[6]}}</td>
-                                                            <td colspan="1" class="text-center">{{$nilai[9]}}</td> 
+                                                            <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[7]: '-'}}</td>
+                                                            <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[8]: '-'}}</td>                                           
+                                                            <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[6]: '-'}}</td>
+                                                            <td colspan="1" class="text-center">{{ISSET($nilai) ? $nilai[9]: '-'}}</td> 
                                                         </tr>    
                                                         @php $no++; @endphp                                                                                                                                                       
                                             @endif  
