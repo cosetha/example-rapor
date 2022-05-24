@@ -308,8 +308,8 @@
                                             <br>
 											Walikelas
                                             <br><br><br><br>
-                                            <u><b>Drs. Agung</b></u><br>
-                                            NIP. 1001                                                   
+                                            <u><b>{{$walikelas[0]->guru()->first()->nama}}</b></u><br>
+                                            NIP. {{$walikelas[0]->guru()->first()->nip}}                                                  
                                         </td>
                                     @endif
                                     </tr>
@@ -658,8 +658,8 @@
                                             <br>
 											Walikelas
                                             <br><br><br><br>
-                                            <u><b>Drs. Agung</b></u><br>
-                                            NIP. 1001                                                   
+                                            <u><b>{{$walikelas[0]->guru()->first()->nama}}</b></u><br>
+                                            NIP. {{$walikelas[0]->guru()->first()->nip}}                                                                    
                                         </td>
                                     @endif
                                     </tr>
@@ -879,8 +879,8 @@
                                             <br>
 											Walikelas
                                             <br><br><br><br>
-                                            <u><b>Drs. Agung</b></u><br>
-                                            NIP. 1001                                                   
+                                            <u><b>{{$walikelas[0]->guru()->first()->nama}}</b></u><br>
+                                            NIP. {{$walikelas[0]->guru()->first()->nip}}                                                               
                                         </td>
                                     @endif
                                     </tr>
