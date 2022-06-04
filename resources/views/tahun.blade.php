@@ -90,13 +90,15 @@
                                 <div class="col">
                                     <div class="form-group ">
                                         <label for="nama-tambah">Nama Kepala Sekolah :</label>
-                                        <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Kepala Sekolah" name="nama-tambah" required value = "">                                        
+                                        <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Kepala Sekolah" name="nama-tambah" required value = "" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">                                        
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group ">
                                         <label for="nip-tambah">NIP :</label>
-                                        <input type="number" class="form-control" id="nip-tambah" placeholder="Masukan Nama Kepala Sekolah" name="nip-tambah" required value = "">                                        
+                                        <input type="number" class="form-control" id="nip-tambah" placeholder="Masukan NIP Kepala Sekolah" name="nip-tambah" required value = "">                                        
                                     </div>  
                                 </div>                              
                             </div>
@@ -169,13 +171,15 @@
                                 <div class="col">
                                     <div class="form-group ">
                                         <label for="nama-edit">Nama Kepala Sekolah :</label>
-                                        <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Kepala Sekolah" name="nama-edit" required value = "">                                        
+                                        <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Kepala Sekolah" name="nama-edit" required value = "" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">                                        
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group ">
                                         <label for="nip-edit">NIP :</label>
-                                        <input type="number" class="form-control" id="nip-edit" placeholder="Masukan Nama Kepala Sekolah" name="nip-edit" required value = "">                                        
+                                        <input type="number" class="form-control" id="nip-edit" placeholder="Masukan NIP Kepala Sekolah" name="nip-edit" required value = "">                                        
                                     </div>  
                                 </div>
                             </div>

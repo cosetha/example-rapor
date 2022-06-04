@@ -96,13 +96,17 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_ayah" class="form-label">Nama Auah</label>
-                                        <input type="text" name="nama_ayah" id="nama_ayah" class="form-control" >
+                                        <input type="text" name="nama_ayah" id="nama_ayah" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_ibu" class="form-label">Nama Ibu</label>
-                                        <input type="text" name="nama_ibu" id="nama_ibu" class="form-control" >
+                                        <input type="text" name="nama_ibu" id="nama_ibu" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +131,9 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tempat_lahir" class="form-label">Tempat Lahir Ayah</label>
-                                        <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" >
+                                        <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                                 <div class="col">                                   
@@ -170,7 +176,9 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_wali" class="form-label">Nama Wali</label>
-                                        <input type="text" name="nama_wali" id="nama_wali" class="form-control">
+                                        <input type="text" name="nama_wali" id="nama_wali" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                                 <div class="col">                                   
@@ -266,13 +274,17 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_ayah-edit" class="form-label">Nama Auah</label>
-                                        <input type="text" name="nama_ayah-edit" id="nama_ayah-edit" class="form-control" >
+                                        <input type="text" name="nama_ayah-edit" id="nama_ayah-edit" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_ibu-edit" class="form-label">Nama Ibu</label>
-                                        <input type="text" name="nama_ibu-edit" id="nama_ibu-edit" class="form-control" >
+                                        <input type="text" name="nama_ibu-edit" id="nama_ibu-edit" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +302,9 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tempat_lahir-edit" class="form-label">Tempat Lahir Ayah</label>
-                                        <input type="text" name="tempat_lahir-edit" id="tempat_lahir-edit" class="form-control" >
+                                        <input type="text" name="tempat_lahir-edit" id="tempat_lahir-edit" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                                 <div class="col">                                   
@@ -332,7 +346,9 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nama_wali-edit" class="form-label">Nama Wali</label>
-                                        <input type="text" name="nama_wali-edit" id="nama_wali-edit" class="form-control">
+                                        <input type="text" name="nama_wali-edit" id="nama_wali-edit" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                                 <div class="col">                                   

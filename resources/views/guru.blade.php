@@ -91,7 +91,9 @@ input[type=number] {
                             @csrf
                             <div class="form-group ">
                                 <label for="nama-tambah" class="form-label">Nama Guru:</label>
-                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Guru" name="nama-tambah" required value = "{{ old('nama') }}">                                        
+                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Guru" name="nama-tambah" required value = "{{ old('nama') }}" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">                                        
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -183,7 +185,9 @@ input[type=number] {
                             @csrf
                             <div class="form-group ">
                                 <label class="form-label" for="nama-edit">Nama Guru:</label>
-                                <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Guru" name="nama-tambah" required value = "{{ old('nama') }}">                                        
+                                <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Guru" name="nama-tambah" required value = "{{ old('nama') }}" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">                                        
                             </div>
                             <div class="row">
                                 <div class="col">

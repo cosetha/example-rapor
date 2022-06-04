@@ -53,7 +53,7 @@ input[type=number] {
                             @endphp
                             
                             <tr>
-                                <td>{{$loop->iteration}}</td>
+                                <td>{{$k->nipdn}}</td>
                                 <td>{{$k->nama}}</td>
                                 <input type="hidden" name="siswa[]" value="{{$k->id}}">
                                 <td>
