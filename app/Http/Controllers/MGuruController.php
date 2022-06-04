@@ -90,14 +90,11 @@ class MGuruController extends Controller
         //     'error' => "MBULLL"
         // ]);
         $messsages = array(          
-            'username.unique' => 'Username telah digunakan', 
-            'email.unique' => 'Email sudah digunakan',                 
-
+            'username.unique' => 'Username telah digunakan',                 
         );
         $validator = Validator::make(
             $request->all(),
             [                
-                "email" => 'unique:users',
                 "username"=> 'unique:users'
             ],
             $messsages
@@ -113,7 +110,6 @@ class MGuruController extends Controller
                 $u = new User;
                 $u->name = $request->nama;
                 $u->username = $request->username;
-                $u->email = $request->email;
                 $u->password = bcrypt($request->password);
                 $u->level = 'Guru';
                 $u->remember_token = '';

@@ -12,4 +12,9 @@ class m_wali_murid extends Model
     {
       return $this->hasOne('App\User', 'id', 'id_user');
     }
+    
+    public function siswa()
+    {
+      return $this->hasOne('App\m_siswa', 'id', 'id_siswa');
+    }
 }

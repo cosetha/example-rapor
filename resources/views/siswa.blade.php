@@ -85,7 +85,9 @@ input[type=number] {
                             @csrf
                             <div class="form-group ">
                                 <label for="nama">Nama Siswa:</label>
-                                <input type="text" class="form-control" id="nama" placeholder="Masukan Nama Siswa" name="nama" required value = "{{ old('nama') }}">                                        
+                                <input type="text" class="form-control" id="nama" placeholder="Masukan Nama Siswa" name="nama" required value = "{{ old('nama') }}"onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">                                        
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -169,7 +171,9 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tempat">Tempat Lahir</label>
-                                        <input type="text" id="tempat" name="tempat" class="form-control" required>
+                                        <input type="text" id="tempat" name="tempat" class="form-control" required onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                                 <div class="col">
@@ -193,13 +197,15 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="status-kel">Status dalam keluarga</label>
-                                        <input type="text" name="status-kel" id="status-kel" class="form-control" required>
+                                        <input type="text" name="status-kel" id="status-kel" class="form-control" required onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>  
                                 </div> 
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="anak">Anak ke-</label>
-                                        <input type="text" name="anak" id="anak" class="form-control" required>
+                                        <input type="number" name="anak" id="anak" class="form-control" required>
                                     </div>  
                                 </div>   
                                 <div class="col">
@@ -226,14 +232,14 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="ijazah">No Ijazah</label>
-                                        <input type="number"" id="ijazah" name="ijazah" class="form-control" required>
+                                        <input type="number"" id="ijazah" name="ijazah" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tahun-ijazah">Tahun Ijazah</label>
                                     </div>
-                                    <input type="text" class="form-control yearpicker" id="tahun" name="tahun" readonly required value = "" autocomplete="off">  
+                                    <input type="text" class="form-control yearpicker" id="tahun" name="tahun" readonly  value = "" autocomplete="off">  
                                 </div>
                             </div> 
                     </div>
@@ -280,7 +286,9 @@ input[type=number] {
                             @csrf
                             <div class="form-group ">
                                 <label for="nama-edit">Nama Siswa:</label>
-                                <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Siswa" name="nama-edit" required value = "{{ old('nama') }}">                                        
+                                <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Siswa" name="nama-edit" required value = "{{ old('nama') }}" onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">                                        
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -364,7 +372,9 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tempat-edit">Tempat Lahir</label>
-                                        <input type="text"" id="tempat-edit" class="form-control" required>
+                                        <input type="text"" id="tempat-edit" class="form-control" required onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>
                                 </div>
                                 <div class="col">
@@ -389,13 +399,15 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="status-edit">Status dalam keluarga</label>
-                                        <input type="text" name="status-edit" id="status-edit" class="form-control" required>
+                                        <input type="text" name="status-edit" id="status-edit" class="form-control" required onkeydown="return /[a-z, ]/i.test(event.key)"
+    onblur="if (this.value == '') {this.value = '';}"
+    onfocus="if (this.value == '') {this.value = '';}">
                                     </div>  
                                 </div>  
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="anak-edit">Anak ke-</label>
-                                        <input type="text" name="anak-edit" id="anak-edit" class="form-control" required>
+                                        <input type="number" name="anak-edit" id="anak-edit" class="form-control" required>
                                     </div>  
                                 </div>   
                                 <div class="col">
@@ -422,13 +434,13 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="ijazah-edit">No Ijazah</label>
-                                        <input type="number"" id="ijazah-edit" class="form-control"  required>
+                                        <input type="number"" id="ijazah-edit" class="form-control"  >
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="tahun-ijazah-edit">Tahun Ijazah</label>
-                                        <input type="text" class="form-control " id="tahun-ijazah-edit" name="tahun-ijazah"  readonly required  autocomplete="off">  
+                                        <input type="text" class="form-control " id="tahun-ijazah-edit" name="tahun-ijazah"  readonly   autocomplete="off">  
                                     </div>
                                    
                                 </div>
