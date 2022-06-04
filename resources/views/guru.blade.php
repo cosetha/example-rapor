@@ -98,7 +98,7 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group ">
                                         <label for="nip-tambah" class="form-label">NIP:</label>
-                                        <input type="number" class="form-control" id="nip-tambah" placeholder="Masukan Nama Guru" name="nip-tambah" required value = "{{ old('nip') }}">                                        
+                                        <input type="number" class="form-control" id="nip-tambah" placeholder="Masukan NIP Guru" name="nip-tambah" required value = "{{ old('nip') }}">                                        
                                     </div>
                                 </div>
                                <div class="col">
@@ -195,7 +195,7 @@ input[type=number] {
                                 <div class="col">
                                     <div class="form-group ">
                                         <label class="form-label" for="nip-edit">NIP:</label>
-                                        <input type="number" class="form-control" id="nip-edit" placeholder="Masukan Nama Guru" name="nip-tambah" required value = "{{ old('nip') }}">                                        
+                                        <input type="number" class="form-control" id="nip-edit" placeholder="Masukan NIP Guru" name="nip-tambah" required value = "{{ old('nip') }}">                                        
                                     </div>
                                 </div>
                                <div class="col">

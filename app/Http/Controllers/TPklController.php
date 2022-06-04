@@ -25,10 +25,11 @@ class TPklController extends Controller
      */
     public function create($id, Request $request)
     {
-        $kelas = m_kelas::where('id',$id)->with('siswa')->with(['siswa.pkl' => function($query) use ($request) {
+        $kelas = m_kelas::where('id',$id)->get();
+        $siswa = m_kelas::find($id)->siswa()->with(['pkl' => function($query) use ($request) {
             $query->where('tahun', $request->smt);
-        }])->orderby('id','asc')->get();
-        return view('pkl.nilaiAdd',['kelas'=>$kelas]);
+        }])->paginate(5)  ;   
+        return view('pkl.nilaiAdd',['kelas'=>$kelas,'siswa'=>$siswa]);
     }
 
     /**

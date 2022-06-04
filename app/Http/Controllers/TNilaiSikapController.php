@@ -26,10 +26,11 @@ class TNilaiSikapController extends Controller
      */
     public function create(Request $request, $id)
     {
-        $kelas = m_kelas::where('id',$id)->with('siswa')->with(['siswa.sikap' => function($query) use ($request) {
+        $kelas = m_kelas::where('id',$id)->get();
+        $siswa = m_kelas::find($id)->siswa()->with(['sikap' => function($query) use ($request) {
             $query->where('tahun', $request->smt);
-        }])->orderby('id','asc')->get();
-        return view('sikap.nilaiAdd',['kelas'=>$kelas]);
+        }])->paginate(5)  ;     
+        return view('sikap.nilaiAdd',['kelas'=>$kelas,'siswa'=>$siswa]);
     }
 
     /**

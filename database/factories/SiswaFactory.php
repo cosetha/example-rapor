@@ -6,6 +6,7 @@ use App\m_siswa;
 use Faker\Generator as Faker;
 
 $factory->define(m_siswa::class, function (Faker $faker) {
+    $gender = $faker->randomElement(['male', 'female']);
     return [
         'nipdn'           =>  $faker->randomDigit,
         'nama'              =>  $faker->firstNameMale,
@@ -21,6 +22,7 @@ $factory->define(m_siswa::class, function (Faker $faker) {
         'tanggal_lahir'              =>  $faker->date,
         'asal_sekolah'          =>  'SMP'.$faker->randomDigit,
         'id_bidang'           =>  $faker->numberBetween($min = 1, $max = 10),
-        
+        'status' => $faker->randomDigit,
+        'jenis_kelamin' => $gender
     ];
 });

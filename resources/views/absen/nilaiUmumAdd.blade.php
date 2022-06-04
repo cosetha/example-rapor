@@ -38,7 +38,7 @@ input[type=number] {
                                 <th class="col-1">No</th>
                                 <th class="col-2">Nama</th>
                                 <th class="col-3">Nilai Pengetahuan</th>
-                                <th class="col-2">NIlai Keterampilan</th>
+                                <th class="col-2">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody> 
@@ -84,7 +84,7 @@ input[type=number] {
 @endsection @section('js')
 <script>
 $(document).ready(function () {
-
+    $('#table_id').DataTable();
     
 });
 </script>

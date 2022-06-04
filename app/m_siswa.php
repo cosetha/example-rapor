@@ -33,6 +33,10 @@ class m_siswa extends Model
     {
         return $this->hasMany('App\t_pkl', 'id_siswa', 'id');
     }
+    public function wali()
+    {
+        return $this->hasOne('App\m_wali_murid', 'id_siswa', 'id');
+    }
     public function kelas()
     {
         return $this->belongsToMany('App\m_kelas', 't_kelas_siswa', 'id_siswa', 'id_kelas');

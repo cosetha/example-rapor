@@ -6,6 +6,7 @@ use App\t_nilai_extra;
 use Illuminate\Http\Request;
 use App\m_kelas;
 use App\m_extra;
+use DB;
 
 class TNilaiExtraController extends Controller
 {
@@ -29,10 +30,11 @@ class TNilaiExtraController extends Controller
     public function create($id, Request $request)
     {
         $ekstra = m_extra::all();
-        $kelas = m_kelas::where('id',$id)->with('siswa')->with(['siswa.ekstra' => function($query) use ($request) {
+        $kelas = m_kelas::where('id',$id)->get();
+        $siswa = m_kelas::find($id)->siswa()->with(['ekstra' => function($query) use ($request) {
             $query->where('tahun', $request->smt);
-        }])->orderby('id','asc')->get();
-        return view('ekstra.nilaiAdd',['kelas'=>$kelas,'ekstra'=>$ekstra]);
+        }])->paginate(5)  ;     
+        return view('ekstra.nilaiAdd',['kelas'=>$kelas,'ekstra'=>$ekstra,'siswa'=>$siswa]);
     }
 
     /**
@@ -66,7 +68,8 @@ class TNilaiExtraController extends Controller
      */
     public function show(t_nilai_extra $t_nilai_extra)
     {
-        //
+        $data = DB::table('users')->paginate(20);
+        echo $data;
     }
 
     /**

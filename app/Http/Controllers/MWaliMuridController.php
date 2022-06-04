@@ -28,7 +28,7 @@ class MWaliMuridController extends Controller
         // echo($user."<br>");
         // $wali =  User::with('wali')->find(5);
         // echo($wali);
-        $data = m_siswa::all();
+        $data = m_siswa::doesntHave('wali')->get();
         return view('wali',['bidang'=> $data]);
     }
 

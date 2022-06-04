@@ -31,10 +31,11 @@ input[type=number] {
                     {{'Data Siswa Kelas '.$kelas[0]->nama_kelas.' Tahun '.$kelas[0]->tahun}}
                   </div>
                   <ul class="list-group list-group-flush">   
-                    @foreach($kelas[0]->siswa as $s)              
+                    @foreach($siswa as $s)              
                       <li class="list-group-item"> <a href="#" class="siswa_list" data-nilai="{{ $s->pkl->count() > 0 ? $s->pkl: '0' }}"  data-id="{{$s->id}}"><i class="fa fa-chevron-right"></i> {{$loop->iteration.'. '.$s->nama}}</a></li>               
                     @endforeach()
                   </ul>
+                  {{$siswa->links()}}
                 </div>
            </div> 
 

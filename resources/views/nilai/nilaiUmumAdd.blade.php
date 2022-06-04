@@ -102,7 +102,7 @@ input[type=number] {
 @endsection @section('js')
 <script>
 $(document).ready(function () {
-
+    $('#table_id').DataTable();
     function calculateSum(){
         $('tr').each(function () {
         //the value of sum needs to be reset for each row, so it has to be set inside the row loop
