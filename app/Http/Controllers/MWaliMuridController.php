@@ -29,7 +29,8 @@ class MWaliMuridController extends Controller
         // $wali =  User::with('wali')->find(5);
         // echo($wali);
         $data = m_siswa::doesntHave('wali')->get();
-        return view('wali',['bidang'=> $data]);
+        $siswa = m_siswa::all();
+        return view('wali',['bidang'=> $data,'siswa'=> $siswa]);
     }
 
     /**
@@ -51,14 +52,11 @@ class MWaliMuridController extends Controller
     public function store(Request $request)
     {
         $messsages = array(          
-            'username.unique' => 'Username telah digunakan', 
-            'email.unique' => 'Email sudah digunakan',                 
-
+            'username.unique' => 'Username telah digunakan',              
         );
         $validator = Validator::make(
             $request->all(),
             [                
-                "email" => 'unique:users',
                 "username"=> 'unique:users'
             ],
             $messsages
@@ -74,7 +72,6 @@ class MWaliMuridController extends Controller
                 $u = new User;
                 $u->name = $request->nama_ayah. '-'.$request->nama_ibu;
                 $u->username = $request->username;
-                $u->email = $request->email;
                 $u->password = bcrypt($request->password);
                 $u->level = 'Wali';
                 $u->remember_token = '';
@@ -107,7 +104,7 @@ class MWaliMuridController extends Controller
      */
     public function show()
     {
-        $wali = m_wali_murid::with('wali')->orderBy('id','desc')->get();
+        $wali = m_wali_murid::with(['wali','siswa'])->orderBy('id','desc')->get();
 
         return Datatables::of($wali)->addIndexColumn()
         ->addColumn('aksi', function($row){

@@ -46,12 +46,13 @@ input[type=number] {
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>NIPDN</th>
+                                <th>Siswa</th>
                                 <th>Nama Ayah</th>
                                 <th>Nama Ibu</th>
                                 <th>Alamat</th>
                                 <th>No Telp</th>
                                 <th>Username</th>
-                                <th>Email</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -105,16 +106,23 @@ input[type=number] {
                                     </div>
                                 </div>
                             </div>
-                            <label for="siswa" class="form-label">Data Siswa</label>
-                                @if($bidang->isEmpty())
-                                <a id="siswa" class="text-decoration-none" href="{{ url('/')}}/dashboard/siswa"> Belum ada data, Klik untuk isi</a>                               
-                                @else
-                                <select class="form-control" id="siswa" name="siswa">                                   
-                                    @foreach($bidang as $b)
-                                    <option value="{{$b->id}}">{{$b->nisn.' - '.$b->nama}}</option>
-                                    @endforeach                                  
-                                </select>
-                                @endif
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="siswa" class="form-label">Data Siswa</label>
+                                        @if($bidang->isEmpty())
+                                        <a id="siswa" class="text-decoration-none" href="{{ url('/')}}/dashboard/siswa"> Belum ada data, Klik untuk isi</a>                               
+                                        @else
+                                        <select class="siswa" id="siswa" name="siswa" style="width:40%">   
+                                            <option value="">Select Siswa</option>                                
+                                            @foreach($bidang as $b)
+                                            <option value="{{$b->id}}">{{$b->nisn.' - '.$b->nama}}</option>
+                                            @endforeach                                  
+                                        </select>
+                                        @endif
+                                    </div>
+                                </div>                           
+                            </div>                            
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -191,12 +199,6 @@ input[type=number] {
                                     <div class="form-group">
                                         <label for="username -tambah" class="form-label">Username Login:</label>
                                         <input type="text" class="form-control" id="username-tambah" placeholder="Masukan Username Wali Murid" name="username-tambah" required value = "{{ old('username') }}">                           
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="email-tambah" class="form-label">Email Login:</label>
-                                        <input type="email" class="form-control" id="email-tambah" placeholder="Masukan Email Wali Murid" name="email-tambah" required value = "{{ old('email') }}">                           
                                     </div>
                                 </div>
                                 
@@ -278,8 +280,8 @@ input[type=number] {
                                 @if($bidang->isEmpty())
                                 <a id="siswa-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/siswa"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select class="form-control" id="siswa-edit" name="siswa-edit">                                   
-                                    @foreach($bidang as $b)
+                                <select class="siswa" id="siswa-edit" name="siswa-edit" style="width:40%">                                   
+                                    @foreach($siswa as $b)
                                     <option value="{{$b->id}}">{{$b->nisn.' - '.$b->nama}}</option>
                                     @endforeach                                  
                                 </select>
@@ -366,12 +368,24 @@ input[type=number] {
 </div>
 <!-- /.modal -->
 @endsection @section('js')
+
 <script>
 $(document).ready(function () {
+    $("#siswa").select2({
+             allowClear:true,
+             placeholder: 'Cari Siswa',
+             dropdownParent: $('#modal-wali')
+           });
+    $("#siswa-edit").select2({
+      allowClear:true,
+      placeholder: 'Cari Siswa',
+      dropdownParent: $('#modal-wali-edit')
+    });
     $('.datepicker').datepicker({
         format: 'dd-mm-yyyy',
         autoclose: true
     })
+    
     var table = $('#table_id').DataTable({
                     processing: true,
                     serverSide: true,
@@ -384,7 +398,22 @@ $(document).ready(function () {
                             data: 'DT_RowIndex',
                             name: 'DT_RowIndex',
                             searchable: false,
+                            ordering: false,
                             className: 'align-middle text-center'
+                        },
+                        {
+                            data: "siswa",
+                            className: 'align-middle text-center',
+                            render: function (data, type, row) {                                                              
+                                return data.nipdn
+                            },
+                        },
+                        {
+                            data: "siswa",
+                            className: 'align-middle text-center',
+                            render: function (data, type, row) {                                                              
+                                return data.nama
+                            },
                         },
                         {
                             data: 'nama_ayah',
@@ -412,14 +441,7 @@ $(document).ready(function () {
                             render: function (data, type, row) {                                                              
                                 return data.username
                             },
-                        },
-                        {
-                            data: "wali",
-                            className: 'align-middle text-center',
-                            render: function (data, type, row) {                                                              
-                                return data.email
-                            },
-                        },                    
+                        },                  
                         {
                             data: 'aksi',
                             name: 'aksi',
@@ -450,7 +472,6 @@ $(document).ready(function () {
             formData.append('pekerjaan', pekerjaan);
             formData.append('id_siswa', $('#siswa').val());
             formData.append('username', $('#username-tambah').val());
-            formData.append('email', $('#email-tambah').val());
             formData.append('password', $('#password').val());
             formData.append('wali_siswa', $('#nama_wali').val()+'/'+ $('#alamat_wali').val()+'/'+ $('#no_telp_wali').val()+'/'+ $('#pekerjaan_wali').val());            
             $.ajax({

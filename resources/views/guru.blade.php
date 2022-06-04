@@ -49,8 +49,7 @@ input[type=number] {
                                 <th>Nama</th>
                                 <th>NIP</th>
                                 <th>BK</th>
-                                <th>Username</th>
-                                <th>Email</th>
+                                <th>Username</th>                              
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -120,12 +119,7 @@ input[type=number] {
                                         <input type="text" class="form-control" id="username-tambah" placeholder="Masukan Username Guru" name="username-tambah" required value = "{{ old('username') }}">                           
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="email-tambah" class="form-label">Email Login:</label>
-                                        <input type="email" class="form-control" id="email-tambah" placeholder="Masukan Email Guru" name="email-tambah" required value = "{{ old('email') }}">                           
-                                    </div>
-                                </div>
+                                
                                 
                                 <div class="mb-1">
                                     <label for="password" class="form-label">Password Login</label>
@@ -266,13 +260,7 @@ $(document).ready(function () {
                                 return data.username
                             },
                         },
-                        {
-                            data: "guru",
-                            className: 'align-middle text-center',
-                            render: function (data, type, row) {                                                              
-                                return data.email
-                            },
-                        },
+                    
                         {
                             data: 'aksi',
                             name: 'aksi',
@@ -295,7 +283,6 @@ $(document).ready(function () {
             formData.append('is_bk', $('#bk-tambah').val());
             formData.append('nip', $('#nip-tambah').val());
             formData.append('username', $('#username-tambah').val());
-            formData.append('email', $('#email-tambah').val());
             formData.append('password', $('#password').val());
             $.ajax({
 				type: 'post',
