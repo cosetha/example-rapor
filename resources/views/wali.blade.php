@@ -117,7 +117,7 @@ input[type=number] {
                                         @if($bidang->isEmpty())
                                         <a id="siswa" class="text-decoration-none" href="{{ url('/')}}/dashboard/siswa"> Belum ada data, Klik untuk isi</a>                               
                                         @else
-                                        <select class="siswa" id="siswa" name="siswa" style="width:40%">   
+                                        <select class="siswa" id="siswa" name="siswa" style="width:40%" required>   
                                             <option value="">Select Siswa</option>                                
                                             @foreach($bidang as $b)
                                             <option value="{{$b->id}}">{{$b->nisn.' - '.$b->nama}}</option>
@@ -292,7 +292,7 @@ input[type=number] {
                                 @if($bidang->isEmpty())
                                 <a id="siswa-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/siswa"> Belum ada data, Klik untuk isi</a>                               
                                 @else
-                                <select class="siswa" id="siswa-edit" name="siswa-edit" style="width:40%">                                   
+                                <select class="siswa" id="siswa-edit" name="siswa-edit" style="width:40%" required>                                   
                                     @foreach($siswa as $b)
                                     <option value="{{$b->id}}">{{$b->nisn.' - '.$b->nama}}</option>
                                     @endforeach                                  
@@ -516,6 +516,7 @@ $(document).ready(function () {
 							timer: 1200,
 							showConfirmButton: false
 						});
+                        setTimeout(location.reload.bind(location), 1800);
 					}
 				},
 				error: function(err) {

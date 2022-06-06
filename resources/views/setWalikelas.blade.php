@@ -77,23 +77,27 @@
                         <form action="" method="post" action="{{ url('') }}/dashboard/kelas/store" id="form-tambah">
                             @csrf                           
                             <div class="form-group">
-                                <label for="guru">Nama Guru</label>
-                                @if(!$guru->isEmpty())                              
+                                <label for="guru">Nama Guru</label> 
+                                @if(!$guru->isEmpty())                                                                                           
                                 <select class="form-control" id="guru" name="guru" required>                                   
                                     @foreach($guru as $g)
                                     <option value="{{$g->id}}">{{$g->nama.'-'.$g->nip}}</option>
                                     @endforeach                                      
-                                </select>                            
+                                </select>   
+                                @else
+                                <a id="jurusan-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/guru"> Belum ada data, Klik untuk isi</a>                                                        
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="kelas">Nama Kelas</label>
-                                @if(!$kelas->isEmpty())                              
+                            <label for="kelas">Nama Kelas</label>
+                                @if(!$kelas->isEmpty())                                                                                              
                                 <select class="form-control" id="kelas" name="kelas" required>                                   
                                     @foreach($kelas as $k)
                                     <option value="{{$k->id}}">{{$k->nama_kelas.'-'.$k->tahun}}</option>
                                     @endforeach                                      
-                                </select>                            
+                                </select> 
+                                @else 
+                                <a id="jurusan-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/kelas"> Belum ada data, Klik untuk isi</a>                                                          
                                 @endif
                             </div>                            
                     </div>
@@ -320,6 +324,7 @@ $(document).ready(function () {
 							timer: 1200,
 							showConfirmButton: false
 						});
+                        setTimeout(location.reload.bind(location), 1800);
 					}
 				},
 				error: function(err) {
