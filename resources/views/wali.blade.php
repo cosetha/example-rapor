@@ -95,7 +95,7 @@ input[type=number] {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="nama_ayah" class="form-label">Nama Auah</label>
+                                        <label for="nama_ayah" class="form-label">Nama Ayah</label>
                                         <input type="text" name="nama_ayah" id="nama_ayah" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
     onblur="if (this.value == '') {this.value = '';}"
     onfocus="if (this.value == '') {this.value = '';}">
@@ -273,7 +273,7 @@ input[type=number] {
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="nama_ayah-edit" class="form-label">Nama Auah</label>
+                                        <label for="nama_ayah-edit" class="form-label">Nama Ayah</label>
                                         <input type="text" name="nama_ayah-edit" id="nama_ayah-edit" class="form-control" onkeydown="return /[a-z, ]/i.test(event.key)"
     onblur="if (this.value == '') {this.value = '';}"
     onfocus="if (this.value == '') {this.value = '';}">
@@ -595,6 +595,7 @@ $(document).ready(function () {
 							timer: 1200,
 							showConfirmButton: false
 						});
+                        setTimeout(location.reload.bind(location), 1800);
 					}
 				},
 				error: function(err) {
@@ -623,6 +624,7 @@ $(document).ready(function () {
                         success: function(response) {
                             Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
                             table.ajax.reload();
+                            setTimeout(location.reload.bind(location), 1800);
                         },
                         error: function(err) {
                             console.log(err);

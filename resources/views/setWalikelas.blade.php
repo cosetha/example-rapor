@@ -380,6 +380,7 @@ $(document).ready(function () {
 							timer: 1200,
 							showConfirmButton: false
 						});
+                        setTimeout(location.reload.bind(location), 1800);
 					}
 				},
 				error: function(err) {
@@ -408,6 +409,7 @@ $(document).ready(function () {
                         success: function(response) {
                             Swal.fire('Deleted!', nama + ' telah dihapus.', 'success');
                             table.ajax.reload();
+                            setTimeout(location.reload.bind(location), 1800);
                         },
                         error: function(err) {
                             console.log(err);
