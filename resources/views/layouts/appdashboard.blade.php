@@ -191,7 +191,7 @@
                                             <div class="collapse" id="sidebarMultilevel44" style="">
                                                 <ul class="nav-second-level">
                                                     <li>
-                                                        <a href="/dashboard/bidang">Bidang Studi</a>
+                                                        <a href="/dashboard/bidang">Program Keahlian</a>
                                                     </li>
                                                     <li>
                                                         <a href="/dashboard/kompetensi">Kompetensi Keahlian</a>
