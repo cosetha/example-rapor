@@ -34,7 +34,7 @@
                 <table class="mt-5 table" style="width:100%;">
                
                     <tr>
-                        <td class="font-weight-bold" style="width:40%">Bidang Studi</td>
+                        <td class="font-weight-bold" style="width:40%">Program Keahlian</td>
                         <td class="font-weight-bold text-uppercase">:   {{$siswa[0]->bidang_studi}}        </td>
                     </tr>
                     <tr>

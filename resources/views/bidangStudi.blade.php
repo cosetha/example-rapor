@@ -1,10 +1,10 @@
-@extends('layouts.appdashboard') @section('title', 'Bidang Studi || Cordova')
+@extends('layouts.appdashboard') @section('title', 'Program Keahlian || Cordova')
 @section('content')
 
 <div class="card">
     <div class="card-body">
-        <h4 class="header-title">Bidang Studi</h4>
-        <p class="sub-header">Tempat Mengelola data terkait Bidang Studi</p>
+        <h4 class="header-title">Program Keahlian</h4>
+        <p class="sub-header">Tempat Mengelola data terkait Program Keahlian</p>
         <div class="row">
             <div class="button-list">
                 <button
@@ -32,7 +32,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Bidang</th>
+                                <th>Nama Program</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -73,8 +73,8 @@
                         <form action="" method="post" action="{{ url('') }}/dashboard/bidang/store" id="form-tambah">
                             @csrf
                             <div class="form-group ">
-                                <label for="nama">Nama Bidang Studi:</label>
-                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Bidang" name="nama-tambah" required value = "{{ old('nama') }}">                                        
+                                <label for="nama">Nama Program Keahlian:</label>
+                                <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama Program" name="nama-tambah" required value = "{{ old('nama') }}">                                        
                             </div>
                     </div>
                 </div>
@@ -127,8 +127,8 @@
                         <input type="hidden" name="edit-id" value="">
                             @csrf
                             <div class="form-group ">
-                                <label for="nama">Nama Bidang Studi:</label>
-                                <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Bidang" name="nama-edit" required value = "{{ old('nama') }}">                                        
+                                <label for="nama">Nama Program Keahlian:</label>
+                                <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Program" name="nama-edit" required value = "{{ old('nama') }}">                                        
                             </div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@ $(document).ready(function () {
 						Swal.fire({
 							icon: 'success',
 							title: 'Sukses',
-							text: 'Berhasil Menambahkan Bidang Studi',
+							text: 'Berhasil Menambahkan Program Keahlian',
 							timer: 1200,
 							showConfirmButton: false
 						});
@@ -259,7 +259,7 @@ $(document).ready(function () {
 						Swal.fire({
 							icon: 'success',
 							title: 'Sukses',
-							text: 'Berhasil Mengedit Bidang Studi',
+							text: 'Berhasil Mengedit Program Keahlian',
 							timer: 1200,
 							showConfirmButton: false
 						});

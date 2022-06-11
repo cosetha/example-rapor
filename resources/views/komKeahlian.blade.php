@@ -32,7 +32,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Bidang</th>
+                                <th>Nama Program</th>
                                 <th>Nama Keahlian</th>
                                 <th>Aksi</th>
                             </tr>
@@ -78,7 +78,7 @@
                                 <input type="text" class="form-control" id="nama-tambah" placeholder="Masukan Nama kompetensi" name="nama-tambah" required value = "{{ old('nama') }}">                                        
                             </div>
                             <div class="form-group">
-                                <label for="bidang">Nama Bidang Studi</label>
+                                <label for="bidang">Nama Program Keahlian</label>
                                 @if($bidang->isEmpty())
                                     <a id="bidang" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
                                 @else
@@ -144,7 +144,7 @@
                                 <input type="text" class="form-control" id="nama-edit" placeholder="Masukan Nama Kompetensi" name="nama-edit" required value = "{{ old('nama') }}">                                        
                             </div>
                             <div class="form-group">
-                                <label for="bidang">Nama Bidang Studi</label>
+                                <label for="bidang">Nama Program Keahlian</label>
                                 @if($bidang->isEmpty())
                                     <a id="bidang-edit" class="text-decoration-none" href="{{ url('/')}}/dashboard/bidang"> Belum ada data, Klik untuk isi</a>                               
                                 @else

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\t_nilai_ahli;
 use Illuminate\Http\Request;
 use App\t_guru_mapel_ahli;
+use App\m_mapel_ahli;
 use App\t_kelas;
 use App\m_guru;
 use Auth;
@@ -34,7 +35,7 @@ class TNilaiAhliController extends Controller
         $guru = m_guru::select('id')->where('id_user',Auth::id())->first();
         $id_guru = t_guru_mapel_ahli::select('id')->where([['m_guru_id',$guru->id],['m_kelas_id',$id],['m_mapel_id',$request->mapel]])->first();
         $nilai = t_nilai_ahli::where([['id_guru',$id_guru->id],['tahun',$request->smt]])->orderby('id_siswa','asc')->get();
-        
+        $mapel = m_mapel_ahli::find($request->mapel);
 
         // for ($i=0; $i <count($kelas->siswa) ; $i++) { 
         //    $kelas->siswa[$i]['nilai'] = $nilai[$i]->
@@ -57,7 +58,7 @@ class TNilaiAhliController extends Controller
             }
         }
         
-        return view('ahli.nilaiUmumAdd',['kelas'=>$kelas,'guru'=>$id_guru]);
+        return view('ahli.nilaiUmumAdd',['kelas'=>$kelas,'guru'=>$id_guru,'mapel'=>$mapel]);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\t_nilai;
 use App\t_guru_mapel;
 use App\t_kelas;
 use App\m_guru;
+use App\m_mapel;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class TNilaiController extends Controller
         $guru = m_guru::select('id')->where('id_user',Auth::id())->first();
         $id_guru = t_guru_mapel::select('id')->where([['m_guru_id',$guru->id],['m_kelas_id',$id],['m_mapel_id',$request->mapel]])->first();
         $nilai = t_nilai::where([['id_guru',$id_guru->id],['tahun',$request->smt]])->orderby('id_siswa','asc')->get();
-        
+        $mapel = m_mapel::find($request->mapel);
 
         // for ($i=0; $i <count($kelas->siswa) ; $i++) { 
         //    $kelas->siswa[$i]['nilai'] = $nilai[$i]->
@@ -58,7 +59,7 @@ class TNilaiController extends Controller
                 
             }
         }
-        return view('nilai.nilaiUmumAdd',['kelas'=>$kelas,'guru'=>$id_guru]);
+        return view('nilai.nilaiUmumAdd',['kelas'=>$kelas,'guru'=>$id_guru,'mapel'=> $mapel]);
     }
 
     /**
