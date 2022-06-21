@@ -19,6 +19,7 @@ input[type=number] {
     <div class="card-body">
         <h4 class="header-title">Nilai {{$mapel->nama}}</h4>
         <p class="sub-header">Tempat Mengelola data terkait Nilai {{$mapel->nama}}</p>
+        <img src="{{asset('img/equation.png')}}" alt="" srcset="">
         <div class="row mt-3">
             <div class="col-sm-12">
             @if (\Session::has('success'))
