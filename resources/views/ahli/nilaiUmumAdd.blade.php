@@ -20,6 +20,9 @@ input[type=number] {
         <h4 class="header-title">Nilai {{$mapel->nama}}</h4>
         <p class="sub-header">Tempat Mengelola data terkait Nilai {{$mapel->nama}}</p>
         <img src="{{asset('img/equation.png')}}" alt="" srcset="">
+        <form action="{{url('dashboard/nilai_ahli/store').'/'.$guru->id}}" method="POST">
+        @csrf
+        <input type="hidden" name="tahun" value="{{ isset($_GET['smt']) ? $_GET['smt'] :''}}">
         <div class="row mt-3">
             <div class="col-sm-12">
             @if (\Session::has('success'))
@@ -44,9 +47,6 @@ input[type=number] {
                             </tr>
                         </thead>
                         <tbody> 
-                        <form action="{{url('dashboard/nilai_ahli/store').'/'.$guru->id}}" method="POST">
-                        @csrf
-                        <input type="hidden" name="tahun" value="{{ isset($_GET['smt']) ? $_GET['smt'] :''}}">
                         @foreach($kelas as $t)
                             @foreach($t->siswa as $k)
                             @php
