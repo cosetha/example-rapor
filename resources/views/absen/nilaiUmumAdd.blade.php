@@ -19,6 +19,9 @@ input[type=number] {
     <div class="card-body">
         <h4 class="header-title">Nilai Absen</h4>
         <p class="sub-header">Tempat Mengelola data terkait Nilai Absen</p>
+        <form action="{{url('dashboard/nilai_absen/store').'/'.$kelas[0]->id}}" method="POST">
+        @csrf
+        <input type="hidden" name="tahun" value="{{ isset($_GET['smt']) ? $_GET['smt'] :''}}">
         <div class="row mt-3">
             <div class="col-sm-12">
             @if (\Session::has('success'))
@@ -42,9 +45,7 @@ input[type=number] {
                             </tr>
                         </thead>
                         <tbody> 
-                        <form action="{{url('dashboard/nilai_absen/store').'/'.$kelas[0]->id}}" method="POST">
-                        @csrf
-                        <input type="hidden" name="tahun" value="{{ isset($_GET['smt']) ? $_GET['smt'] :''}}">
+                        
                         @foreach($kelas as $t)
                             @foreach($t->siswa as $k)
                             <tr>
