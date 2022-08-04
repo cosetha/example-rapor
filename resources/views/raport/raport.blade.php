@@ -273,6 +273,7 @@
                         <tr>
                             <td colspan="6"><br></td>
                         </tr>
+                       @if( Auth::user()->level != "Wali")
                         <tr>
                             <td colspan="6">
                                 <table class="w-100 p-5">
@@ -356,6 +357,7 @@
                                 </table>
                             </td>
                         </tr>
+                        @endif
                     </tbody>
                 </table>                               
             </div>
@@ -622,6 +624,7 @@
                         <tr>
                             <td colspan="6"><br></td>
                         </tr>
+                        @if( Auth::user()->level != "Wali")
                         <tr>
                             <td colspan="6">
                                 <table class="w-100 p-5">
@@ -706,6 +709,7 @@
                                 </table>
                             </td>
                         </tr>
+                        @endif
                     </tbody>
                 </table>                               
             </div>
@@ -843,6 +847,7 @@
                         <tr>
                             <td colspan="6"><br></td>
                         </tr>
+                        @if( Auth::user()->level != "Wali")
                         <tr>
                             <td colspan="6">
                                 <table class="w-100 p-5">
@@ -927,6 +932,7 @@
                                 </table>
                             </td>
                         </tr>
+                        @endif
                     </tbody>
                 </table>                               
             </div>
